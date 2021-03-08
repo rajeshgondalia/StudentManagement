@@ -1,0 +1,458 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<!-- right main container start here -->
+<div class="app-container">
+    <div class="inner-tab-panel">
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs topnav" role="tablist">
+            <li class="nav-item">
+                <a class="nav-link active active" data-toggle="tab" href="#home">Personal</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-toggle="tab" href="#menu1">College</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-toggle="tab" href="#menu2">Parent</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-toggle="tab" href="#menu3">Current Address</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-toggle="tab" href="#menu4">Educational</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-toggle="tab" href="#menu5">Entrance Exam</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-toggle="tab" href="#menu6">Upload Documents</a>
+            </li>
+        </ul>
+
+        <!-- Tab panes -->
+        <div class="tab-content page-container">
+            <div id="home" class="tab-pane active">
+                <div class="card">
+                    <div class="modal-header">
+                        <h6 class="modal-title">
+                            Add Personal Details
+                        </h6>
+                    </div>
+                    <div class="card-body modal-body">
+                        <!-- form start here -->
+                        <div class="default-form">
+                            <div class="row">
+                                <div class="col-lg-4 col-md-4 col-12">
+                                    <div class="form-group mb-4 mb-4">
+                                        <label class="form-label">Name <span class="pl-1 text-danger"> * </span></label>
+                                        <input type="text" class="form-control" placeholder="First Name" value="Keyur" disabled>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-md-4 col-12">
+                                    <div class="form-group mb-4">
+                                        <label class="form-label">Official  Email <span class="pl-1 text-danger"> * </span></label>
+                                        <input type="text" class="form-control" placeholder="First Name" value="keyupatel007@gmail.com" disabled>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-md-4 col-12">
+                                    <div class="form-group mb-4">
+                                        <label class="form-label">Username <span class="pl-1 text-danger"> * </span></label>
+                                        <input type="text" class="form-control" placeholder="User Name" value="Keyu Patel" disabled>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-4 col-md-4 col-12">
+                                    <div class="form-group mb-4">
+                                        <label class="form-label">Mobile Number 1</label>
+                                        <input type="text" class="form-control" placeholder="Mobile Number 1">
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-md-4 col-12">
+                                    <div class="form-group mb-4">
+                                        <label class="form-label">Mobile Number 2</label>
+                                        <input type="text" class="form-control" placeholder="Mobile Number 2">
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-md-4 col-12">
+                                    <div class="form-group mb-4">
+                                        <label class="form-label">Personal Email 1</label>
+                                        <input type="email" class="form-control" placeholder="Personal Email">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-4 col-md-4 col-12">
+                                    <div class="form-group mb-4">
+                                        <label class="form-label">Personal Email 2</label>
+                                        <input type="email" class="form-control" placeholder="Personal Email 2">
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-md-4 col-12">
+                                    <div class="form-group mb-4">
+                                        <label class="form-label">Gernder</label>
+                                        <select class="form-control">
+                                            <option>Male</option>
+                                            <option>Female</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-md-4 col-12">
+                                    <div class="form-group mb-4">
+                                        <label class="form-label">Date of birth</label>
+                                        <input type="date" class="form-control" placeholder="Personal Email">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-4 col-md-4 col-12">
+                                    <div class="form-group mb-4">
+                                        <label class="form-label">Cast Category</label>
+                                        <select class="form-control">
+                                            <option>Open</option>
+                                            <option>SEBC</option>
+                                            <option>SC</option>
+                                            <option>ST</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-md-4 col-12">
+                                    <div class="form-group mb-4">
+                                        <label class="form-label">Blood Group</label>
+                                        <select class="form-control">
+                                            <option>O+ Positive</option>
+                                            <option>A+ Positive</option>
+                                            <option>AB+ Positive</option>
+                                            <option>B+ Positive</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-md-4 col-12">
+                                    <div class="form-group mb-4">
+                                        <label class="form-label">Religion</label>
+                                        <select class="form-control">
+                                            <option>Hindu</option>
+                                            <option>Muslim</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-4 col-md-4 col-12">
+                                    <div class="form-group mb-4">
+                                        <label class="form-label">Nationality</label>
+                                        <select class="form-control">
+                                            <option>Indian</option>
+                                            <option>SEBC</option>
+                                            <option>SC</option>
+                                            <option>ST</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-md-4 col-12">
+                                    <div class="form-group mb-4">
+                                        <label class="form-label">Domicile</label>
+                                        <select class="form-control">
+                                            <option>Select 1</option>
+                                            <option>Select 2</option>
+                                            <option>Select 3</option>
+                                            <option>Select 4</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- form end here -->
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-secondary">Cancel</button>
+                        <button class="btn btn-primary">Save</button>
+                    </div>
+                </div>
+            </div>
+            <div id="menu1" class="tab-pane fade">
+                <div class="card">
+                    <div class="modal-header">
+                        <h6 class="modal-title">
+                            Add College Details
+                        </h6>
+                    </div>
+                    <div class="card-body modal-body">
+                        <!-- form start here -->
+                        <div class="default-form">
+                            <div class="row">
+                                <div class="col-lg-4 col-md-4 col-12">
+                                    <div class="form-group mb-4">
+                                        <label class="form-label">Campus</label>
+                                        <select class="form-control">
+                                            <option>Veer Narmad South Gujarat University</option>
+                                            <option>Gujarat Technical Unitversity</option>
+                                            <option>Sourastra Unitversity</option>
+                                            <option>Uka Tarsariya University</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-md-4 col-12">
+                                    <div class="form-group mb-4">
+                                        <label class="form-label">College</label>
+                                        <select class="form-control">
+                                            <option>Bhagwan Mahavir College-Surat</option>
+                                            <option>SCET College Surat</option>
+                                            <option>VNSGU Department</option>
+                                            <option>Maliba College</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-md-4 col-12">
+                                    <div class="form-group mb-4">
+                                        <label class="form-label">Course</label>
+                                        <select class="form-control">
+                                            <option>BCA</option>
+                                            <option>BBA</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-4 col-md-4 col-12">
+                                    <div class="form-group mb-4">
+                                        <label class="form-label">Branch</label>
+                                        <select class="form-control">
+                                            <option>Surat</option>
+                                            <option>Pune</option>
+                                            <option>Banglore</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-md-4 col-12">
+                                    <div class="form-group mb-4">
+                                        <label class="form-label">Year</label>
+                                        <select class="form-control">
+                                            <option>2017</option>
+                                            <option>2018</option>
+                                            <option>2019</option>
+                                            <option>2020</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-md-4 col-12">
+                                    <div class="form-group mb-4">
+                                        <label class="form-label">Course</label>
+                                        <select class="form-control">
+                                            <option>2020</option>
+                                            <option>2021</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-4 col-md-4 col-12">
+                                    <div class="form-group mb-4">
+                                        <label class="form-label">Admission Type</label>
+                                        <select class="form-control">
+                                            <option>Goverment </option>
+                                            <option>Self Finance</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-md-4 col-12">
+                                    <div class="form-group mb-4">
+                                        <label class="form-label">Admission Batch</label>
+                                        <select class="form-control">
+                                            <option>2017</option>
+                                            <option>2018</option>
+                                            <option>2019</option>
+                                            <option>2020</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-md-4 col-12">
+                                    <div class="form-group mb-4">
+                                        <label class="form-label">College Roll No.</label>
+                                        <input type="text" class="form-control" placeholder="College roll no." />
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-lg-4 col-md-4 col-12">
+                                    <div class="form-group mb-4">
+                                        <label class="form-label">University Enrollment No.</label>
+                                        <input type="text" class="form-control" placeholder="University Enrollment No." />
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-md-4 col-12">
+                                    <div class="form-group mb-4">
+                                        <label class="form-label">Passport Number</label>
+                                        <input type="text" class="form-control" placeholder="Passport Number" />
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-md-4 col-12">
+                                    <div class="form-group mb-4">
+                                        <label class="form-label">Aadhar Number</label>
+                                        <input type="text" class="form-control" placeholder="Aadhar Number" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- form end here -->
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-secondary">Cancel</button>
+                        <button class="btn btn-primary">Save</button>
+                    </div>
+                </div>
+            </div>
+            <div id="menu2" class="tab-pane fade">
+                <div class="card">
+                    <div class="modal-header">
+                        <h6 class="modal-title">
+                            Parent Details
+                        </h6>
+                    </div>
+                    <div class="card-body modal-body">
+                        <!-- form start here -->
+                        <!-- form end here -->
+                    </div>
+                </div>
+            </div>
+            <div id="menu3" class="tab-pane fade">
+                <div class="card">
+                    <div class="modal-header">
+                        <h6 class="modal-title">
+                            Current Address Details
+                        </h6>
+                    </div>
+                    <div class="card-body modal-body">
+                        <!-- form start here -->
+                        <!-- form end here -->
+                    </div>
+                </div>
+            </div>
+            <div id="menu4" class="tab-pane fade">
+                <div class="card">
+                    <div class="modal-header">
+                        <h6 class="modal-title">
+                            Educational Details
+                        </h6>
+                    </div>
+                    <div class="card-body modal-body">
+                        <!-- form start here -->
+                        <!-- form end here -->
+                    </div>
+                </div>
+            </div>
+            <div id="menu5" class="tab-pane fade">
+                <div class="card">
+                    <div class="modal-header">
+                        <h6 class="modal-title">
+                            Entrance Exam Details
+                        </h6>
+                    </div>
+                    <div class="card-body modal-body">
+                        <!-- form start here -->
+                        <!-- form end here -->
+                    </div>
+                </div>
+            </div>
+            <div id="menu6" class="tab-pane fade">
+                <div class="card">
+                    <div class="modal-header">
+                        <h6 class="modal-title">
+                            Upload Documents
+                        </h6>
+                    </div>
+                    <div class="card-body modal-body">
+                        <!-- form start here -->
+                        <div class="row">
+                            <div class="col-lg-4 col-md-4 col-12">
+                                <div class="form-group mb-4">
+                                    <label class="form-label">10th Marksheet</label>
+                                    <div class="upload-document position-relative">
+                                        <input type="file" class="form-control" />
+                                        <div class="upload-img-section">
+                                            <i class="fal fa-upload"></i>
+                                            <p class="text-center upload-document-title">Upload Document</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-4 col-12">
+                                <div class="form-group mb-4">
+                                    <label class="form-label">12th Marksheet</label>
+                                    <div class="upload-document position-relative">
+                                        <input type="file" class="form-control" />
+                                        <div class="upload-img-section">
+                                            <i class="fal fa-upload"></i>
+                                            <p class="text-center upload-document-title">Upload Document</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-4 col-12">
+                                <div class="form-group mb-4">
+                                    <label class="form-label">Diploma Marksheet</label>
+                                    <div class="upload-document position-relative">
+                                        <input type="file" class="form-control" />
+                                        <div class="upload-img-section">
+                                            <i class="fal fa-upload"></i>
+                                            <p class="text-center upload-document-title">Upload Document</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- form end here -->
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-4 col-md-4 col-12">
+                                <div class="form-group mb-4">
+                                    <label class="form-label">Degree Marksheet</label>
+                                    <div class="upload-document position-relative">
+                                        <input type="file" class="form-control" />
+                                        <div class="upload-img-section">
+                                            <i class="fal fa-upload"></i>
+                                            <p class="text-center upload-document-title">Upload Document</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-4 col-12">
+                                <div class="form-group mb-4">
+                                    <label class="form-label">Post Graduation Marksheet</label>
+                                    <div class="upload-document position-relative">
+                                        <input type="file" class="form-control" />
+                                        <div class="upload-img-section">
+                                            <i class="fal fa-upload"></i>
+                                            <p class="text-center upload-document-title">Upload Document</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-4 col-12">
+                                <div class="form-group mb-4">
+                                    <label class="form-label">Colored Photograph</label>
+                                    <div class="upload-document position-relative">
+                                        <input type="file" class="form-control" />
+                                        <div class="upload-img-section">
+                                            <i class="fal fa-upload"></i>
+                                            <p class="text-center upload-document-title">Upload Document</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- form end here -->
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-secondary">Cancel</button>
+                        <button class="btn btn-primary">Save</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- right main container start here -->

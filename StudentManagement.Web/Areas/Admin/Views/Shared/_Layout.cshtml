@@ -1,0 +1,137 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Student Managment System</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="~/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="~/css/style.css">
+    <link rel="stylesheet" type="text/css" href="~/css/responsive.css">
+</head>
+
+<body>
+    <!-- Dashboard section start here -->
+    <header class="top-header">
+        <nav class="navbar page-header navbar-light fixed-top">
+            <div class="d-flex justify-content-between w-100 banner-bg">
+                <div class="d-flex">
+                    <div class="navbar-brand">
+                        <a href="dashboard.html" class="navbar-logo text-decoration-none text-white">
+                            <i class="fal fa-book-reader"></i>
+                        </a>
+                    </div>
+                    <div class="nav-title align-self-center">
+                        <a href="dashboard.html" class="org-name text-white text-decoration-none">
+                            Student Managment
+                            System
+                        </a>
+                    </div>
+                </div>
+
+                <div class="page-header-left d-flex align-items-center user-profile">
+                    <div class="dropdown">
+                        <button class="dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
+                                aria-haspopup="true" aria-expanded="false">
+                            <div class="profile-picture">
+                                <div class="img-initials"> RG </div>
+                            </div>
+                            <span> Rajesh Gondaliya </span>
+                            <span class="text-white pl-2"><i class="far fa-chevron-down"></i></span>
+
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <a class="dropdown-item" href="#">
+                                <span class="pr-2"> <i class="fal fa-user"></i> </span>
+                                Profile
+                            </a>
+                            <a class="dropdown-item" href="#">
+                                <span class="pr-2">
+                                    <i class="fal fa-lock-alt"></i>
+                                </span> Change Password
+                            </a>
+                            <a class="dropdown-item" href="#">
+                                <span class="pr-2">
+                                    <i class="fal fa-power-off"></i>
+                                </span> Logout
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <!-- dashboard main section -->
+    <!-- Dashboard section end here -->
+    <div class="main-container">
+        <!-- left nav section start here -->
+        <div class="left-nav navbar navbar-light nav-collapse px-0">
+            <div class="left-nav-body navbar-inner">
+                <ul class="navbar-nav pl-0" id="accordian">
+                    <li class="nav-item">
+                        <a href="dashboard.html" class="nav-link text-center">
+                            <span class="sidebar-list-icon"> <i class="far fa-home"></i></span>
+                            <span class="sidebar-list-label">Dashboard</span>
+                        </a>
+                    </li>
+                    <li class="nav-item active">
+                        <a href="student-profile.html" class="nav-link text-center">
+                            <span class="sidebar-list-icon"> <i class="fal fa-user"></i></span>
+                            <span class="sidebar-list-label">Student Profile</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="attendace.html" class="nav-link text-center">
+                            <span class="sidebar-list-icon"> <i class="far fa-calendar-check"></i> </span>
+                            <span class="sidebar-list-label">Attendance Entry</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="student-attemdace.html" class="nav-link text-center">
+                            <span class="sidebar-list-icon"> <i class="far fa-calendar-check"></i> </span>
+                            <span class="sidebar-list-label">View Student Attendance</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="student-attemdace.html" class="nav-link text-center">
+                            <span class="sidebar-list-icon"> <i class="fal fa-users-class"></i> </span>
+                            <span class="sidebar-list-label">Class details for Student</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="student-attemdace.html" class="nav-link text-center">
+                            <span class="sidebar-list-icon"> <i class="far fa-calendar-check"></i> </span>
+                            <span class="sidebar-list-label">View Class Attendance</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a href="student-attemdace.html" class="nav-link text-center">
+                            <span class="sidebar-list-icon"> <i class="fal fa-users-class"></i> </span>
+                            <span class="sidebar-list-label">Class Details for Teacher</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <!-- left nav section end here -->
+        @RenderBody()
+
+    </div>
+
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            &copy; 2021 - StudentManagement.Web - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        </div>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/js/popper.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/all.js"></script>
+    <script src="~/js/aos.js"></script>
+    <script src="~/js/main.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @RenderSection("Scripts", required: false)
+</body>
+</html>
