@@ -171,131 +171,117 @@
                             Add College Details
                         </h6>
                     </div>
-                    <div class="card-body modal-body">
-                        <!-- form start here -->
-                        <div class="default-form">
-                            <div class="row">
-                                <div class="col-lg-4 col-md-4 col-12">
-                                    <div class="form-group mb-4">
-                                        <label class="form-label">Campus</label>
-                                        <select class="form-control">
-                                            <option>Veer Narmad South Gujarat University</option>
-                                            <option>Gujarat Technical Unitversity</option>
-                                            <option>Sourastra Unitversity</option>
-                                            <option>Uka Tarsariya University</option>
-                                        </select>
+                    <form id="frmCollegeDetail" asp-controller="StudentProfile" asp-area="Student" asp-action="UpdateCollegeDetail" method="post">
+                        <div class="card-body modal-body">
+                            <!-- form start here -->
+                            <div class="default-form">
+                                <div class="row">
+                                    <div class="col-lg-4 col-md-4 col-12">
+                                        <div class="form-group mb-4">
+                                            <label class="form-label">Campus</label>
+                                            <select name="CampusId" asp-for="CampusId" class="form-control" asp-items="@ViewBag.CampusList">
+                                                <option value="">--Select Campus--</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-12">
+                                        <div class="form-group mb-4">
+                                            <label class="form-label">College</label>
+                                            <select name="CollegeList" asp-for="CollegeId" class="form-control" asp-items="@ViewBag.CollegeList">
+                                                <option value="">--Select College--</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-12">
+                                        <div class="form-group mb-4">
+                                            <label class="form-label">Course</label>
+                                            <select name="CourseId" asp-for="CourseId" class="form-control" asp-items="@ViewBag.CourseList">
+                                                <option value="">--Select Course--</option>
+                                            </select>
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="col-lg-4 col-md-4 col-12">
-                                    <div class="form-group mb-4">
-                                        <label class="form-label">College</label>
-                                        <select class="form-control">
-                                            <option>Bhagwan Mahavir College-Surat</option>
-                                            <option>SCET College Surat</option>
-                                            <option>VNSGU Department</option>
-                                            <option>Maliba College</option>
-                                        </select>
+                                <div class="row">
+                                    <div class="col-lg-4 col-md-4 col-12">
+                                        <div class="form-group mb-4">
+                                            <label class="form-label">Branch</label>
+                                            <select name="BranchId" asp-for="BranchId" class="form-control" asp-items="@ViewBag.BranchList">
+                                                <option value="">--Select Branch--</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-12">
+                                        <div class="form-group mb-4">
+                                            <label class="form-label">Year</label>
+                                            <select name="YearSemId" asp-for="YearSemId" class="form-control" asp-items="@ViewBag.YearSemList">
+                                                <option value="">--Select Year--</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-12">
+                                        <div class="form-group mb-4">
+                                            <label class="form-label">Batch</label>
+                                            <select name="BatchId" asp-for="BatchId" class="form-control" asp-items="@ViewBag.BatchList">
+                                                <option value="">--Select Batch--</option>
+                                            </select>
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="col-lg-4 col-md-4 col-12">
-                                    <div class="form-group mb-4">
-                                        <label class="form-label">Course</label>
-                                        <select class="form-control">
-                                            <option>BCA</option>
-                                            <option>BBA</option>
-                                        </select>
+                                <div class="row">
+                                    <div class="col-lg-4 col-md-4 col-12">
+                                        <div class="form-group mb-4">
+                                            <label class="form-label">Admission Type</label>
+                                            <select name="AdmissionTypeId" asp-for="AdmissionTypeId" class="form-control" asp-items="@ViewBag.AdmissionTypeList">
+                                                <option value="">--Select Admission Type--</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-12">
+                                        <div class="form-group mb-4">
+                                            <label class="form-label">Admission Batch</label>
+                                            <select name="AdmissionBatchTypeId" asp-for="AdmissionBatchTypeId" class="form-control" asp-items="@ViewBag.BatchList">
+                                                <option value="">--Select Admission Batch--</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-12">
+                                        <div class="form-group mb-4">
+                                            <label class="form-label">College Roll No.</label>
+                                            <input type="text" name="CollegeRollNo" asp-for="CollegeRollNo" class="form-control" placeholder="College roll no." />
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-lg-4 col-md-4 col-12">
-                                    <div class="form-group mb-4">
-                                        <label class="form-label">Branch</label>
-                                        <select class="form-control">
-                                            <option>Surat</option>
-                                            <option>Pune</option>
-                                            <option>Banglore</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-lg-4 col-md-4 col-12">
-                                    <div class="form-group mb-4">
-                                        <label class="form-label">Year</label>
-                                        <select class="form-control">
-                                            <option>2017</option>
-                                            <option>2018</option>
-                                            <option>2019</option>
-                                            <option>2020</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-lg-4 col-md-4 col-12">
-                                    <div class="form-group mb-4">
-                                        <label class="form-label">Course</label>
-                                        <select class="form-control">
-                                            <option>2020</option>
-                                            <option>2021</option>
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-lg-4 col-md-4 col-12">
-                                    <div class="form-group mb-4">
-                                        <label class="form-label">Admission Type</label>
-                                        <select class="form-control">
-                                            <option>Goverment </option>
-                                            <option>Self Finance</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-lg-4 col-md-4 col-12">
-                                    <div class="form-group mb-4">
-                                        <label class="form-label">Admission Batch</label>
-                                        <select class="form-control">
-                                            <option>2017</option>
-                                            <option>2018</option>
-                                            <option>2019</option>
-                                            <option>2020</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-lg-4 col-md-4 col-12">
-                                    <div class="form-group mb-4">
-                                        <label class="form-label">College Roll No.</label>
-                                        <input type="text" class="form-control" placeholder="College roll no." />
-                                    </div>
-                                </div>
-                            </div>
 
-                            <div class="row">
-                                <div class="col-lg-4 col-md-4 col-12">
-                                    <div class="form-group mb-4">
-                                        <label class="form-label">University Enrollment No.</label>
-                                        <input type="text" class="form-control" placeholder="University Enrollment No." />
+                                <div class="row">
+                                    <div class="col-lg-4 col-md-4 col-12">
+                                        <div class="form-group mb-4">
+                                            <label class="form-label">University Enrollment No.</label>
+                                            <input type="text" name="UniversityEnrollmentNumber" asp-for="UniversityEnrollmentNumber" class="form-control" placeholder="University Enrollment No." />
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="col-lg-4 col-md-4 col-12">
-                                    <div class="form-group mb-4">
-                                        <label class="form-label">Passport Number</label>
-                                        <input type="text" class="form-control" placeholder="Passport Number" />
+                                    <div class="col-lg-4 col-md-4 col-12">
+                                        <div class="form-group mb-4">
+                                            <label class="form-label">Passport Number</label>
+                                            <input type="text" name="PassportNumber" asp-for="PassportNumber" class="form-control" placeholder="Passport Number" />
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="col-lg-4 col-md-4 col-12">
-                                    <div class="form-group mb-4">
-                                        <label class="form-label">Aadhar Number</label>
-                                        <input type="text" class="form-control" placeholder="Aadhar Number" />
+                                    <div class="col-lg-4 col-md-4 col-12">
+                                        <div class="form-group mb-4">
+                                            <label class="form-label">Aadhar Number</label>
+                                            <input type="text" name="AdharNumber" asp-for="AdharNumber" class="form-control" placeholder="Aadhar Number" />
+                                        </div>
                                     </div>
                                 </div>
                             </div>
+                            <!-- form end here -->
                         </div>
-                        <!-- form end here -->
-                    </div>
-                    <div class="modal-footer">
-                        <button class="btn btn-secondary">Cancel</button>
-                        <button class="btn btn-primary">Save</button>
-                    </div>
+                        <div class="modal-footer">
+                            <button class="btn btn-secondary">Cancel</button>
+                            <button type="submit" class="btn btn-primary">Save</button>
+                        </div>
+                    </form>
                 </div>
+                
             </div>
             <div id="menu2" class="tab-pane fade">
                 <div class="card">
@@ -451,7 +437,7 @@
 <script>
     $(document).ready(function () {
 
-        var validationresult = $("#frmPersonalDetail").validate({
+        var PersonalValidation = $("#frmPersonalDetail").validate({
         rules: {
                 "Mobile1": { required: true, minlength: 10, maxlength: 10, number: true},
             "Mobile2": { required: true },
@@ -491,7 +477,47 @@
             });
         }
 
-    });
+        });
+        var CollegeValidation = $("#frmCollegeDetail").validate({
+            rules: {
+                "CampusId": { required: true},
+                "CollegeId": { required: true },
+                "CourseId": { required: true},
+                "BranchId": { required: true },
+                "AdmissionTypeId": { required: true },
+                "AdmissionBatchTypeId": { required: true },
+                "CollegeRollNo": { required: true },
+                "UniversityEnrollmentNumber": { required: true },
+                "PassportNumber": { required: true },
+                "AdharNumber": { required: true }
+                
+
+
+            },
+
+            messages: {
+                "CampusId": { required: "Please select campus" },
+                "CollegeId": { required: "Please select college " },
+                "CourseId": { required: "Please select course " },
+                "BranchId": { required: "Please select branch " },
+                "AdmissionTypeId": { required: "Please select admission type " },
+                "AdmissionBatchTypeId": { required: "Please select admission batch type " },
+                "CollegeRollNo": { required: "Please enter college roll number " },
+                "UniversityEnrollmentNumber": { required: "Please enter  enrollment number" },
+                "PassportNumber": { required: "Please enter passport number" },
+                "AdharNumber": { required: "Please enter adhar number" }
+
+            },
+            submitHandler: function (form) {
+                let post_url = form.action;
+                let form_data = $(form).serialize();
+
+                $.post(post_url, form_data, function (response) {
+
+                });
+            }
+
+        });
     });
 </script>
 }

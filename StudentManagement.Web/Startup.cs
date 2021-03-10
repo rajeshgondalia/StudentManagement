@@ -117,6 +117,18 @@ namespace StudentManagement.Web
             services.AddScoped<IBloodGroupMasterService, BloodGroupMasterRepository>();
             services.AddScoped<ICategoryMasterService, CategoryMasterRepository>();
             services.AddScoped<IGenderService, GenderRepository>();
+            services.AddScoped<ICampusMasterService, CampusRepository>();
+            services.AddScoped<ICollegeMasterService,CollegeRepository>();
+            services.AddScoped<ICourseMasterService, CourseRepository>();
+            services.AddScoped<IBranchMasterService, BranchRepository>();
+            services.AddScoped<IYearSemesterMasterService, YearSemRepository>();
+            services.AddScoped<IBatchMasterService, BatchRepostitory>();
+            services.AddScoped<IAdmissionTypeMasterService, AdmissionTypeRepository>();
+            services.AddScoped<ICollegeDetailService, CollegeDetailRepository>();
+
+
+
+
             #endregion
 
 
