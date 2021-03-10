@@ -1,4 +1,5 @@
-﻿
+﻿@model StudentManagement.Service.Dto.StudentProfileDto
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Areas/Student/Views/Shared/_Layout.cshtml";
@@ -41,136 +42,126 @@
                             Add Personal Details
                         </h6>
                     </div>
-                    <div class="card-body modal-body">
-                        <!-- form start here -->
-                        <div class="default-form">
-                            <div class="row">
-                                <div class="col-lg-4 col-md-4 col-12">
-                                    <div class="form-group mb-4 mb-4">
-                                        <label class="form-label">Name <span class="pl-1 text-danger"> * </span></label>
-                                        <input type="text" class="form-control" placeholder="First Name" value="Keyur" disabled>
+                    <form  id="frmPersonalDetail" asp-controller="StudentProfile" asp-area="Student" asp-action="Updatestudent" method="post">
+                        <div class="card-body modal-body">
+                            <!-- form start here -->
+
+                            <div class="default-form">
+                                <div class="row">
+                                    <div class="col-lg-4 col-md-4 col-12">
+                                        <div class="form-group mb-4 mb-4">
+                                            <label class="form-label">Name <span class="pl-1 text-danger"> * </span></label>
+                                            <input type="text" asp-for="Name" class="form-control" placeholder="Name" disabled>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-12">
+                                        <div class="form-group mb-4">
+                                            <label class="form-label">Official  Email <span class="pl-1 text-danger"> * </span></label>
+                                            <input type="text" asp-for="OfficialEmail" class="form-control" placeholder="OfficialEmail" disabled>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-12">
+                                        <div class="form-group mb-4">
+                                            <label class="form-label">Username <span class="pl-1 text-danger"> * </span></label>
+                                            <input type="text" asp-for="UserName" class="form-control" placeholder="User Name" disabled>
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="col-lg-4 col-md-4 col-12">
-                                    <div class="form-group mb-4">
-                                        <label class="form-label">Official  Email <span class="pl-1 text-danger"> * </span></label>
-                                        <input type="text" class="form-control" placeholder="First Name" value="keyupatel007@gmail.com" disabled>
+                                <div class="row">
+                                    <div class="col-lg-4 col-md-4 col-12">
+                                        <div class="form-group mb-4">
+                                            <label class="form-label">Mobile Number 1</label>
+                                            <input type="text" asp-for="Mobile1" class="form-control" placeholder="Mobile Number 1">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-12">
+                                        <div class="form-group mb-4">
+                                            <label class="form-label">Mobile Number 2</label>
+                                            <input type="text" asp-for="Mobile2" class="form-control" placeholder="Mobile Number 2">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-12">
+                                        <div class="form-group mb-4">
+                                            <label class="form-label">Personal Email 1</label>
+                                            <input type="email" asp-for="PersonalEmail1" class="form-control" placeholder="Personal Email">
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="col-lg-4 col-md-4 col-12">
-                                    <div class="form-group mb-4">
-                                        <label class="form-label">Username <span class="pl-1 text-danger"> * </span></label>
-                                        <input type="text" class="form-control" placeholder="User Name" value="Keyu Patel" disabled>
+                                <div class="row">
+                                    <div class="col-lg-4 col-md-4 col-12">
+                                        <div class="form-group mb-4">
+                                            <label class="form-label">Personal Email 2</label>
+                                            <input type="email" asp-for="PersonalEmail2" class="form-control" placeholder="Personal Email 2">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-12">
+                                        <div class="form-group mb-4">
+                                            <label class="form-label">Gernder</label>
+                                            <select name="GenderId" asp-for="GenderId" class="form-control" asp-items="@ViewBag.GenderList">
+                                                <option value="">--Select Gernder--</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-12">
+                                        <div class="form-group mb-4">
+                                            <label class="form-label">Date of birth</label>
+                                            <input type="date" asp-for="Dob" class="form-control" placeholder="Date Of Birth">
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-lg-4 col-md-4 col-12">
-                                    <div class="form-group mb-4">
-                                        <label class="form-label">Mobile Number 1</label>
-                                        <input type="text" class="form-control" placeholder="Mobile Number 1">
+                                <div class="row">
+                                    <div class="col-lg-4 col-md-4 col-12">
+                                        <div class="form-group mb-4">
+                                            <label class="form-label">Cast Category</label>
+                                            <select name="CategoryId" asp-for="CategoryId" class="form-control" asp-items="@ViewBag.CategoryList">
+                                                <option value="">--Select Category--</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-12">
+                                        <div class="form-group mb-4">
+                                            <label class="form-label">Blood Group</label>
+                                            <select name="BloodGroupId" asp-for="BloodGroupId" class="form-control" asp-items="@ViewBag.BloodGroupList">
+                                                <option value="">--Select Blood Group--</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-12">
+                                        <div class="form-group mb-4">
+                                            <label class="form-label">Religion</label>
+                                            <select name="ReligionId" asp-for="ReligionId" class="form-control" asp-items="@ViewBag.ReligionList">
+                                                <option value="">--Select Religion--</option>
+                                            </select>
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="col-lg-4 col-md-4 col-12">
-                                    <div class="form-group mb-4">
-                                        <label class="form-label">Mobile Number 2</label>
-                                        <input type="text" class="form-control" placeholder="Mobile Number 2">
+                                <div class="row">
+                                    <div class="col-lg-4 col-md-4 col-12">
+                                        <div class="form-group mb-4">
+                                            <label class="form-label">Nationality</label>
+                                            <select name="CountryId" asp-for="CountryId" class="form-control" asp-items="@ViewBag.CountryList">
+                                                <option value="">--Select Nationality--</option>
+                                            </select>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="col-lg-4 col-md-4 col-12">
-                                    <div class="form-group mb-4">
-                                        <label class="form-label">Personal Email 1</label>
-                                        <input type="email" class="form-control" placeholder="Personal Email">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-lg-4 col-md-4 col-12">
-                                    <div class="form-group mb-4">
-                                        <label class="form-label">Personal Email 2</label>
-                                        <input type="email" class="form-control" placeholder="Personal Email 2">
-                                    </div>
-                                </div>
-                                <div class="col-lg-4 col-md-4 col-12">
-                                    <div class="form-group mb-4">
-                                        <label class="form-label">Gernder</label>
-                                        <select class="form-control">
-                                            <option>Male</option>
-                                            <option>Female</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-lg-4 col-md-4 col-12">
-                                    <div class="form-group mb-4">
-                                        <label class="form-label">Date of birth</label>
-                                        <input type="date" class="form-control" placeholder="Personal Email">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-lg-4 col-md-4 col-12">
-                                    <div class="form-group mb-4">
-                                        <label class="form-label">Cast Category</label>
-                                        <select class="form-control">
-                                            <option>Open</option>
-                                            <option>SEBC</option>
-                                            <option>SC</option>
-                                            <option>ST</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-lg-4 col-md-4 col-12">
-                                    <div class="form-group mb-4">
-                                        <label class="form-label">Blood Group</label>
-                                        <select class="form-control">
-                                            <option>O+ Positive</option>
-                                            <option>A+ Positive</option>
-                                            <option>AB+ Positive</option>
-                                            <option>B+ Positive</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-lg-4 col-md-4 col-12">
-                                    <div class="form-group mb-4">
-                                        <label class="form-label">Religion</label>
-                                        <select class="form-control">
-                                            <option>Hindu</option>
-                                            <option>Muslim</option>
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-lg-4 col-md-4 col-12">
-                                    <div class="form-group mb-4">
-                                        <label class="form-label">Nationality</label>
-                                        <select class="form-control">
-                                            <option>Indian</option>
-                                            <option>SEBC</option>
-                                            <option>SC</option>
-                                            <option>ST</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-lg-4 col-md-4 col-12">
-                                    <div class="form-group mb-4">
-                                        <label class="form-label">Domicile</label>
-                                        <select class="form-control">
-                                            <option>Select 1</option>
-                                            <option>Select 2</option>
-                                            <option>Select 3</option>
-                                            <option>Select 4</option>
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
+                                    <div class="col-lg-4 col-md-4 col-12">
+                                        <div class="form-group mb-4">
+                                            <label class="form-label">Domicile</label>
+                                            <select name="StateId" asp-for="StateId" class="form-control" asp-items="@ViewBag.StateList">
+                                                <option value="">--Select Domicile--</option>
+                                            </select>
+                                        </div>
                         </div>
-                        <!-- form end here -->
-                    </div>
-                    <div class="modal-footer">
-                        <button class="btn btn-secondary">Cancel</button>
-                        <button class="btn btn-primary">Save</button>
-                    </div>
+                                </div>
+                            </div>
+
+                            <!-- form end here -->
+                        </div>
+                        <div class="modal-footer">
+                            <button class="btn btn-secondary">Cancel</button>
+                            <button type="submit" class="btn btn-primary">Save</button>
+                        </div>
+                    </form>
                 </div>
             </div>
             <div id="menu1" class="tab-pane fade">
@@ -455,4 +446,53 @@
         </div>
     </div>
 </div>
+@section Scripts{ 
+
+<script>
+    $(document).ready(function () {
+
+        var validationresult = $("#frmPersonalDetail").validate({
+        rules: {
+                "Mobile1": { required: true, minlength: 10, maxlength: 10, number: true},
+            "Mobile2": { required: true },
+            "PersonalEmail1": { required: true ,email:true},
+                "PersonalEmail2": { required: true, email: true},
+            "GenderId": { required: true },
+            "Dob": { required: true },
+            "CategoryId": { required: true },
+            "BloodGroupId": { required: true },
+            "ReligionId": { required: true },
+            "CountryId": { required: true },
+            "StateId": { required: true },
+           
+
+        },
+
+        messages: {
+            "Mobile1": { required: "Please insert MobileNumber1", minlength: "Please enter at least 10 numbers.", maxlength: "Please enter at least 10 numbers."},
+            "Mobile2": { required: "Please insert MobileNumber2"},
+            "PersonalEmail1": { required: "Please insert Personal Email 1"},
+            "PersonalEmail2": { required: "Please insert Personal Email 1"},
+            "GenderId": { required: "Please insert Personal Gender"},
+            "Dob": { required: "Please insert Personal Gender"},
+            "CategoryId": { required: "Please insert Personal Category"},
+            "BloodGroupId": { required: "Please insert Personal BloodGroup"},
+            "ReligionId": { required: "Please insert Personal Religion"},
+            "CountryId": { required: "Please insert Personal Nationality"},
+            "StateId": { required: "Please insert Personal Domicile"},
+            
+        },
+        submitHandler: function (form) {
+            let post_url = form.action;
+            let form_data = $(form).serialize();
+          
+            $.post(post_url, form_data, function (response) {
+              
+            });
+        }
+
+    });
+    });
+</script>
+}
 

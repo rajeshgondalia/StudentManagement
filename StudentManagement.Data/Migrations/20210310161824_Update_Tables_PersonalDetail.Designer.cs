@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using StudentManagement.Data.DBContexts;
 
 namespace StudentManagement.Data.Migrations
 {
     [DbContext(typeof(StudentDbContext))]
-    partial class StudentDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210310161824_Update_Tables_PersonalDetail")]
+    partial class Update_Tables_PersonalDetail
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

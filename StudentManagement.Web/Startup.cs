@@ -110,6 +110,13 @@ namespace StudentManagement.Web
 
             #region Dependencyinjection 
             services.AddScoped<IErrorLogService, ErrorLogRepository>();
+            services.AddScoped<ICityMasterService, CityMasterRepository>();
+            services.AddScoped<IStateMasterService, StateMasterRepository>();
+            services.AddScoped<ICountryMasterService, CountryMasterRepository>();
+            services.AddScoped<IReligionMasterService, ReligionMasterRepository>();
+            services.AddScoped<IBloodGroupMasterService, BloodGroupMasterRepository>();
+            services.AddScoped<ICategoryMasterService, CategoryMasterRepository>();
+            services.AddScoped<IGenderService, GenderRepository>();
             #endregion
 
 

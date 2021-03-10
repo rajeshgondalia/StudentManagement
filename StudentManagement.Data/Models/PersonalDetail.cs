@@ -54,16 +54,9 @@ namespace StudentManagement.Data.Models
         [ForeignKey("CountryId")]
         public virtual CountryMaster CountryMaster { get; set; }
 
-        public long? StateId { get; set; }
+        public long StateId { get; set; }
         [ForeignKey("StateId")]
         public virtual StateMaster StateMaster { get; set; }
-
-        [Column(TypeName = "varchar(10)")]
-        public string StatePincode { get; set; }
-
-        [Column(TypeName = "varchar(10)")]
-        public string CountryPincode { get; set; }
-
 
         public long StayTypeId { get; set; }
         [ForeignKey("StayTypeId")]
@@ -72,9 +65,24 @@ namespace StudentManagement.Data.Models
         [Column(TypeName = "nvarchar(max)")]
         public string StayAddress { get; set; }
 
-        public long StayRelationId { get; set; }
+        public long? StayRelationId { get; set; }
         [ForeignKey("StayRelationId")]
         public virtual RelationMaster RelationMaster { get; set; }
+
+        public long? StayCountryId { get; set; }
+        [ForeignKey("StayCountryId")]
+        public virtual CountryMaster CountryMaster1 { get; set; }
+
+        public long? StayStateId { get; set; }
+        [ForeignKey("StayStateId")]
+        public virtual StateMaster StateMaster1 { get; set; }
+
+        public long? StayCityId { get; set; }
+        [ForeignKey("StayCityId")]
+        public virtual CityMaster CityMaster1 { get; set; }
+
+        [Column(TypeName = "varchar(10)")]
+        public string StayPinCode { get; set; }
 
     }
 }

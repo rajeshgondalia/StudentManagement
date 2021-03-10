@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using StudentManagement.Data.DBContexts;
 
 namespace StudentManagement.Data.Migrations
 {
     [DbContext(typeof(StudentDbContext))]
-    partial class StudentDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210310155307_Update_Tables")]
+    partial class Update_Tables
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -1870,7 +1872,7 @@ namespace StudentManagement.Data.Migrations
                     b.Property<string>("StayPinCode")
                         .HasColumnType("varchar(10)");
 
-                    b.Property<long?>("StayRelationId")
+                    b.Property<long>("StayRelationId")
                         .HasColumnType("bigint");
 
                     b.Property<long?>("StayStateId")
@@ -2855,7 +2857,9 @@ namespace StudentManagement.Data.Migrations
 
                     b.HasOne("StudentManagement.Data.Models.RelationMaster", "RelationMaster")
                         .WithMany()
-                        .HasForeignKey("StayRelationId");
+                        .HasForeignKey("StayRelationId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("StudentManagement.Data.Models.StateMaster", "StateMaster1")
                         .WithMany()
