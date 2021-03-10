@@ -3,7 +3,8 @@ using StudentManagement.Service.Interface.BaseInterface;
 using System;
 using System.Collections.Generic;
 using System.Text;
-using StudentManagement.Data.DbModel;
+
+using StudentManagement.Data.Models;
 
 namespace StudentManagement.Service.Interface
 {

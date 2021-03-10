@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
 
-namespace StudentManagement.Data.DbModel
+namespace StudentManagement.Data.Models
 {
    public class ErrorLog
     {

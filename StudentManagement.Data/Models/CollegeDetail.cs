@@ -1,4 +1,5 @@
 ﻿using StudentManagement.Data.DBContexts;
+using StudentManagementAdmin.Data.DbModel.BaseModel;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -7,22 +8,22 @@ using System.Text;
 
 namespace StudentManagement.Data.Models
 {
-   public  class CollegeDetail:BaseModel
+  public class CollegeDetail:EntityWithAudit
     {
-        [Key]
+        [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public long CollegeDetailId { get; set; }
 
-        public long StudentId { get; set; }
-        [ForeignKey("StudentId")]
-        public virtual ApplicationUser UserMaster { get; set; }
+        public long UserId { get; set; }
+        [ForeignKey("UserId")]
+        public virtual ApplicationUser ApplicationUser { get; set; }
+
 
         public long CampusId { get; set; }
         [ForeignKey("CampusId")]
         public virtual CampusMaster CampusMaster { get; set; }
 
         public long CollegeId { get; set; }
-        [ForeignKey("CollegeId")]
-        public virtual CollegeMaster CollegeMaster { get; set; }
+    
 
         public long CourseId { get; set; }
         [ForeignKey("CourseId")]
@@ -32,22 +33,36 @@ namespace StudentManagement.Data.Models
         [ForeignKey("BatchId")]
         public virtual BatchMaster BatchMaster { get; set; }
 
-        public long branchId { get; set; }
+        public long? branchId { get; set; }
         [ForeignKey("branchId")]
         public virtual BranchMaster BranchMaster { get; set; }
 
-        public int Year { get; set; }
+        public long YearSemesterId { get; set; }
+        [ForeignKey("YearSemesterId")]
+        public virtual YearSemesterMaster YearSemesterMaster { get; set; }
 
         public long AdmissionTypeId { get; set; }
         [ForeignKey("AdmissionTypeId")]
         public virtual AdmissiontypeMaster AdmissiontypeMaster { get; set; }
-        public long AdmissionBatchTypeId { get; set; }
-        [ForeignKey("AdmissionBatchTypeId")]
-        public virtual AdmissionbatchMaster AdmissionbatchMaster { get; set; }
 
+        public long? AdmissionBatchTypeId { get; set; }
+        [ForeignKey("AdmissionBatchTypeId")]
+        public virtual BatchMaster BatchMaster1 { get; set; }
+
+        [Column(TypeName = "nvarchar(200)")]
         public string Universityenrollmentnumber { get; set; }
+
+        [Column(TypeName = "nvarchar(100)")]
         public string PassportNumber { get; set; }
+
+        [Column(TypeName = "nvarchar(100)")]
         public string AdharNumber { get; set; }
+
+        [Column(TypeName = "nvarchar(100)")]
         public string CollegeRollNumber { get; set; }
+
+        [Column(TypeName = "nvarchar(200)")]
+        public string UniversityExamRoleNo { get; set; }
+
     }
 }

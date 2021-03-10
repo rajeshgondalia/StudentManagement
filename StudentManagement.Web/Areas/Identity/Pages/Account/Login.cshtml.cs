@@ -86,6 +86,8 @@ namespace StudentManagement.Web.Areas.Identity.Pages.Account
                     var user = await _userManager.FindByEmailAsync(Input.Email);
                     if(await _userManager.IsInRoleAsync(user,"Admin"))
                         return LocalRedirect("/Admin/AdminDashboard");
+                    else if (await _userManager.IsInRoleAsync(user, "Student"))
+                        return LocalRedirect("/Student/StudentDashboard");
 
                     _logger.LogInformation("User logged in.");
                     return LocalRedirect(returnUrl);

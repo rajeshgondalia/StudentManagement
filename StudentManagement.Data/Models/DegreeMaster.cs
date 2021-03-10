@@ -1,4 +1,5 @@
-﻿using System;
+﻿using StudentManagementAdmin.Data.DbModel.BaseModel;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -6,19 +7,12 @@ using System.Text;
 
 namespace StudentManagement.Data.Models
 {
-  public  class DegreeMaster:BaseModel
+ public   class DegreeMaster:EntityWithAudit
     {
-        [Key]
+        [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public long DegreeId { get; set; }
+
+        [Column(TypeName = "nvarchar(max)")]
         public string Name { get; set; }
-        public int DegreeYear { get; set; }
-        public long DegreeMarkingId { get; set; }
-        [ForeignKey("DegreeMarkingId")]
-        public virtual MarkingSchemUGPGD MarkingSchemUGPGD { get; set; }
-
-        public decimal CGPA { get; set; }
-
-        public string BoardName { get; set; }
-
     }
 }

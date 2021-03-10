@@ -9,9 +9,8 @@ namespace StudentManagementAdmin.Data.DbModel.BaseModel
 {
     public class EntityWithAudit
     {
-        [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public long Id { get; set; }
 
+    
         public long? CreatedBy { get; set; }
 
         public DateTime CreatedDate { get; set; }

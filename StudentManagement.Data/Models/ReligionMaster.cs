@@ -1,16 +1,18 @@
-﻿using System;
+﻿using StudentManagementAdmin.Data.DbModel.BaseModel;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
 
 namespace StudentManagement.Data.Models
 {
-    public class ReligionMaster:BaseModel
+   public class ReligionMaster:EntityWithAudit
     {
-        [Key]
+        [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public long ReligionId { get; set; }
-        public string Religion { get; set; }
 
-        
+        [Column(TypeName = "nvarchar(200)")]
+        public string Religion { get; set; }
     }
 }

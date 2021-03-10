@@ -173,15 +173,15 @@ namespace StudentManagement.Data.Migrations
                     b.Property<int>("AccessFailedCount")
                         .HasColumnType("int");
 
-                    b.Property<string>("AddressLine1")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("AddressLine2")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<long?>("CreatedBy")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("Email")
                         .HasColumnType("nvarchar(100)")
@@ -211,10 +211,14 @@ namespace StudentManagement.Data.Migrations
                         .HasColumnType("nvarchar(50)")
                         .HasMaxLength(50);
 
-                    b.Property<string>("MobileNumber")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(20)")
-                        .HasMaxLength(20);
+                    b.Property<long?>("ModifiedBy")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime?>("ModifiedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("NormalizedEmail")
                         .HasColumnType("nvarchar(256)")
@@ -224,8 +228,10 @@ namespace StudentManagement.Data.Migrations
                         .HasColumnType("nvarchar(256)")
                         .HasMaxLength(256);
 
-                    b.Property<string>("Notes")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<string>("OfficialEmail")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(200)")
+                        .HasMaxLength(200);
 
                     b.Property<string>("PasswordHash")
                         .HasColumnType("nvarchar(max)");
@@ -237,12 +243,16 @@ namespace StudentManagement.Data.Migrations
                     b.Property<bool>("PhoneNumberConfirmed")
                         .HasColumnType("bit");
 
+                    b.Property<string>("RecoveryEmail")
+                        .HasColumnType("nvarchar(200)")
+                        .HasMaxLength(200);
+
+                    b.Property<string>("RecoveryMobileNo")
+                        .HasColumnType("nvarchar(15)")
+                        .HasMaxLength(15);
+
                     b.Property<string>("SecurityStamp")
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("TelephoneNumber")
-                        .HasColumnType("nvarchar(20)")
-                        .HasMaxLength(20);
 
                     b.Property<bool>("TwoFactorEnabled")
                         .HasColumnType("bit");
@@ -264,25 +274,6 @@ namespace StudentManagement.Data.Migrations
                     b.ToTable("AspNetUsers");
                 });
 
-            modelBuilder.Entity("StudentManagement.Data.Models.AdmissionbatchMaster", b =>
-                {
-                    b.Property<long>("AdmissionbatchId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Admissionbatch")
-                        .HasColumnType("nvarchar(50)")
-                        .HasMaxLength(50);
-
-                    b.Property<bool>("IsActive")
-                        .HasColumnType("bit");
-
-                    b.HasKey("AdmissionbatchId");
-
-                    b.ToTable("AdmissionbatchMasters");
-                });
-
             modelBuilder.Entity("StudentManagement.Data.Models.AdmissiontypeMaster", b =>
                 {
                     b.Property<long>("AdmissiontypeId")
@@ -291,10 +282,25 @@ namespace StudentManagement.Data.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Admissiontype")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(200)");
+
+                    b.Property<long?>("CreatedBy")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
 
                     b.Property<bool>("IsActive")
                         .HasColumnType("bit");
+
+                    b.Property<bool>("IsDelete")
+                        .HasColumnType("bit");
+
+                    b.Property<long?>("ModifiedBy")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime?>("ModifiedDate")
+                        .HasColumnType("datetime2");
 
                     b.HasKey("AdmissiontypeId");
 
@@ -308,8 +314,23 @@ namespace StudentManagement.Data.Migrations
                         .HasColumnType("bigint")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<long?>("CreatedBy")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
+
                     b.Property<bool>("IsActive")
                         .HasColumnType("bit");
+
+                    b.Property<bool>("IsDelete")
+                        .HasColumnType("bit");
+
+                    b.Property<long?>("ModifiedBy")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime?>("ModifiedDate")
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
@@ -329,8 +350,23 @@ namespace StudentManagement.Data.Migrations
                     b.Property<string>("Bloodgroup")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<long?>("CreatedBy")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
+
                     b.Property<bool>("IsActive")
                         .HasColumnType("bit");
+
+                    b.Property<bool>("IsDelete")
+                        .HasColumnType("bit");
+
+                    b.Property<long?>("ModifiedBy")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime?>("ModifiedDate")
+                        .HasColumnType("datetime2");
 
                     b.HasKey("BloodgroupId");
 
@@ -344,14 +380,33 @@ namespace StudentManagement.Data.Migrations
                         .HasColumnType("bigint")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<long>("CourseId")
+                        .HasColumnType("bigint");
+
+                    b.Property<long?>("CreatedBy")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
+
                     b.Property<bool>("IsActive")
                         .HasColumnType("bit");
 
+                    b.Property<bool>("IsDelete")
+                        .HasColumnType("bit");
+
+                    b.Property<long?>("ModifiedBy")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime?>("ModifiedDate")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("Name")
-                        .HasColumnType("nvarchar(100)")
-                        .HasMaxLength(100);
+                        .HasColumnType("nvarchar(100)");
 
                     b.HasKey("BranchId");
+
+                    b.HasIndex("CourseId");
 
                     b.ToTable("BranchMaster");
                 });
@@ -363,11 +418,26 @@ namespace StudentManagement.Data.Migrations
                         .HasColumnType("bigint")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<long?>("CreatedBy")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
+
                     b.Property<bool>("IsActive")
                         .HasColumnType("bit");
 
+                    b.Property<bool>("IsDelete")
+                        .HasColumnType("bit");
+
+                    b.Property<long?>("ModifiedBy")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime?>("ModifiedDate")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(100)");
 
                     b.HasKey("CampusId");
 
@@ -381,8 +451,23 @@ namespace StudentManagement.Data.Migrations
                         .HasColumnType("bigint")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<long?>("CreatedBy")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
+
                     b.Property<bool>("IsActive")
                         .HasColumnType("bit");
+
+                    b.Property<bool>("IsDelete")
+                        .HasColumnType("bit");
+
+                    b.Property<long?>("ModifiedBy")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime?>("ModifiedDate")
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
@@ -399,20 +484,63 @@ namespace StudentManagement.Data.Migrations
                         .HasColumnType("bigint")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<string>("CityName")
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<long?>("CreatedBy")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
+
                     b.Property<bool>("IsActive")
                         .HasColumnType("bit");
 
-                    b.Property<string>("PinCode")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<bool>("IsDelete")
+                        .HasColumnType("bit");
 
-                    b.Property<long>("StateId")
+                    b.Property<long?>("ModifiedBy")
                         .HasColumnType("bigint");
+
+                    b.Property<DateTime?>("ModifiedDate")
+                        .HasColumnType("datetime2");
 
                     b.HasKey("CityId");
 
-                    b.HasIndex("StateId");
-
                     b.ToTable("CityMaster");
+                });
+
+            modelBuilder.Entity("StudentManagement.Data.Models.ClassMaster", b =>
+                {
+                    b.Property<long>("ClassId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("ClassName")
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<long?>("CreatedBy")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsDelete")
+                        .HasColumnType("bit");
+
+                    b.Property<long?>("ModifiedBy")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime?>("ModifiedDate")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("ClassId");
+
+                    b.ToTable("ClassMaster");
                 });
 
             modelBuilder.Entity("StudentManagement.Data.Models.CollegeDetail", b =>
@@ -423,9 +551,9 @@ namespace StudentManagement.Data.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("AdharNumber")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(100)");
 
-                    b.Property<long>("AdmissionBatchTypeId")
+                    b.Property<long?>("AdmissionBatchTypeId")
                         .HasColumnType("bigint");
 
                     b.Property<long>("AdmissionTypeId")
@@ -441,27 +569,45 @@ namespace StudentManagement.Data.Migrations
                         .HasColumnType("bigint");
 
                     b.Property<string>("CollegeRollNumber")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(100)");
 
                     b.Property<long>("CourseId")
                         .HasColumnType("bigint");
 
+                    b.Property<long?>("CreatedBy")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
+
                     b.Property<bool>("IsActive")
                         .HasColumnType("bit");
 
-                    b.Property<string>("PassportNumber")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<bool>("IsDelete")
+                        .HasColumnType("bit");
 
-                    b.Property<long>("StudentId")
+                    b.Property<long?>("ModifiedBy")
                         .HasColumnType("bigint");
 
+                    b.Property<DateTime?>("ModifiedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("PassportNumber")
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("UniversityExamRoleNo")
+                        .HasColumnType("nvarchar(200)");
+
                     b.Property<string>("Universityenrollmentnumber")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(200)");
 
-                    b.Property<int>("Year")
-                        .HasColumnType("int");
+                    b.Property<long>("UserId")
+                        .HasColumnType("bigint");
 
-                    b.Property<long>("branchId")
+                    b.Property<long>("YearSemesterId")
+                        .HasColumnType("bigint");
+
+                    b.Property<long?>("branchId")
                         .HasColumnType("bigint");
 
                     b.HasKey("CollegeDetailId");
@@ -474,11 +620,11 @@ namespace StudentManagement.Data.Migrations
 
                     b.HasIndex("CampusId");
 
-                    b.HasIndex("CollegeId");
-
                     b.HasIndex("CourseId");
 
-                    b.HasIndex("StudentId");
+                    b.HasIndex("UserId");
+
+                    b.HasIndex("YearSemesterId");
 
                     b.HasIndex("branchId");
 
@@ -487,18 +633,38 @@ namespace StudentManagement.Data.Migrations
 
             modelBuilder.Entity("StudentManagement.Data.Models.CollegeMaster", b =>
                 {
-                    b.Property<long>("PK_CollegeMaster")
+                    b.Property<long>("CollegeId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("bigint")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<long>("CampusId")
+                        .HasColumnType("bigint");
+
+                    b.Property<long?>("CreatedBy")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
+
                     b.Property<bool>("IsActive")
                         .HasColumnType("bit");
+
+                    b.Property<bool>("IsDelete")
+                        .HasColumnType("bit");
+
+                    b.Property<long?>("ModifiedBy")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime?>("ModifiedDate")
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("PK_CollegeMaster");
+                    b.HasKey("CollegeId");
+
+                    b.HasIndex("CampusId");
 
                     b.ToTable("CollegeMaster");
                 });
@@ -513,8 +679,23 @@ namespace StudentManagement.Data.Migrations
                     b.Property<string>("CountryName")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<long?>("CreatedBy")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
+
                     b.Property<bool>("IsActive")
                         .HasColumnType("bit");
+
+                    b.Property<bool>("IsDelete")
+                        .HasColumnType("bit");
+
+                    b.Property<long?>("ModifiedBy")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime?>("ModifiedDate")
+                        .HasColumnType("datetime2");
 
                     b.HasKey("CountryId");
 
@@ -531,8 +712,23 @@ namespace StudentManagement.Data.Migrations
                     b.Property<string>("CourseName")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<long?>("CreatedBy")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
+
                     b.Property<bool>("IsActive")
                         .HasColumnType("bit");
+
+                    b.Property<bool>("IsDelete")
+                        .HasColumnType("bit");
+
+                    b.Property<long?>("ModifiedBy")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime?>("ModifiedDate")
+                        .HasColumnType("datetime2");
 
                     b.HasKey("CourseId");
 
@@ -546,27 +742,28 @@ namespace StudentManagement.Data.Migrations
                         .HasColumnType("bigint")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("BoardName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<decimal>("CGPA")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<long>("DegreeMarkingId")
+                    b.Property<long?>("CreatedBy")
                         .HasColumnType("bigint");
 
-                    b.Property<int>("DegreeYear")
-                        .HasColumnType("int");
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
 
                     b.Property<bool>("IsActive")
                         .HasColumnType("bit");
+
+                    b.Property<bool>("IsDelete")
+                        .HasColumnType("bit");
+
+                    b.Property<long?>("ModifiedBy")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime?>("ModifiedDate")
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("DegreeId");
-
-                    b.HasIndex("DegreeMarkingId");
 
                     b.ToTable("DegreeMaster");
                 });
@@ -578,47 +775,30 @@ namespace StudentManagement.Data.Migrations
                         .HasColumnType("bigint")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("BoardName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<decimal>("CGPA")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<long>("DiplomaMarkingId")
+                    b.Property<long?>("CreatedBy")
                         .HasColumnType("bigint");
 
-                    b.Property<int>("DiplomaYear")
-                        .HasColumnType("int");
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
 
                     b.Property<bool>("IsActive")
                         .HasColumnType("bit");
+
+                    b.Property<bool>("IsDelete")
+                        .HasColumnType("bit");
+
+                    b.Property<long?>("ModifiedBy")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime?>("ModifiedDate")
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("DiplomaId");
 
-                    b.HasIndex("DiplomaMarkingId");
-
                     b.ToTable("DiplomaMaster");
-                });
-
-            modelBuilder.Entity("StudentManagement.Data.Models.DocumentTypeMaster", b =>
-                {
-                    b.Property<long>("DocumentTypeMasterId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("DocumentTypeName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("IsActive")
-                        .HasColumnType("bit");
-
-                    b.HasKey("DocumentTypeMasterId");
-
-                    b.ToTable("DocumentTypeMaster");
                 });
 
             modelBuilder.Entity("StudentManagement.Data.Models.Documents", b =>
@@ -628,38 +808,68 @@ namespace StudentManagement.Data.Migrations
                         .HasColumnType("bigint")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<long>("DocumentTypeId")
+                    b.Property<string>("Adharcard")
+                        .HasColumnType("nvarchar(200)");
+
+                    b.Property<string>("BirthCertificate")
+                        .HasColumnType("nvarchar(200)");
+
+                    b.Property<string>("CasteCertificate")
+                        .HasColumnType("nvarchar(200)");
+
+                    b.Property<string>("ColoredPhotograph")
+                        .HasColumnType("nvarchar(200)");
+
+                    b.Property<long?>("CreatedBy")
                         .HasColumnType("bigint");
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("DegreeMarksheetPath")
+                        .HasColumnType("nvarchar(200)");
+
+                    b.Property<string>("DiplomaMarksheetPath")
+                        .HasColumnType("nvarchar(200)");
+
+                    b.Property<string>("DomicileCertificate")
+                        .HasColumnType("nvarchar(200)");
+
+                    b.Property<string>("EntranceExamMasrksheetPath")
+                        .HasColumnType("nvarchar(200)");
 
                     b.Property<bool>("IsActive")
                         .HasColumnType("bit");
 
-                    b.Property<string>("UploadPath")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<bool>("IsDelete")
+                        .HasColumnType("bit");
+
+                    b.Property<long?>("ModifiedBy")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime?>("ModifiedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("PGMarksheetPath")
+                        .HasColumnType("nvarchar(200)");
+
+                    b.Property<string>("Passport")
+                        .HasColumnType("nvarchar(200)");
+
+                    b.Property<string>("TenMarksheetPath")
+                        .HasColumnType("nvarchar(200)");
+
+                    b.Property<string>("TwelveMarksheetPath")
+                        .HasColumnType("nvarchar(200)");
+
+                    b.Property<long>("UserId")
+                        .HasColumnType("bigint");
 
                     b.HasKey("DocumentId");
 
-                    b.HasIndex("DocumentTypeId");
+                    b.HasIndex("UserId");
 
                     b.ToTable("Documents");
-                });
-
-            modelBuilder.Entity("StudentManagement.Data.Models.DomicileMaster", b =>
-                {
-                    b.Property<long>("DomicileId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Domicile")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("IsActive")
-                        .HasColumnType("bit");
-
-                    b.HasKey("DomicileId");
-
-                    b.ToTable("DomicileMaster");
                 });
 
             modelBuilder.Entity("StudentManagement.Data.Models.EntranceExamMaster", b =>
@@ -669,50 +879,63 @@ namespace StudentManagement.Data.Migrations
                         .HasColumnType("bigint")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("ExamAir")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("ExamCategoryRank")
-                        .HasColumnType("int");
-
-                    b.Property<long>("ExamTypeId")
+                    b.Property<long?>("CreatedBy")
                         .HasColumnType("bigint");
 
-                    b.Property<int>("ExamYear")
-                        .HasColumnType("int");
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("EntranceExamName")
+                        .HasColumnType("nvarchar(200)");
 
                     b.Property<bool>("IsActive")
                         .HasColumnType("bit");
 
-                    b.Property<int>("MarkObtained")
-                        .HasColumnType("int");
+                    b.Property<bool>("IsDelete")
+                        .HasColumnType("bit");
 
-                    b.Property<string>("RollNumber")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<long?>("ModifiedBy")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime?>("ModifiedDate")
+                        .HasColumnType("datetime2");
 
                     b.HasKey("EntranceExamId");
-
-                    b.HasIndex("ExamTypeId");
 
                     b.ToTable("EntranceExamMaster");
                 });
 
-            modelBuilder.Entity("StudentManagement.Data.Models.ExamTypeMaster", b =>
+            modelBuilder.Entity("StudentManagement.Data.Models.ErrorLog", b =>
                 {
-                    b.Property<long>("ExamTypeId")
+                    b.Property<long>("LogId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("bigint")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<bool>("IsActive")
-                        .HasColumnType("bit");
+                    b.Property<DateTime>("LogDate")
+                        .HasColumnType("datetime2");
 
-                    b.Property<string>("Name")
+                    b.Property<string>("Message")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("ExamTypeId");
+                    b.Property<string>("Path")
+                        .HasColumnType("nvarchar(max)");
 
-                    b.ToTable("ExamTypeMaster");
+                    b.Property<string>("Source")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Stack")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("TargetSite")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Type")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("LogId");
+
+                    b.ToTable("ErrorLogs");
                 });
 
             modelBuilder.Entity("StudentManagement.Data.Models.GenderMaster", b =>
@@ -722,75 +945,213 @@ namespace StudentManagement.Data.Migrations
                         .HasColumnType("bigint")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<long?>("CreatedBy")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
+
                     b.Property<bool>("IsActive")
                         .HasColumnType("bit");
 
+                    b.Property<bool>("IsDelete")
+                        .HasColumnType("bit");
+
+                    b.Property<long?>("ModifiedBy")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime?>("ModifiedDate")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(200)");
 
                     b.HasKey("GenId");
 
                     b.ToTable("GenderMaster");
                 });
 
-            modelBuilder.Entity("StudentManagement.Data.Models.LGRelationMaster", b =>
+            modelBuilder.Entity("StudentManagement.Data.Models.HistoryCollegeDetail", b =>
                 {
-                    b.Property<long>("LGRelationId")
+                    b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("bigint")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<bool>("IsActive")
-                        .HasColumnType("bit");
+                    b.Property<string>("AdharNumber")
+                        .HasColumnType("nvarchar(100)");
 
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("LGRelationId");
-
-                    b.ToTable("LGRelationMaster");
-                });
-
-            modelBuilder.Entity("StudentManagement.Data.Models.MarkingSchemUGPGD", b =>
-                {
-                    b.Property<long>("MarkingShchemId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<bool>("IsActive")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("MarkingShchem")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("MarkingShchemId");
-
-                    b.ToTable("MarkingSchemUGPGD");
-                });
-
-            modelBuilder.Entity("StudentManagement.Data.Models.NationalityMaster", b =>
-                {
-                    b.Property<long>("NationalityId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<bool>("IsActive")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("Nationality")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("NationalityId");
-
-                    b.ToTable("NationalityMaster");
-                });
-
-            modelBuilder.Entity("StudentManagement.Data.Models.ParentDetail", b =>
-                {
-                    b.Property<long>("StudentId")
+                    b.Property<long?>("AdmissionBatchTypeId")
                         .HasColumnType("bigint");
+
+                    b.Property<long>("AdmissionTypeId")
+                        .HasColumnType("bigint");
+
+                    b.Property<long>("BatchId")
+                        .HasColumnType("bigint");
+
+                    b.Property<long>("CampusId")
+                        .HasColumnType("bigint");
+
+                    b.Property<long?>("CollegeDetailId")
+                        .HasColumnType("bigint");
+
+                    b.Property<long>("CollegeId")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("CollegeRollNumber")
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<long>("CourseId")
+                        .HasColumnType("bigint");
+
+                    b.Property<long?>("CreatedBy")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsDelete")
+                        .HasColumnType("bit");
+
+                    b.Property<long?>("ModifiedBy")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime?>("ModifiedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("PassportNumber")
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("UniversityExamRoleNo")
+                        .HasColumnType("nvarchar(200)");
+
+                    b.Property<string>("Universityenrollmentnumber")
+                        .HasColumnType("nvarchar(200)");
+
+                    b.Property<long>("UserId")
+                        .HasColumnType("bigint");
+
+                    b.Property<long>("YearSemesterId")
+                        .HasColumnType("bigint");
+
+                    b.Property<long?>("branchId")
+                        .HasColumnType("bigint");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AdmissionBatchTypeId");
+
+                    b.HasIndex("AdmissionTypeId");
+
+                    b.HasIndex("BatchId");
+
+                    b.HasIndex("CampusId");
+
+                    b.HasIndex("CollegeDetailId");
+
+                    b.HasIndex("CourseId");
+
+                    b.HasIndex("UserId");
+
+                    b.HasIndex("YearSemesterId");
+
+                    b.HasIndex("branchId");
+
+                    b.ToTable("HistoryCollegeDetail");
+                });
+
+            modelBuilder.Entity("StudentManagement.Data.Models.HistoryDocuments", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Adharcard")
+                        .HasColumnType("nvarchar(200)");
+
+                    b.Property<string>("BirthCertificate")
+                        .HasColumnType("nvarchar(200)");
+
+                    b.Property<string>("CasteCertificate")
+                        .HasColumnType("nvarchar(200)");
+
+                    b.Property<string>("ColoredPhotograph")
+                        .HasColumnType("nvarchar(200)");
+
+                    b.Property<long?>("CreatedBy")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("DegreeMarksheetPath")
+                        .HasColumnType("nvarchar(200)");
+
+                    b.Property<string>("DiplomaMarksheetPath")
+                        .HasColumnType("nvarchar(200)");
+
+                    b.Property<long?>("DocumentId")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("DomicileCertificate")
+                        .HasColumnType("nvarchar(200)");
+
+                    b.Property<string>("EntranceExamMasrksheetPath")
+                        .HasColumnType("nvarchar(200)");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsDelete")
+                        .HasColumnType("bit");
+
+                    b.Property<long?>("ModifiedBy")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime?>("ModifiedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("PGMarksheetPath")
+                        .HasColumnType("nvarchar(200)");
+
+                    b.Property<string>("Passport")
+                        .HasColumnType("nvarchar(200)");
+
+                    b.Property<string>("TenMarksheetPath")
+                        .HasColumnType("nvarchar(200)");
+
+                    b.Property<string>("TwelveMarksheetPath")
+                        .HasColumnType("nvarchar(200)");
+
+                    b.Property<long?>("UserId")
+                        .HasColumnType("bigint");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("DocumentId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("HistoryDocuments");
+                });
+
+            modelBuilder.Entity("StudentManagement.Data.Models.HistoryParentDetail", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<long?>("CreatedBy")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("FatherAddress")
                         .HasColumnType("nvarchar(max)");
@@ -813,8 +1174,17 @@ namespace StudentManagement.Data.Migrations
                     b.Property<string>("FatherName")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("FatherPincode")
+                        .HasColumnType("varchar(50)");
+
                     b.Property<long?>("FatherStateId")
                         .HasColumnType("bigint");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsDelete")
+                        .HasColumnType("bit");
 
                     b.Property<string>("LGAddress")
                         .HasColumnType("nvarchar(max)");
@@ -837,8 +1207,17 @@ namespace StudentManagement.Data.Migrations
                     b.Property<string>("LGName")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("LGPincode")
+                        .HasColumnType("nvarchar(50)");
+
                     b.Property<long?>("LGStateId")
                         .HasColumnType("bigint");
+
+                    b.Property<long?>("ModifiedBy")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime?>("ModifiedDate")
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("MotherAddress")
                         .HasColumnType("nvarchar(max)");
@@ -861,10 +1240,22 @@ namespace StudentManagement.Data.Migrations
                     b.Property<string>("MotherName")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("MotherPincode")
+                        .HasColumnType("nvarchar(50)");
+
                     b.Property<long?>("MotherStateId")
                         .HasColumnType("bigint");
 
-                    b.HasKey("StudentId");
+                    b.Property<long?>("ParentDetailId")
+                        .HasColumnType("bigint");
+
+                    b.Property<long?>("RelationId")
+                        .HasColumnType("bigint");
+
+                    b.Property<long?>("UserId")
+                        .HasColumnType("bigint");
+
+                    b.HasKey("Id");
 
                     b.HasIndex("FatherCityId");
 
@@ -884,6 +1275,525 @@ namespace StudentManagement.Data.Migrations
 
                     b.HasIndex("MotherStateId");
 
+                    b.HasIndex("ParentDetailId");
+
+                    b.HasIndex("RelationId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("HistoryParentDetail");
+                });
+
+            modelBuilder.Entity("StudentManagement.Data.Models.HistoryPersonalDetail", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<long>("BloodGroupdId")
+                        .HasColumnType("bigint");
+
+                    b.Property<long>("CategoryId")
+                        .HasColumnType("bigint");
+
+                    b.Property<long>("CityId")
+                        .HasColumnType("bigint");
+
+                    b.Property<long>("CountryId")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("CountryPincode")
+                        .HasColumnType("varchar(10)");
+
+                    b.Property<long?>("CreatedBy")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("Dob")
+                        .HasColumnType("datetime2(7)");
+
+                    b.Property<long>("GenderId")
+                        .HasColumnType("bigint");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsDelete")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Mobile1")
+                        .HasColumnType("nvarchar(20)");
+
+                    b.Property<string>("Mobile2")
+                        .HasColumnType("nvarchar(20)");
+
+                    b.Property<long?>("ModifiedBy")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime?>("ModifiedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<long?>("PersonalDetailId")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("PersonalEmail1")
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("PersonalEmail2")
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<long>("ReligionId")
+                        .HasColumnType("bigint");
+
+                    b.Property<long?>("StateId")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("StatePincode")
+                        .HasColumnType("varchar(10)");
+
+                    b.Property<string>("StayAddress")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<long>("StayRelationId")
+                        .HasColumnType("bigint");
+
+                    b.Property<long>("StayTypeId")
+                        .HasColumnType("bigint");
+
+                    b.Property<long?>("UserId")
+                        .HasColumnType("bigint");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("BloodGroupdId");
+
+                    b.HasIndex("CategoryId");
+
+                    b.HasIndex("CityId");
+
+                    b.HasIndex("CountryId");
+
+                    b.HasIndex("GenderId");
+
+                    b.HasIndex("PersonalDetailId");
+
+                    b.HasIndex("ReligionId");
+
+                    b.HasIndex("StateId");
+
+                    b.HasIndex("StayRelationId");
+
+                    b.HasIndex("StayTypeId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("HistoryPersonalDetail");
+                });
+
+            modelBuilder.Entity("StudentManagement.Data.Models.HistoryStudentQualication", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<long?>("CreatedBy")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("DegreeBoardName")
+                        .HasColumnType("nvarchar(200)");
+
+                    b.Property<decimal?>("DegreeCGPA")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<long?>("DegreeId")
+                        .HasColumnType("bigint");
+
+                    b.Property<long?>("DegreeMarkingScheameId")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("DegreeSchoolName")
+                        .HasColumnType("nvarchar(300)");
+
+                    b.Property<int?>("DegreeYear")
+                        .HasColumnType("int");
+
+                    b.Property<string>("DiplomaBoardName")
+                        .HasColumnType("nvarchar(300)");
+
+                    b.Property<decimal?>("DiplomaCGPA")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<long?>("DiplomaId")
+                        .HasColumnType("bigint");
+
+                    b.Property<long?>("DiplomaMarkingScheameId")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("DiplomaSchoolName")
+                        .HasColumnType("nvarchar(200)");
+
+                    b.Property<int?>("DiplomaYear")
+                        .HasColumnType("int");
+
+                    b.Property<string>("EntranceExamAir")
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<string>("EntranceExamCatefgoryRank")
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<long>("EntranceExamId")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("EntranceExamMarkObt")
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<string>("EntranceExamRollno")
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<int?>("EntranceExamYear")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsDelete")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsEntrance")
+                        .HasColumnType("bit");
+
+                    b.Property<long?>("ModifiedBy")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime?>("ModifiedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("PGDegreeBoardName")
+                        .HasColumnType("nvarchar(200)");
+
+                    b.Property<decimal?>("PGDegreeCGPA")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<long>("PGDegreeId")
+                        .HasColumnType("bigint");
+
+                    b.Property<long?>("PGDegreeMarkingScheameId")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("PGDegreeSchoolName")
+                        .HasColumnType("nvarchar(300)");
+
+                    b.Property<int?>("PGDegreeYear")
+                        .HasColumnType("int");
+
+                    b.Property<long?>("StudentQualicationId")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("TenBoardName")
+                        .HasColumnType("nvarchar(300)");
+
+                    b.Property<decimal?>("TenCGPA")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<long?>("TenMarkingScheameId")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("TenSchoolName")
+                        .HasColumnType("nvarchar(200)");
+
+                    b.Property<int?>("TenYearOfPassing")
+                        .HasColumnType("int");
+
+                    b.Property<string>("TwelveBoardName")
+                        .HasColumnType("nvarchar(300)");
+
+                    b.Property<decimal?>("TwelveCGPA")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<long?>("TwelveMakingScheameId")
+                        .HasColumnType("bigint");
+
+                    b.Property<decimal?>("TwelvePCM")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<string>("TwelveSchoolName")
+                        .HasColumnType("nvarchar(200)");
+
+                    b.Property<int?>("TwelveYearOfPassing")
+                        .HasColumnType("int");
+
+                    b.Property<long?>("UserId")
+                        .HasColumnType("bigint");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("DegreeId");
+
+                    b.HasIndex("DegreeMarkingScheameId");
+
+                    b.HasIndex("DiplomaId");
+
+                    b.HasIndex("DiplomaMarkingScheameId");
+
+                    b.HasIndex("EntranceExamId");
+
+                    b.HasIndex("PGDegreeId");
+
+                    b.HasIndex("PGDegreeMarkingScheameId");
+
+                    b.HasIndex("StudentQualicationId");
+
+                    b.HasIndex("TenMarkingScheameId");
+
+                    b.HasIndex("TwelveMakingScheameId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("HistoryStudentQualication");
+                });
+
+            modelBuilder.Entity("StudentManagement.Data.Models.LectureMaster", b =>
+                {
+                    b.Property<long>("LectureId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<long?>("CreatedBy")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsDelete")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("LactureName")
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<long?>("ModifiedBy")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime?>("ModifiedDate")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("LectureId");
+
+                    b.ToTable("LectureMaster");
+                });
+
+            modelBuilder.Entity("StudentManagement.Data.Models.MarkingScheame", b =>
+                {
+                    b.Property<long>("MarkingShchemId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<long?>("CreatedBy")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsDelete")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("MarkingShchem")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<long?>("ModifiedBy")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime?>("ModifiedDate")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("MarkingShchemId");
+
+                    b.ToTable("MarkingScheame");
+                });
+
+            modelBuilder.Entity("StudentManagement.Data.Models.PGDegreeMaster", b =>
+                {
+                    b.Property<long>("PGDegreeId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<long?>("CreatedBy")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsDelete")
+                        .HasColumnType("bit");
+
+                    b.Property<long?>("ModifiedBy")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime?>("ModifiedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("PGDegreeName")
+                        .HasColumnType("nvarchar(500)");
+
+                    b.HasKey("PGDegreeId");
+
+                    b.ToTable("PGDegreeMaster");
+                });
+
+            modelBuilder.Entity("StudentManagement.Data.Models.ParentDetail", b =>
+                {
+                    b.Property<long>("ParentDetailId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<long?>("CreatedBy")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("FatherAddress")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<long?>("FatherCityId")
+                        .HasColumnType("bigint");
+
+                    b.Property<long?>("FatherCountryId")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("FatherEmail")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("FatherMobile1")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("FatherMobile2")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("FatherName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("FatherPincode")
+                        .HasColumnType("varchar(50)");
+
+                    b.Property<long?>("FatherStateId")
+                        .HasColumnType("bigint");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsDelete")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("LGAddress")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<long?>("LGCityId")
+                        .HasColumnType("bigint");
+
+                    b.Property<long?>("LGCountryId")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("LGEmail")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("LGMobile1")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("LGMobile2")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("LGName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("LGPincode")
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<long?>("LGStateId")
+                        .HasColumnType("bigint");
+
+                    b.Property<long?>("ModifiedBy")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime?>("ModifiedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("MotherAddress")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<long?>("MotherCityId")
+                        .HasColumnType("bigint");
+
+                    b.Property<long?>("MotherCountryId")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("MotherEmail")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("MotherMobile1")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("MotherMobile2")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("MotherName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("MotherPincode")
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<long?>("MotherStateId")
+                        .HasColumnType("bigint");
+
+                    b.Property<long?>("RelationId")
+                        .HasColumnType("bigint");
+
+                    b.Property<long>("UserId")
+                        .HasColumnType("bigint");
+
+                    b.HasKey("ParentDetailId");
+
+                    b.HasIndex("FatherCityId");
+
+                    b.HasIndex("FatherCountryId");
+
+                    b.HasIndex("FatherStateId");
+
+                    b.HasIndex("LGCityId");
+
+                    b.HasIndex("LGCountryId");
+
+                    b.HasIndex("LGStateId");
+
+                    b.HasIndex("MotherCityId");
+
+                    b.HasIndex("MotherCountryId");
+
+                    b.HasIndex("MotherStateId");
+
+                    b.HasIndex("RelationId");
+
+                    b.HasIndex("UserId");
+
                     b.ToTable("ParentDetail");
                 });
 
@@ -900,17 +1810,23 @@ namespace StudentManagement.Data.Migrations
                     b.Property<long>("CategoryId")
                         .HasColumnType("bigint");
 
-                    b.Property<long?>("CityId")
+                    b.Property<long>("CityId")
                         .HasColumnType("bigint");
 
-                    b.Property<long?>("CountryId")
+                    b.Property<long>("CountryId")
                         .HasColumnType("bigint");
 
-                    b.Property<DateTime>("Dob")
+                    b.Property<string>("CountryPincode")
+                        .HasColumnType("varchar(10)");
+
+                    b.Property<long?>("CreatedBy")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime>("CreatedDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<long>("DomicileId")
-                        .HasColumnType("bigint");
+                    b.Property<DateTime>("Dob")
+                        .HasColumnType("datetime2(7)");
 
                     b.Property<long>("GenderId")
                         .HasColumnType("bigint");
@@ -918,20 +1834,26 @@ namespace StudentManagement.Data.Migrations
                     b.Property<bool>("IsActive")
                         .HasColumnType("bit");
 
+                    b.Property<bool>("IsDelete")
+                        .HasColumnType("bit");
+
                     b.Property<string>("Mobile1")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(20)");
 
                     b.Property<string>("Mobile2")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(20)");
 
-                    b.Property<long>("NationalityId")
+                    b.Property<long?>("ModifiedBy")
                         .HasColumnType("bigint");
 
+                    b.Property<DateTime?>("ModifiedDate")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("PersonalEmail1")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(100)");
 
                     b.Property<string>("PersonalEmail2")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(100)");
 
                     b.Property<long>("ReligionId")
                         .HasColumnType("bigint");
@@ -939,13 +1861,16 @@ namespace StudentManagement.Data.Migrations
                     b.Property<long?>("StateId")
                         .HasColumnType("bigint");
 
+                    b.Property<string>("StatePincode")
+                        .HasColumnType("varchar(10)");
+
                     b.Property<string>("StayAddress")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<long?>("StayRelationId")
+                    b.Property<long>("StayRelationId")
                         .HasColumnType("bigint");
 
-                    b.Property<long?>("StayTypeId")
+                    b.Property<long>("StayTypeId")
                         .HasColumnType("bigint");
 
                     b.Property<long>("UserId")
@@ -961,11 +1886,7 @@ namespace StudentManagement.Data.Migrations
 
                     b.HasIndex("CountryId");
 
-                    b.HasIndex("DomicileId");
-
                     b.HasIndex("GenderId");
-
-                    b.HasIndex("NationalityId");
 
                     b.HasIndex("ReligionId");
 
@@ -980,6 +1901,39 @@ namespace StudentManagement.Data.Migrations
                     b.ToTable("PersonalDetail");
                 });
 
+            modelBuilder.Entity("StudentManagement.Data.Models.RelationMaster", b =>
+                {
+                    b.Property<long>("RelationId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<long?>("CreatedBy")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsDelete")
+                        .HasColumnType("bit");
+
+                    b.Property<long?>("ModifiedBy")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime?>("ModifiedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(200)");
+
+                    b.HasKey("RelationId");
+
+                    b.ToTable("RelationMaster");
+                });
+
             modelBuilder.Entity("StudentManagement.Data.Models.ReligionMaster", b =>
                 {
                     b.Property<long>("ReligionId")
@@ -987,11 +1941,26 @@ namespace StudentManagement.Data.Migrations
                         .HasColumnType("bigint")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<long?>("CreatedBy")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
+
                     b.Property<bool>("IsActive")
                         .HasColumnType("bit");
 
+                    b.Property<bool>("IsDelete")
+                        .HasColumnType("bit");
+
+                    b.Property<long?>("ModifiedBy")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime?>("ModifiedDate")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("Religion")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(200)");
 
                     b.HasKey("ReligionId");
 
@@ -1008,32 +1977,32 @@ namespace StudentManagement.Data.Migrations
                     b.Property<long>("CountryId")
                         .HasColumnType("bigint");
 
+                    b.Property<long?>("CreatedBy")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
+
                     b.Property<bool>("IsActive")
                         .HasColumnType("bit");
+
+                    b.Property<bool>("IsDelete")
+                        .HasColumnType("bit");
+
+                    b.Property<long?>("ModifiedBy")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime?>("ModifiedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("StateName")
+                        .HasColumnType("nvarchar(100)");
 
                     b.HasKey("StateId");
 
                     b.HasIndex("CountryId");
 
                     b.ToTable("StateMaster");
-                });
-
-            modelBuilder.Entity("StudentManagement.Data.Models.StayrelationMaster", b =>
-                {
-                    b.Property<long>("StayrelationId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<bool>("IsActive")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("Stayrelation")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("StayrelationId");
-
-                    b.ToTable("StayrelationMaster");
                 });
 
             modelBuilder.Entity("StudentManagement.Data.Models.StaytypeMaster", b =>
@@ -1043,42 +2012,91 @@ namespace StudentManagement.Data.Migrations
                         .HasColumnType("bigint")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<long?>("CreatedBy")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
+
                     b.Property<bool>("IsActive")
                         .HasColumnType("bit");
 
+                    b.Property<bool>("IsDelete")
+                        .HasColumnType("bit");
+
+                    b.Property<long?>("ModifiedBy")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime?>("ModifiedDate")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("Staytype")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(200)");
 
                     b.HasKey("StaytypeId");
 
                     b.ToTable("StaytypeMaster");
                 });
 
-            modelBuilder.Entity("StudentManagement.Data.Models.StudentAttendence", b =>
+            modelBuilder.Entity("StudentManagement.Data.Models.StudentAttendance", b =>
                 {
-                    b.Property<long>("StudentAttendenceId")
+                    b.Property<long>("AttendanceId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("bigint")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("Attendence")
-                        .HasColumnType("int");
+                    b.Property<long?>("AttendanceBy")
+                        .HasColumnType("bigint");
 
-                    b.Property<DateTime>("DateOfAttend")
+                    b.Property<DateTime>("AttendanceDate")
+                        .HasColumnType("datetime");
+
+                    b.Property<long>("ClassId")
+                        .HasColumnType("bigint");
+
+                    b.Property<long?>("CreatedBy")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime>("CreatedDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("Held")
-                        .HasColumnType("int");
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
 
-                    b.Property<string>("SubjectName")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<bool>("IsDelete")
+                        .HasColumnType("bit");
 
-                    b.Property<decimal>("percent")
-                        .HasColumnType("decimal(18,2)");
+                    b.Property<bool>("IsPresent")
+                        .HasColumnType("bit");
 
-                    b.HasKey("StudentAttendenceId");
+                    b.Property<long>("LectureId")
+                        .HasColumnType("bigint");
 
-                    b.ToTable("StudentAttendence");
+                    b.Property<long?>("ModifiedBy")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime?>("ModifiedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<long>("SubjectId")
+                        .HasColumnType("bigint");
+
+                    b.Property<long>("UserId")
+                        .HasColumnType("bigint");
+
+                    b.HasKey("AttendanceId");
+
+                    b.HasIndex("AttendanceBy");
+
+                    b.HasIndex("ClassId");
+
+                    b.HasIndex("LectureId");
+
+                    b.HasIndex("SubjectId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("StudentAttendance");
                 });
 
             modelBuilder.Entity("StudentManagement.Data.Models.StudentQualication", b =>
@@ -1088,104 +2106,262 @@ namespace StudentManagement.Data.Migrations
                         .HasColumnType("bigint")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<long?>("CreatedBy")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("DegreeBoardName")
+                        .HasColumnType("nvarchar(200)");
+
+                    b.Property<decimal?>("DegreeCGPA")
+                        .HasColumnType("decimal(18,2)");
+
                     b.Property<long?>("DegreeId")
                         .HasColumnType("bigint");
+
+                    b.Property<long?>("DegreeMarkingScheameId")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("DegreeSchoolName")
+                        .HasColumnType("nvarchar(300)");
+
+                    b.Property<int?>("DegreeYear")
+                        .HasColumnType("int");
+
+                    b.Property<string>("DiplomaBoardName")
+                        .HasColumnType("nvarchar(300)");
+
+                    b.Property<decimal?>("DiplomaCGPA")
+                        .HasColumnType("decimal(18,2)");
 
                     b.Property<long?>("DiplomaId")
                         .HasColumnType("bigint");
 
-                    b.Property<long?>("EntranceExamId")
+                    b.Property<long?>("DiplomaMarkingScheameId")
                         .HasColumnType("bigint");
+
+                    b.Property<string>("DiplomaSchoolName")
+                        .HasColumnType("nvarchar(200)");
+
+                    b.Property<int?>("DiplomaYear")
+                        .HasColumnType("int");
+
+                    b.Property<string>("EntranceExamAir")
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<string>("EntranceExamCatefgoryRank")
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<long>("EntranceExamId")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("EntranceExamMarkObt")
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<string>("EntranceExamRollno")
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<int?>("EntranceExamYear")
+                        .HasColumnType("int");
 
                     b.Property<bool>("IsActive")
                         .HasColumnType("bit");
 
-                    b.Property<long?>("TenId")
+                    b.Property<bool>("IsDelete")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsEntrance")
+                        .HasColumnType("bit");
+
+                    b.Property<long?>("ModifiedBy")
                         .HasColumnType("bigint");
 
-                    b.Property<long?>("TenPlusTwoId")
+                    b.Property<DateTime?>("ModifiedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("PGDegreeBoardName")
+                        .HasColumnType("nvarchar(200)");
+
+                    b.Property<decimal?>("PGDegreeCGPA")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<long>("PGDegreeId")
+                        .HasColumnType("bigint");
+
+                    b.Property<long?>("PGDegreeMarkingScheameId")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("PGDegreeSchoolName")
+                        .HasColumnType("nvarchar(300)");
+
+                    b.Property<int?>("PGDegreeYear")
+                        .HasColumnType("int");
+
+                    b.Property<string>("TenBoardName")
+                        .HasColumnType("nvarchar(300)");
+
+                    b.Property<decimal?>("TenCGPA")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<long?>("TenMarkingScheameId")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("TenSchoolName")
+                        .HasColumnType("nvarchar(200)");
+
+                    b.Property<int?>("TenYearOfPassing")
+                        .HasColumnType("int");
+
+                    b.Property<string>("TwelveBoardName")
+                        .HasColumnType("nvarchar(300)");
+
+                    b.Property<decimal?>("TwelveCGPA")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<long?>("TwelveMakingScheameId")
+                        .HasColumnType("bigint");
+
+                    b.Property<decimal?>("TwelvePCM")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<string>("TwelveSchoolName")
+                        .HasColumnType("nvarchar(200)");
+
+                    b.Property<int?>("TwelveYearOfPassing")
+                        .HasColumnType("int");
+
+                    b.Property<long>("UserId")
                         .HasColumnType("bigint");
 
                     b.HasKey("StudentQualicationId");
 
                     b.HasIndex("DegreeId");
 
+                    b.HasIndex("DegreeMarkingScheameId");
+
                     b.HasIndex("DiplomaId");
+
+                    b.HasIndex("DiplomaMarkingScheameId");
 
                     b.HasIndex("EntranceExamId");
 
-                    b.HasIndex("TenId");
+                    b.HasIndex("PGDegreeId");
 
-                    b.HasIndex("TenPlusTwoId");
+                    b.HasIndex("PGDegreeMarkingScheameId");
+
+                    b.HasIndex("TenMarkingScheameId");
+
+                    b.HasIndex("TwelveMakingScheameId");
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("StudentQualication");
                 });
 
-            modelBuilder.Entity("StudentManagement.Data.Models.TenMaster", b =>
+            modelBuilder.Entity("StudentManagement.Data.Models.StudentRoleno", b =>
                 {
-                    b.Property<long>("TenMasterId")
+                    b.Property<long>("RoleId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("bigint")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("BoardName")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<long?>("CreatedBy")
+                        .HasColumnType("bigint");
 
-                    b.Property<decimal>("CGPA")
-                        .HasColumnType("decimal(18,2)");
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
 
                     b.Property<bool>("IsActive")
                         .HasColumnType("bit");
 
-                    b.Property<string>("SchoolName")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<bool>("IsDelete")
+                        .HasColumnType("bit");
 
-                    b.Property<long>("TenMarkingId")
+                    b.Property<long?>("ModifiedBy")
                         .HasColumnType("bigint");
 
-                    b.Property<int>("YearOfPassing")
-                        .HasColumnType("int");
+                    b.Property<DateTime?>("ModifiedDate")
+                        .HasColumnType("datetime2");
 
-                    b.HasKey("TenMasterId");
+                    b.Property<long>("RoleNo")
+                        .HasColumnType("bigint");
 
-                    b.HasIndex("TenMarkingId");
+                    b.Property<long>("UserId")
+                        .HasColumnType("bigint");
 
-                    b.ToTable("TenMaster");
+                    b.HasKey("RoleId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("StudentRoleno");
                 });
 
-            modelBuilder.Entity("StudentManagement.Data.Models.TenPlusTwoMaster", b =>
+            modelBuilder.Entity("StudentManagement.Data.Models.SubjectMaster", b =>
                 {
-                    b.Property<long>("TenMasterId")
+                    b.Property<long>("SubjectId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("bigint")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("BoardName")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<long?>("CreatedBy")
+                        .HasColumnType("bigint");
 
-                    b.Property<decimal>("CGPA")
-                        .HasColumnType("decimal(18,2)");
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
 
                     b.Property<bool>("IsActive")
                         .HasColumnType("bit");
 
-                    b.Property<decimal>("PCMCGPA")
-                        .HasColumnType("decimal(18,2)");
+                    b.Property<bool>("IsDelete")
+                        .HasColumnType("bit");
 
-                    b.Property<string>("SchoolName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<long>("TenPlusTwoMarkingId")
+                    b.Property<long?>("ModifiedBy")
                         .HasColumnType("bigint");
 
-                    b.Property<int>("YearOfPassing")
-                        .HasColumnType("int");
+                    b.Property<DateTime?>("ModifiedDate")
+                        .HasColumnType("datetime2");
 
-                    b.HasKey("TenMasterId");
+                    b.Property<string>("SubjectName")
+                        .HasColumnType("nvarchar(50)");
 
-                    b.HasIndex("TenPlusTwoMarkingId");
+                    b.HasKey("SubjectId");
 
-                    b.ToTable("TenPlusTwoMaster");
+                    b.ToTable("SubjectMaster");
+                });
+
+            modelBuilder.Entity("StudentManagement.Data.Models.YearSemesterMaster", b =>
+                {
+                    b.Property<long>("YearSemesterId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<long?>("CreatedBy")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsDelete")
+                        .HasColumnType("bit");
+
+                    b.Property<long?>("ModifiedBy")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime?>("ModifiedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("YearSemester")
+                        .HasColumnType("nvarchar(50)");
+
+                    b.HasKey("YearSemesterId");
+
+                    b.ToTable("YearSemesterMaster");
                 });
 
             modelBuilder.Entity("StudentManagement.Data.DBContexts.Role", b =>
@@ -1253,22 +2429,20 @@ namespace StudentManagement.Data.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("StudentManagement.Data.Models.CityMaster", b =>
+            modelBuilder.Entity("StudentManagement.Data.Models.BranchMaster", b =>
                 {
-                    b.HasOne("StudentManagement.Data.Models.StateMaster", "StateMaster")
+                    b.HasOne("StudentManagement.Data.Models.CourseMaster", "CourseMaster")
                         .WithMany()
-                        .HasForeignKey("StateId")
+                        .HasForeignKey("CourseId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
             modelBuilder.Entity("StudentManagement.Data.Models.CollegeDetail", b =>
                 {
-                    b.HasOne("StudentManagement.Data.Models.AdmissionbatchMaster", "AdmissionbatchMaster")
+                    b.HasOne("StudentManagement.Data.Models.BatchMaster", "BatchMaster1")
                         .WithMany()
-                        .HasForeignKey("AdmissionBatchTypeId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("AdmissionBatchTypeId");
 
                     b.HasOne("StudentManagement.Data.Models.AdmissiontypeMaster", "AdmissiontypeMaster")
                         .WithMany()
@@ -1288,11 +2462,74 @@ namespace StudentManagement.Data.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("StudentManagement.Data.Models.CollegeMaster", "CollegeMaster")
+                    b.HasOne("StudentManagement.Data.Models.CourseMaster", "CourseMaster")
                         .WithMany()
-                        .HasForeignKey("CollegeId")
+                        .HasForeignKey("CourseId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.HasOne("StudentManagement.Data.DBContexts.ApplicationUser", "ApplicationUser")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("StudentManagement.Data.Models.YearSemesterMaster", "YearSemesterMaster")
+                        .WithMany()
+                        .HasForeignKey("YearSemesterId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("StudentManagement.Data.Models.BranchMaster", "BranchMaster")
+                        .WithMany()
+                        .HasForeignKey("branchId");
+                });
+
+            modelBuilder.Entity("StudentManagement.Data.Models.CollegeMaster", b =>
+                {
+                    b.HasOne("StudentManagement.Data.Models.CampusMaster", "CampusMaster")
+                        .WithMany()
+                        .HasForeignKey("CampusId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("StudentManagement.Data.Models.Documents", b =>
+                {
+                    b.HasOne("StudentManagement.Data.DBContexts.ApplicationUser", "ApplicationUser")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("StudentManagement.Data.Models.HistoryCollegeDetail", b =>
+                {
+                    b.HasOne("StudentManagement.Data.Models.BatchMaster", "BatchMaster1")
+                        .WithMany()
+                        .HasForeignKey("AdmissionBatchTypeId");
+
+                    b.HasOne("StudentManagement.Data.Models.AdmissiontypeMaster", "AdmissiontypeMaster")
+                        .WithMany()
+                        .HasForeignKey("AdmissionTypeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("StudentManagement.Data.Models.BatchMaster", "BatchMaster")
+                        .WithMany()
+                        .HasForeignKey("BatchId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("StudentManagement.Data.Models.CampusMaster", "CampusMaster")
+                        .WithMany()
+                        .HasForeignKey("CampusId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("StudentManagement.Data.Models.CollegeDetail", "CollegeDetail")
+                        .WithMany()
+                        .HasForeignKey("CollegeDetailId");
 
                     b.HasOne("StudentManagement.Data.Models.CourseMaster", "CourseMaster")
                         .WithMany()
@@ -1300,53 +2537,197 @@ namespace StudentManagement.Data.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("StudentManagement.Data.DBContexts.ApplicationUser", "UserMaster")
+                    b.HasOne("StudentManagement.Data.DBContexts.ApplicationUser", "ApplicationUser")
                         .WithMany()
-                        .HasForeignKey("StudentId")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("StudentManagement.Data.Models.YearSemesterMaster", "YearSemesterMaster")
+                        .WithMany()
+                        .HasForeignKey("YearSemesterId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("StudentManagement.Data.Models.BranchMaster", "BranchMaster")
                         .WithMany()
-                        .HasForeignKey("branchId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("branchId");
                 });
 
-            modelBuilder.Entity("StudentManagement.Data.Models.DegreeMaster", b =>
+            modelBuilder.Entity("StudentManagement.Data.Models.HistoryDocuments", b =>
                 {
-                    b.HasOne("StudentManagement.Data.Models.MarkingSchemUGPGD", "MarkingSchemUGPGD")
+                    b.HasOne("StudentManagement.Data.Models.Documents", "Documents")
                         .WithMany()
-                        .HasForeignKey("DegreeMarkingId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("DocumentId");
+
+                    b.HasOne("StudentManagement.Data.DBContexts.ApplicationUser", "ApplicationUser")
+                        .WithMany()
+                        .HasForeignKey("UserId");
                 });
 
-            modelBuilder.Entity("StudentManagement.Data.Models.DiplomaMaster", b =>
+            modelBuilder.Entity("StudentManagement.Data.Models.HistoryParentDetail", b =>
                 {
-                    b.HasOne("StudentManagement.Data.Models.MarkingSchemUGPGD", "MarkingSchemUGPGD")
+                    b.HasOne("StudentManagement.Data.Models.CityMaster", "FatherCityMaster")
                         .WithMany()
-                        .HasForeignKey("DiplomaMarkingId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("FatherCityId");
+
+                    b.HasOne("StudentManagement.Data.Models.CountryMaster", "FatherCountryMaster")
+                        .WithMany()
+                        .HasForeignKey("FatherCountryId");
+
+                    b.HasOne("StudentManagement.Data.Models.StateMaster", "FatherStateMaster")
+                        .WithMany()
+                        .HasForeignKey("FatherStateId");
+
+                    b.HasOne("StudentManagement.Data.Models.CityMaster", "LGCityMaster")
+                        .WithMany()
+                        .HasForeignKey("LGCityId");
+
+                    b.HasOne("StudentManagement.Data.Models.CountryMaster", "CountryMaster")
+                        .WithMany()
+                        .HasForeignKey("LGCountryId");
+
+                    b.HasOne("StudentManagement.Data.Models.StateMaster", "LGStateMaster")
+                        .WithMany()
+                        .HasForeignKey("LGStateId");
+
+                    b.HasOne("StudentManagement.Data.Models.CityMaster", "MotherCityMaster")
+                        .WithMany()
+                        .HasForeignKey("MotherCityId");
+
+                    b.HasOne("StudentManagement.Data.Models.CountryMaster", "MotherCountryMaster")
+                        .WithMany()
+                        .HasForeignKey("MotherCountryId");
+
+                    b.HasOne("StudentManagement.Data.Models.StateMaster", "MotherStateMaster")
+                        .WithMany()
+                        .HasForeignKey("MotherStateId");
+
+                    b.HasOne("StudentManagement.Data.Models.ParentDetail", "ParentDetail")
+                        .WithMany()
+                        .HasForeignKey("ParentDetailId");
+
+                    b.HasOne("StudentManagement.Data.Models.RelationMaster", "RelationMaster")
+                        .WithMany()
+                        .HasForeignKey("RelationId");
+
+                    b.HasOne("StudentManagement.Data.DBContexts.ApplicationUser", "ApplicationUser")
+                        .WithMany()
+                        .HasForeignKey("UserId");
                 });
 
-            modelBuilder.Entity("StudentManagement.Data.Models.Documents", b =>
+            modelBuilder.Entity("StudentManagement.Data.Models.HistoryPersonalDetail", b =>
                 {
-                    b.HasOne("StudentManagement.Data.Models.DocumentTypeMaster", "DocumentTypeMaster")
+                    b.HasOne("StudentManagement.Data.Models.BloodgroupMaster", "BloodgroupMaster")
                         .WithMany()
-                        .HasForeignKey("DocumentTypeId")
+                        .HasForeignKey("BloodGroupdId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.HasOne("StudentManagement.Data.Models.CategoryMaster", "CategoryMaster")
+                        .WithMany()
+                        .HasForeignKey("CategoryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("StudentManagement.Data.Models.CityMaster", "CityMaster")
+                        .WithMany()
+                        .HasForeignKey("CityId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("StudentManagement.Data.Models.CountryMaster", "CountryMaster")
+                        .WithMany()
+                        .HasForeignKey("CountryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("StudentManagement.Data.Models.GenderMaster", "GenderMaster")
+                        .WithMany()
+                        .HasForeignKey("GenderId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("StudentManagement.Data.Models.PersonalDetail", "PersonalDetail")
+                        .WithMany()
+                        .HasForeignKey("PersonalDetailId");
+
+                    b.HasOne("StudentManagement.Data.Models.ReligionMaster", "ReligionMaster")
+                        .WithMany()
+                        .HasForeignKey("ReligionId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("StudentManagement.Data.Models.StateMaster", "StateMaster")
+                        .WithMany()
+                        .HasForeignKey("StateId");
+
+                    b.HasOne("StudentManagement.Data.Models.RelationMaster", "RelationMaster")
+                        .WithMany()
+                        .HasForeignKey("StayRelationId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("StudentManagement.Data.Models.StaytypeMaster", "StaytypeMaster")
+                        .WithMany()
+                        .HasForeignKey("StayTypeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("StudentManagement.Data.DBContexts.ApplicationUser", "ApplicationUser")
+                        .WithMany()
+                        .HasForeignKey("UserId");
                 });
 
-            modelBuilder.Entity("StudentManagement.Data.Models.EntranceExamMaster", b =>
+            modelBuilder.Entity("StudentManagement.Data.Models.HistoryStudentQualication", b =>
                 {
-                    b.HasOne("StudentManagement.Data.Models.ExamTypeMaster", "ExamTypeMaster")
+                    b.HasOne("StudentManagement.Data.Models.DegreeMaster", "DegreeMaster")
                         .WithMany()
-                        .HasForeignKey("ExamTypeId")
+                        .HasForeignKey("DegreeId");
+
+                    b.HasOne("StudentManagement.Data.Models.MarkingScheame", "MarkingScheame4")
+                        .WithMany()
+                        .HasForeignKey("DegreeMarkingScheameId");
+
+                    b.HasOne("StudentManagement.Data.Models.DiplomaMaster", "DiplomaMaster")
+                        .WithMany()
+                        .HasForeignKey("DiplomaId");
+
+                    b.HasOne("StudentManagement.Data.Models.MarkingScheame", "MarkingScheame3")
+                        .WithMany()
+                        .HasForeignKey("DiplomaMarkingScheameId");
+
+                    b.HasOne("StudentManagement.Data.Models.EntranceExamMaster", "EntranceExamMaster")
+                        .WithMany()
+                        .HasForeignKey("EntranceExamId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.HasOne("StudentManagement.Data.Models.PGDegreeMaster", "PGDegreeMaster")
+                        .WithMany()
+                        .HasForeignKey("PGDegreeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("StudentManagement.Data.Models.MarkingScheame", "MarkingScheame5")
+                        .WithMany()
+                        .HasForeignKey("PGDegreeMarkingScheameId");
+
+                    b.HasOne("StudentManagement.Data.Models.StudentQualication", "StudentQualication")
+                        .WithMany()
+                        .HasForeignKey("StudentQualicationId");
+
+                    b.HasOne("StudentManagement.Data.Models.MarkingScheame", "MarkingScheame1")
+                        .WithMany()
+                        .HasForeignKey("TenMarkingScheameId");
+
+                    b.HasOne("StudentManagement.Data.Models.MarkingScheame", "MarkingScheame2")
+                        .WithMany()
+                        .HasForeignKey("TwelveMakingScheameId");
+
+                    b.HasOne("StudentManagement.Data.DBContexts.ApplicationUser", "ApplicationUser")
+                        .WithMany()
+                        .HasForeignKey("UserId");
                 });
 
             modelBuilder.Entity("StudentManagement.Data.Models.ParentDetail", b =>
@@ -1367,7 +2748,7 @@ namespace StudentManagement.Data.Migrations
                         .WithMany()
                         .HasForeignKey("LGCityId");
 
-                    b.HasOne("StudentManagement.Data.Models.CountryMaster", "LGCountryMaster")
+                    b.HasOne("StudentManagement.Data.Models.CountryMaster", "CountryMaster")
                         .WithMany()
                         .HasForeignKey("LGCountryId");
 
@@ -1387,9 +2768,13 @@ namespace StudentManagement.Data.Migrations
                         .WithMany()
                         .HasForeignKey("MotherStateId");
 
-                    b.HasOne("StudentManagement.Data.DBContexts.ApplicationUser", "UserMaster")
+                    b.HasOne("StudentManagement.Data.Models.RelationMaster", "RelationMaster")
                         .WithMany()
-                        .HasForeignKey("StudentId")
+                        .HasForeignKey("RelationId");
+
+                    b.HasOne("StudentManagement.Data.DBContexts.ApplicationUser", "ApplicationUser")
+                        .WithMany()
+                        .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
@@ -1410,27 +2795,19 @@ namespace StudentManagement.Data.Migrations
 
                     b.HasOne("StudentManagement.Data.Models.CityMaster", "CityMaster")
                         .WithMany()
-                        .HasForeignKey("CityId");
+                        .HasForeignKey("CityId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("StudentManagement.Data.Models.CountryMaster", "CountryMaster")
                         .WithMany()
-                        .HasForeignKey("CountryId");
-
-                    b.HasOne("StudentManagement.Data.Models.DomicileMaster", "DomicileMaster")
-                        .WithMany()
-                        .HasForeignKey("DomicileId")
+                        .HasForeignKey("CountryId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("StudentManagement.Data.Models.GenderMaster", "Gender")
+                    b.HasOne("StudentManagement.Data.Models.GenderMaster", "GenderMaster")
                         .WithMany()
                         .HasForeignKey("GenderId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("StudentManagement.Data.Models.NationalityMaster", "NationalityMaster")
-                        .WithMany()
-                        .HasForeignKey("NationalityId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -1444,15 +2821,19 @@ namespace StudentManagement.Data.Migrations
                         .WithMany()
                         .HasForeignKey("StateId");
 
-                    b.HasOne("StudentManagement.Data.Models.StayrelationMaster", "Stayrelation")
+                    b.HasOne("StudentManagement.Data.Models.RelationMaster", "RelationMaster")
                         .WithMany()
-                        .HasForeignKey("StayRelationId");
+                        .HasForeignKey("StayRelationId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("StudentManagement.Data.Models.StaytypeMaster", "StaytypeMaster")
                         .WithMany()
-                        .HasForeignKey("StayTypeId");
+                        .HasForeignKey("StayTypeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                    b.HasOne("StudentManagement.Data.DBContexts.ApplicationUser", "UserMaster")
+                    b.HasOne("StudentManagement.Data.DBContexts.ApplicationUser", "ApplicationUser")
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -1468,43 +2849,91 @@ namespace StudentManagement.Data.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("StudentManagement.Data.Models.StudentAttendance", b =>
+                {
+                    b.HasOne("StudentManagement.Data.DBContexts.ApplicationUser", "ApplicationUser1")
+                        .WithMany()
+                        .HasForeignKey("AttendanceBy");
+
+                    b.HasOne("StudentManagement.Data.Models.ClassMaster", "ClassMaster")
+                        .WithMany()
+                        .HasForeignKey("ClassId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("StudentManagement.Data.Models.LectureMaster", "LectureMaster")
+                        .WithMany()
+                        .HasForeignKey("LectureId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("StudentManagement.Data.Models.SubjectMaster", "SubjectMaster")
+                        .WithMany()
+                        .HasForeignKey("SubjectId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("StudentManagement.Data.DBContexts.ApplicationUser", "ApplicationUser")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("StudentManagement.Data.Models.StudentQualication", b =>
                 {
                     b.HasOne("StudentManagement.Data.Models.DegreeMaster", "DegreeMaster")
                         .WithMany()
                         .HasForeignKey("DegreeId");
 
+                    b.HasOne("StudentManagement.Data.Models.MarkingScheame", "MarkingScheame4")
+                        .WithMany()
+                        .HasForeignKey("DegreeMarkingScheameId");
+
                     b.HasOne("StudentManagement.Data.Models.DiplomaMaster", "DiplomaMaster")
                         .WithMany()
                         .HasForeignKey("DiplomaId");
 
+                    b.HasOne("StudentManagement.Data.Models.MarkingScheame", "MarkingScheame3")
+                        .WithMany()
+                        .HasForeignKey("DiplomaMarkingScheameId");
+
                     b.HasOne("StudentManagement.Data.Models.EntranceExamMaster", "EntranceExamMaster")
                         .WithMany()
-                        .HasForeignKey("EntranceExamId");
+                        .HasForeignKey("EntranceExamId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                    b.HasOne("StudentManagement.Data.Models.TenMaster", "TenMaster")
+                    b.HasOne("StudentManagement.Data.Models.PGDegreeMaster", "PGDegreeMaster")
                         .WithMany()
-                        .HasForeignKey("TenId");
+                        .HasForeignKey("PGDegreeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                    b.HasOne("StudentManagement.Data.Models.TenPlusTwoMaster", "TenPlusTwoMaster")
+                    b.HasOne("StudentManagement.Data.Models.MarkingScheame", "MarkingScheame5")
                         .WithMany()
-                        .HasForeignKey("TenPlusTwoId");
-                });
+                        .HasForeignKey("PGDegreeMarkingScheameId");
 
-            modelBuilder.Entity("StudentManagement.Data.Models.TenMaster", b =>
-                {
-                    b.HasOne("StudentManagement.Data.Models.MarkingSchemUGPGD", "MarkingSchemUGPGD")
+                    b.HasOne("StudentManagement.Data.Models.MarkingScheame", "MarkingScheame1")
                         .WithMany()
-                        .HasForeignKey("TenMarkingId")
+                        .HasForeignKey("TenMarkingScheameId");
+
+                    b.HasOne("StudentManagement.Data.Models.MarkingScheame", "MarkingScheame2")
+                        .WithMany()
+                        .HasForeignKey("TwelveMakingScheameId");
+
+                    b.HasOne("StudentManagement.Data.DBContexts.ApplicationUser", "ApplicationUser")
+                        .WithMany()
+                        .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("StudentManagement.Data.Models.TenPlusTwoMaster", b =>
+            modelBuilder.Entity("StudentManagement.Data.Models.StudentRoleno", b =>
                 {
-                    b.HasOne("StudentManagement.Data.Models.MarkingSchemUGPGD", "MarkingSchemUGPGD")
+                    b.HasOne("StudentManagement.Data.DBContexts.ApplicationUser", "ApplicationUser")
                         .WithMany()
-                        .HasForeignKey("TenPlusTwoMarkingId")
+                        .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

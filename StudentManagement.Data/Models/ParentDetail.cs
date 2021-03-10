@@ -1,4 +1,5 @@
 ﻿using StudentManagement.Data.DBContexts;
+using StudentManagementAdmin.Data.DbModel.BaseModel;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -7,20 +8,32 @@ using System.Text;
 
 namespace StudentManagement.Data.Models
 {
-   public class ParentDetail
+  public  class ParentDetail:EntityWithAudit
     {
-        [Key]
-        public long StudentId { get; set; }
-        [ForeignKey("StudentId")]
-        public virtual ApplicationUser UserMaster { get; set; }
+        [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public long ParentDetailId { get; set; }
 
+        public long UserId { get; set; }
+        [ForeignKey("UserId")]
+        public virtual ApplicationUser ApplicationUser { get; set; }
+
+        [Column(TypeName = "nvarchar(max)")]
         public string FatherName { get; set; }
+
+        [Column(TypeName = "nvarchar(max)")]
         public string FatherMobile1 { get; set; }
+
+        [Column(TypeName = "nvarchar(max)")]
         public string FatherMobile2 { get; set; }
+
+        [Column(TypeName = "nvarchar(max)")]
         public string FatherEmail { get; set; }
+
+        [Column(TypeName = "nvarchar(max)")]
         public string FatherAddress { get; set; }
 
-        public long? FatherCityId { get; set; }
+        
+        public long?  FatherCityId { get; set; }
         [ForeignKey("FatherCityId")]
         public virtual CityMaster FatherCityMaster { get; set; }
 
@@ -34,10 +47,23 @@ namespace StudentManagement.Data.Models
 
 
 
+
+        [Column(TypeName = "varchar(50)")]
+        public string FatherPincode { get; set; }
+
+        [Column(TypeName = "nvarchar(max)")]
         public string MotherName { get; set; }
+
+        [Column(TypeName = "nvarchar(max)")]
         public string MotherMobile1 { get; set; }
+
+        [Column(TypeName = "nvarchar(max)")]
         public string MotherMobile2 { get; set; }
+
+        [Column(TypeName = "nvarchar(max)")]
         public string MotherEmail { get; set; }
+
+        [Column(TypeName = "nvarchar(max)")]
         public string MotherAddress { get; set; }
 
         public long? MotherCityId { get; set; }
@@ -52,11 +78,26 @@ namespace StudentManagement.Data.Models
         [ForeignKey("MotherCountryId")]
         public virtual CountryMaster MotherCountryMaster { get; set; }
 
+        [Column(TypeName = "nvarchar(50)")]
+        public string MotherPincode { get; set; }
 
+        [Column(TypeName = "nvarchar(50)")]
+        public string LGPincode { get; set; }
+
+
+        [Column(TypeName = "nvarchar(max)")]
         public string LGName { get; set; }
+
+        [Column(TypeName = "nvarchar(max)")]
         public string LGMobile1 { get; set; }
+
+        [Column(TypeName = "nvarchar(max)")]
         public string LGMobile2 { get; set; }
+
+        [Column(TypeName = "nvarchar(max)")]
         public string LGEmail { get; set; }
+
+        [Column(TypeName = "nvarchar(max)")]
         public string LGAddress { get; set; }
 
         public long? LGCityId { get; set; }
@@ -69,8 +110,11 @@ namespace StudentManagement.Data.Models
 
         public long? LGCountryId { get; set; }
         [ForeignKey("LGCountryId")]
-        public virtual CountryMaster LGCountryMaster { get; set; }
+        public virtual CountryMaster CountryMaster { get; set; }
 
+        public long? RelationId { get; set; }
+        [ForeignKey("RelationId")]
+        public virtual RelationMaster RelationMaster { get; set; }
 
     }
 }

@@ -43,21 +43,28 @@ namespace StudentManagement.Data.DBContexts
         [NotMapped] public string FullName => $@"{FirstName} {LastName}";
 
 
-        [Required, StringLength(20)]
-        public string MobileNumber { get; set; }
+        
+        public string Name { get; set; }
 
-        [StringLength(20)]
-        public string TelephoneNumber { get; set; }
+     
+        [Required, StringLength(200)]
+        public string OfficialEmail { get; set; }
 
-        public string Notes { get; set; }
+        [StringLength(200)]
+        public string RecoveryEmail { get; set; }
+
+        [StringLength(15)]
+        public string RecoveryMobileNo { get; set; }
+
+        public long? CreatedBy { get; set; }
+
+        public DateTime CreatedDate { get; set; }
+
+        public long? ModifiedBy { get; set; }
+
+        public DateTime? ModifiedDate { get; set; }
 
         [DefaultValue(true)]
         public bool IsActive { get; set; }
-
-        public string AddressLine1 { get; set; }
-        public string AddressLine2 { get; set; }
-
-     
-
     }
 }

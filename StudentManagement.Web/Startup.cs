@@ -1,3 +1,4 @@
+using AutoMapper;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -12,7 +13,9 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using StudentManagement.Data.DBContexts;
-
+using StudentManagement.Service.Implementation;
+using StudentManagement.Service.Interface;
+using StudentManagement.Web.AutoMapperProfileConfiguration;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -53,6 +56,7 @@ namespace StudentManagement.Web
             services.AddScoped<RoleManager<Role>>();
 
             services.AddScoped<IUserClaimsPrincipalFactory<ApplicationUser>, ClaimsPrincipalFactory>();
+            services.AddScoped<IPersonalDetailService, PersonalDetailRepository>();
 
             #region Identity Configuration
             services.Configure<IdentityOptions>(options =>
@@ -63,6 +67,8 @@ namespace StudentManagement.Web
                 options.Password.RequireUppercase = false;
                 options.Password.RequireNonAlphanumeric = false;
                 options.Password.RequireDigit = false;
+
+                
 
                 // Lockout settings
                 options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(30);
@@ -102,6 +108,11 @@ namespace StudentManagement.Web
             });
             #endregion
 
+            #region Dependencyinjection 
+            services.AddScoped<IErrorLogService, ErrorLogRepository>();
+            #endregion
+
+
             services.AddAuthentication
             (CookieAuthenticationDefaults.AuthenticationScheme)
                     .AddCookie();
@@ -116,7 +127,15 @@ namespace StudentManagement.Web
             services.AddMvc();
             services.AddDistributedMemoryCache(); // Adds a default in-memory implementation of IDistributedCache
             /**Add Automapper**/
-            //services.AddAutoMapper(typeof(Startup));
+            // services.AddAutoMapper(typeof(Startup));
+            var mapperConfig = new MapperConfiguration(mc =>
+            {
+                mc.AddProfile(new AmProfile());
+            });
+
+            IMapper mapper = mapperConfig.CreateMapper();
+            services.AddSingleton(mapper);
+
             services.AddSession(opts =>
             {
                 opts.Cookie.IsEssential = true; // make the session cookie Essential
@@ -136,7 +155,7 @@ namespace StudentManagement.Web
             #region Configure App Settings
 
             /**Email Settings**/
-            // services.Configure<EmailSettingsGmail>(Configuration.GetSection("EmailSettingsGmail"));
+            //services.Configure<EmailSettingsGmail>(Configuration.GetSection("EmailSettingsGmail"));
 
             /**Settings**/
             #endregion
@@ -172,6 +191,11 @@ namespace StudentManagement.Web
                    name: "Admin",
                    areaName: "Admin",
                    pattern: "Admin/{controller=Home}/{action=Index}");
+
+                endpoints.MapAreaControllerRoute(
+                  name: "Student",
+                  areaName: "Student",
+                  pattern: "Student/{controller=Home}/{action=Index}");
 
                 endpoints.MapControllerRoute(
                     name: "default",

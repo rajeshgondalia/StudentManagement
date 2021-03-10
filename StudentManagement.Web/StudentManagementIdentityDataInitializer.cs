@@ -26,13 +26,13 @@ namespace StudentManagement
                 LastName = "Sharma",
                 MiddleName = "",
                 UserName = "ams@narola.email",
-                MobileNumber = "+1 999-999-9999",
+                OfficialEmail = "ams@narola.email",
                 NormalizedUserName = "Admin",
                 Email = "ams@narola.email",
                 NormalizedEmail = "ams@narola.email",
                 EmailConfirmed = true,
                 IsActive = true,
-                AddressLine1 = "Surat",
+              
 
             };
             if (userManager.FindByEmailAsync(user.UserName).Result != null) return;
@@ -42,6 +42,30 @@ namespace StudentManagement
             if (result.Succeeded)
             {
                 userManager.AddToRoleAsync(user, "Admin").Wait();
+            }
+
+            var studentUser = new ApplicationUser
+            {
+                FirstName = "Bharat",
+                LastName = "B",
+                MiddleName = "",
+                UserName = "Bharat@gmail.com",
+                OfficialEmail = "Bharat@gmail.com",
+                NormalizedUserName = "Student",
+                Email = "Bharat@gmail.com",
+                NormalizedEmail = "Bharat@gmail.com",
+                EmailConfirmed = true,
+                IsActive = true,
+
+
+            };
+            if (userManager.FindByEmailAsync(studentUser.UserName).Result != null) return;
+
+            var StudentResult = userManager.CreateAsync(studentUser, "Password123#").Result;
+
+            if (StudentResult.Succeeded)
+            {
+                userManager.AddToRoleAsync(studentUser, "Student").Wait();
             }
 
         }

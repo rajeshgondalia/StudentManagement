@@ -7,7 +7,8 @@ using System.Collections.Generic;
 using System.IO;
 using System.Text;
 using StudentManagement.Data.DBContexts;
-using StudentManagement.Data.DbModel;
+
+using StudentManagement.Data.Models;
 
 namespace StudentManagement.Service.Implementation
 {

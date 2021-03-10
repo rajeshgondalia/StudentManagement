@@ -1,4 +1,5 @@
-﻿using System;
+﻿using StudentManagementAdmin.Data.DbModel.BaseModel;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -6,22 +7,13 @@ using System.Text;
 
 namespace StudentManagement.Data.Models
 {
-    public class DiplomaMaster:BaseModel
+  public  class DiplomaMaster:EntityWithAudit
     {
-        [Key]
+        [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public long DiplomaId { get; set; }
+
+        [Column(TypeName = "nvarchar(max)")]
         public string Name { get; set; }
-
-        public int DiplomaYear { get; set; }
-        public long DiplomaMarkingId { get; set; }
-        [ForeignKey("DiplomaMarkingId")]
-        public virtual MarkingSchemUGPGD MarkingSchemUGPGD { get; set; }
-
-        public decimal CGPA { get; set; }
-
-        public string BoardName { get; set; }
-
-
 
     }
 }

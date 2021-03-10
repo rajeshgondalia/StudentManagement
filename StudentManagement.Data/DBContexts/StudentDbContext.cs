@@ -13,7 +13,6 @@ namespace StudentManagement.Data.DBContexts
     {
 
         #region Db Sets
-        public DbSet<AdmissionbatchMaster> AdmissionbatchMasters { get; set; }
         public DbSet<AdmissiontypeMaster> AdmissiontypeMaster { get; set; }
         public DbSet<BatchMaster> BatchMaster { get; set; }
         public DbSet<BloodgroupMaster> BloodgroupMaster { get; set; }
@@ -21,30 +20,37 @@ namespace StudentManagement.Data.DBContexts
         public DbSet<CampusMaster> CampusMaster { get; set; }
         public DbSet<CategoryMaster> CategoryMaster { get; set; }
         public DbSet<CityMaster> CityMaster { get; set; }
-        public DbSet<CollegeDetail> CollegeDetail { get; set; }
+        public DbSet<ClassMaster> ClassMaster { get; set; }
         public DbSet<CollegeMaster> CollegeMaster { get; set; }
         public DbSet<CountryMaster> CountryMaster { get; set; }
         public DbSet<CourseMaster> CourseMaster { get; set; }
         public DbSet<DegreeMaster> DegreeMaster { get; set; }
         public DbSet<DiplomaMaster> DiplomaMaster { get; set; }
         public DbSet<Documents> Documents { get; set; }
-        public DbSet<DocumentTypeMaster> DocumentTypeMaster { get; set; }
-        public DbSet<DomicileMaster> DomicileMaster { get; set; }
         public DbSet<EntranceExamMaster> EntranceExamMaster { get; set; }
-        public DbSet<ExamTypeMaster> ExamTypeMaster { get; set; }
         public DbSet<GenderMaster> GenderMaster { get; set; }
-        public DbSet<LGRelationMaster> LGRelationMaster { get; set; }
-        public DbSet<NationalityMaster> NationalityMaster { get; set; }
+        public DbSet<LectureMaster> LectureMaster { get; set; }
+        public DbSet<MarkingScheame> MarkingScheame { get; set; }
         public DbSet<ParentDetail> ParentDetail { get; set; }
         public DbSet<PersonalDetail> PersonalDetail { get; set; }
+        public DbSet<PGDegreeMaster> PGDegreeMaster { get; set; }
+        public DbSet<RelationMaster> RelationMaster { get; set; }
         public DbSet<ReligionMaster> ReligionMaster { get; set; }
-       
         public DbSet<StateMaster> StateMaster { get; set; }
-        public DbSet<StayrelationMaster> StayrelationMaster { get; set; }
-        public DbSet<StudentAttendence> StudentAttendence { get; set; }
+        public DbSet<StaytypeMaster> StaytypeMaster { get; set; }
+        public DbSet<StudentAttendance> StudentAttendance { get; set; }
         public DbSet<StudentQualication> StudentQualication { get; set; }
-        public DbSet<TenMaster> TenMaster { get; set; }
-        public DbSet<TenPlusTwoMaster> TenPlusTwoMaster { get; set; }
+        public DbSet<StudentRoleno> StudentRoleno { get; set; }
+        public DbSet<SubjectMaster> SubjectMaster { get; set; }
+        public DbSet<YearSemesterMaster> YearSemesterMaster { get; set; }
+        public DbSet<CollegeDetail> CollegeDetail { get; set; }
+        public DbSet<HistoryCollegeDetail> HistoryCollegeDetail { get; set; }
+        public DbSet<HistoryDocuments> HistoryDocuments { get; set; }
+        public DbSet<HistoryParentDetail> HistoryParentDetail { get; set; }
+        public DbSet<HistoryPersonalDetail> HistoryPersonalDetail { get; set; }
+        public DbSet<HistoryStudentQualication> HistoryStudentQualication { get; set; }
+        public DbSet<ErrorLog> ErrorLogs { get; set; }
+       
        
 
         #endregion
