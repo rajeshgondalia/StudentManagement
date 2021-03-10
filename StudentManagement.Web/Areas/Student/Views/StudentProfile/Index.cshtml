@@ -290,10 +290,208 @@
                             Parent Details
                         </h6>
                     </div>
-                    <div class="card-body modal-body">
-                        <!-- form start here -->
-                        <!-- form end here -->
-                    </div>
+                    <form id="frmParentDetail" asp-controller="StudentProfile" asp-area="Student" asp-action="UpdateParentDetail" method="post">
+                        <div class="card-body modal-body">
+                            <!-- form start here -->
+                            <div class="default-form">
+                                <div class="row">
+                                    <div class="col-lg-4 col-md-4 col-12">
+                                        <div class="form-group mb-4">
+                                            <label class="form-label">Father Name</label>
+                                            <input type="text" name="FatherName" asp-for="FatherName" class="form-control" placeholder="FatherName" />
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-12">
+                                        <div class="form-group mb-4">
+                                            <label class="form-label">Father mobile 1</label>
+                                            <input type="text" name="FatherMobile1" asp-for="FatherMobile1" class="form-control" placeholder="father mobile 1 Address" />
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-12">
+                                        <div class="form-group mb-4">
+                                            <label class="form-label">Father mobile 2</label>
+                                            <input type="text" name="FatherMobile2" asp-for="FatherMobile2" class="form-control" placeholder="father mobile 2 Address" />
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-12">
+                                        <div class="form-group mb-4">
+                                            <label class="form-label">Father Email</label>
+                                            <input type="text" name="FatherEmail" asp-for="FatherEmail" class="form-control" placeholder="Father email" />
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-12">
+                                        <div class="form-group mb-4">
+                                            <label class="form-label">Father address</label>
+                                            <input type="text" name="FatherAddress" asp-for="FatherAddress" class="form-control" placeholder="Father address" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-4 col-md-4 col-12">
+                                        <div class="form-group mb-4">
+                                            <label class="form-label">Father City</label>
+                                            <select name="FatherCityId" asp-for="FatherCityId" class="form-control" asp-items="@ViewBag.CityList">
+                                                <option value="">--Select Stay City--</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-12">
+                                        <div class="form-group mb-4">
+                                            <label class="form-label">Father State</label>
+                                            <select name="FatherStateId" asp-for="FatherStateId" class="form-control" asp-items="@ViewBag.StateList">
+                                                <option value="">--Select Stay State--</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-12">
+                                        <div class="form-group mb-4">
+                                            <label class="form-label">Father  Country</label>
+                                            <select name="FatherCountryId" asp-for="FatherCountryId" class="form-control" asp-items="@ViewBag.CountryList">
+                                                <option value="">--Select Stay Country--</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div class="row">
+                                    <div class="col-lg-4 col-md-4 col-12">
+                                        <div class="form-group mb-4">
+                                            <label class="form-label">Mother Name</label>
+                                            <input type="text" name="MotherName" asp-for="MotherName" class="form-control" placeholder="MotherName" />
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-12">
+                                        <div class="form-group mb-4">
+                                            <label class="form-label">Mother mobile 1</label>
+                                            <input type="text" name="MotherMobile1" asp-for="MotherMobile1" class="form-control" placeholder="Mother mobile 1 Address" />
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-12">
+                                        <div class="form-group mb-4">
+                                            <label class="form-label">Mother mobile 2</label>
+                                            <input type="text" name="MotherMobile2" asp-for="MotherMobile2" class="form-control" placeholder="Mother mobile 2 Address" />
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-12">
+                                        <div class="form-group mb-4">
+                                            <label class="form-label">Mother Email</label>
+                                            <input type="text" name="MotherEmail" asp-for="MotherEmail" class="form-control" placeholder="Mother email" />
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-12">
+                                        <div class="form-group mb-4">
+                                            <label class="form-label">Mother address</label>
+                                            <input type="text" name="MotherAddress" asp-for="MotherAddress" class="form-control" placeholder="Mother address" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-4 col-md-4 col-12">
+                                        <div class="form-group mb-4">
+                                            <label class="form-label">Mother City</label>
+                                            <select name="MotherCityId" asp-for="MotherCityId" class="form-control" asp-items="@ViewBag.CityList">
+                                                <option value="">--Select Stay City--</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-12">
+                                        <div class="form-group mb-4">
+                                            <label class="form-label">Mother State</label>
+                                            <select name="MotherStateId" asp-for="MotherStateId" class="form-control" asp-items="@ViewBag.StateList">
+                                                <option value="">--Select Stay State--</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-12">
+                                        <div class="form-group mb-4">
+                                            <label class="form-label">Mother  Country</label>
+                                            <select name="MotherCountryId" asp-for="MotherCountryId" class="form-control" asp-items="@ViewBag.CountryList">
+                                                <option value="">--Select Stay Country--</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
+                                <div class="row">
+                                    <div class="col-lg-4 col-md-4 col-12">
+                                        <div class="form-group mb-4">
+                                            <label class="form-label">LG Name</label>
+                                            <input type="text" name="LGName" asp-for="LGName" class="form-control" placeholder="LGName" />
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-4 col-md-4 col-12">
+                                        <div class="form-group mb-4">
+                                            <label class="form-label">LG Relation</label>
+                                            <select name="LGRelationId" asp-for="LGRelationId" class="form-control" asp-items="@ViewBag.RelationList">
+                                                <option value="">--Select LG Relation--</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-12">
+                                        <div class="form-group mb-4">
+                                            <label class="form-label">LG mobile 1</label>
+                                            <input type="text" name="LGMobile1" asp-for="LGMobile1" class="form-control" placeholder="LG mobile 1 Address" />
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-12">
+                                        <div class="form-group mb-4">
+                                            <label class="form-label">LG mobile 2</label>
+                                            <input type="text" name="LGMobile2" asp-for="LGMobile2" class="form-control" placeholder="LG mobile 2 Address" />
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-12">
+                                        <div class="form-group mb-4">
+                                            <label class="form-label">LG Email</label>
+                                            <input type="text" name="LGEmail" asp-for="LGEmail" class="form-control" placeholder="LG email" />
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-12">
+                                        <div class="form-group mb-4">
+                                            <label class="form-label">LG address</label>
+                                            <input type="text" name="LGAddress" asp-for="LGAddress" class="form-control" placeholder="LG address" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-4 col-md-4 col-12">
+                                        <div class="form-group mb-4">
+                                            <label class="form-label">LG City</label>
+                                            <select name="LGCityId" asp-for="LGCityId" class="form-control" asp-items="@ViewBag.CityList">
+                                                <option value="">--Select Stay City--</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-12">
+                                        <div class="form-group mb-4">
+                                            <label class="form-label">LG State</label>
+                                            <select name="LGStateId" asp-for="LGStateId" class="form-control" asp-items="@ViewBag.StateList">
+                                                <option value="">--Select Stay State--</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-12">
+                                        <div class="form-group mb-4">
+                                            <label class="form-label">LG  Country</label>
+                                            <select name="LGCountryId" asp-for="LGCountryId" class="form-control" asp-items="@ViewBag.CountryList">
+                                                <option value="">--Select Stay Country--</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                            </div>
+                            <!-- form end here -->
+                        </div>
+                        <div class="modal-footer">
+                            <button class="btn btn-secondary">Cancel</button>
+                            <button type="submit" class="btn btn-primary">Save</button>
+                        </div>
+                    </form>
                 </div>
             </div>
             <div id="menu3" class="tab-pane fade">
@@ -606,6 +804,60 @@
                 "StayStateId": { required: "Please select stay state " },
                 "StayCountryId": { required: "Please select stay country " },
                 "StayPinCode": { required: "Please stay pincode " }
+
+            },
+            submitHandler: function (form) {
+                let post_url = form.action;
+                let form_data = $(form).serialize();
+
+                $.post(post_url, form_data, function (response) {
+
+                });
+            }
+
+        });
+        var currentAddressvalidation = $("#frmParentDetail").validate({
+            rules: {
+                "FatherName": { required: true },
+                "FatherMobile1": { required: true, minlength: 10, maxlength: 10, number: true },
+                "FatherMobile2": { required: true, minlength: 10, maxlength: 10, number: true },
+                "FatherEmail": { required: true, email: true},
+                "FatherAddress": { required: true },
+
+                "MotherName": { required: true },
+                "MotherMobile1": { required: true ,minlength: 10, maxlength: 10, number: true , minlength: 10, maxlength: 10, number: true},
+                "MotherMobile2": { required: true ,minlength: 10, maxlength: 10, number: true , minlength: 10, maxlength: 10, number: true},
+                "MotherEmail": { required: true, email: true},
+                "MotherAddress": { required: true },
+
+                "LGName": { required: true },
+                "LGMobile1": { required: true ,minlength: 10, maxlength: 10, number: true , minlength: 10, maxlength: 10, number: true},
+                "LGMobile2": { required: true ,minlength: 10, maxlength: 10, number: true , minlength: 10, maxlength: 10, number: true},
+                "LGEmail": { required: true },
+                "LGAddress": { required: true },
+                "LGRelationId": { required: true }
+              
+            },
+
+            messages: {
+                "FatherName": { required: "This field is required"    },
+                "FatherMobile1": { required: "This field is required", minlength: "Please enter at least 10 numbers.", maxlength: "Please enter at least 10 numbers." },
+                "FatherMobile2": { required: "This field is required", minlength: "Please enter at least 10 numbers.", maxlength: "Please enter at least 10 numbers." },
+                "FatherEmail": { required: "This field is required"},
+                "FatherAddress": { required: "This field is required" },
+
+                "MotherName": { required: "This field is required" },
+                "MotherMobile1": { required: "This field is required" , minlength: "Please enter at least 10 numbers.", maxlength: "Please enter at least 10 numbers."},
+                "MotherMobile2": { required: "This field is required", minlength: "Please enter at least 10 numbers.", maxlength: "Please enter at least 10 numbers."},
+                "MotherEmail": { required: "This field is required" },
+                "MotherAddress": { required: "This field is required" },
+
+                "LGName": { required: "This field is required" },
+                "LGMobile1": { required: "This field is required" , minlength: "Please enter at least 10 numbers.", maxlength: "Please enter at least 10 numbers." },
+                "LGMobile2": { required: "This field is required", minlength: "Please enter at least 10 numbers.", maxlength: "Please enter at least 10 numbers."},
+                "LGEmail": { required: "This field is required" },
+                "LGAddress": { required: "This field is required" },
+                "LGRelationId": { required: "This field is required" }
 
             },
             submitHandler: function (form) {

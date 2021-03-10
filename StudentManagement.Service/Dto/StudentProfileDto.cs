@@ -47,5 +47,45 @@ namespace StudentManagement.Service.Dto
         public long StayStateId { get; set; }
         public long StayCountryId { get; set; }
         public string StayPinCode { get; set; }
+
+
+        public string FatherName { get; set; }
+        public string FatherMobile1 { get; set; }
+        public string FatherMobile2 { get; set; }
+        public string FatherEmail { get; set; }
+        public string FatherAddress { get; set; }
+
+        public long FatherCityId { get; set; }
+        public long FatherStateId { get; set; }
+        public long FatherCountryId { get; set; }
+
+        public string FatherPinCode { get; set; }
+
+
+        public string MotherName { get; set; }
+        public string MotherMobile1 { get; set; }
+        public string MotherMobile2 { get; set; }
+        public string MotherEmail { get; set; }
+        public string MotherAddress { get; set; }
+
+        public long MotherCityId { get; set; }
+        public long MotherStateId { get; set; }
+        public long MotherCountryId { get; set; }
+
+        public string MotherPinCode { get; set; }
+
+        public string LGName { get; set; }
+        public string LGMobile1 { get; set; }
+        public string LGMobile2 { get; set; }
+        public string LGEmail { get; set; }
+        public string LGAddress { get; set; }
+
+        public long LGCityId { get; set; }
+        public long LGStateId { get; set; }
+        public long LGCountryId { get; set; }
+
+        public string LGPinCode { get; set; }
+
+        public long LGRelationId { get; set; }
     }
 }

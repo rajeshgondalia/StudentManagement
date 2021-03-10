@@ -40,6 +40,7 @@ namespace StudentManagement.Web.Areas.Student.Controllers
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly IStayTypeService _staytypeService;
         private readonly IRelationService _relationService;
+        private readonly IParentdetailService _parentService;
          
 
         #endregion
@@ -62,6 +63,7 @@ namespace StudentManagement.Web.Areas.Student.Controllers
         IAdmissionTypeMasterService admissionTypeMasterService,
         IStayTypeService staytypeService,
         IRelationService relationService,
+        IParentdetailService parentService,
         UserManager<ApplicationUser> userManager,
             IGenderService genderService
             )
@@ -85,6 +87,7 @@ namespace StudentManagement.Web.Areas.Student.Controllers
             _admissionTypeService = admissionTypeMasterService;
             _staytypeService = staytypeService;
             _relationService = relationService;
+            _parentService = parentService;
         }
 
         #endregion
@@ -138,6 +141,40 @@ namespace StudentManagement.Web.Areas.Student.Controllers
             model.UniversityEnrollmentNumber = cgDetail.Universityenrollmentnumber;
             model.PassportNumber = cgDetail.PassportNumber;
             model.AdharNumber = cgDetail.AdharNumber;
+
+
+            //ParentDetail
+            var parent = _parentService.GetSingle(x => x.UserId == User.GetUserId());
+            model.FatherName = parent.FatherName;
+            model.FatherMobile1 = parent.FatherMobile1;
+            model.FatherMobile2 = parent.FatherMobile2;
+            model.FatherEmail = parent.FatherEmail;
+            model.FatherAddress = parent.FatherAddress;
+            model.FatherCityId = parent.FatherCityId??0;
+            model.FatherStateId = parent.FatherStateId ?? 0;
+            model.FatherCountryId = parent.FatherCountryId ?? 0;
+            model.FatherPinCode = parent.FatherPincode;
+
+            model.MotherName = parent.MotherName;
+            model.MotherMobile1 = parent.MotherMobile1;
+            model.MotherMobile2 = parent.MotherMobile2;
+            model.MotherEmail = parent.MotherEmail;
+            model.MotherAddress = parent.MotherAddress;
+            model.MotherCityId = parent.MotherCityId??0;
+            model.MotherStateId = parent.MotherStateId??0;
+            model.MotherCountryId = parent.MotherCountryId??0;
+            model.MotherPinCode = parent.MotherPincode;
+
+            model.LGName = parent.LGName;
+            model.LGMobile1 = parent.LGMobile1;
+            model.LGMobile2 = parent.LGMobile2;
+            model.LGEmail = parent.LGEmail;
+            model.LGAddress = parent.LGAddress;
+            model.LGCityId = parent.LGCityId??0;
+            model.LGStateId = parent.LGStateId??0;
+            model.LGCountryId = parent.LGCountryId??0;
+            model.LGPinCode = parent.LGPincode;
+            model.LGRelationId = parent.RelationId??0 ;
 
 
             return View(model);
@@ -203,8 +240,7 @@ namespace StudentManagement.Web.Areas.Student.Controllers
         {
             if (model != null)
             {
-                try
-                {
+               
                     var pd = _personalDetailService.GetSingle(x => x.UserId == User.GetUserId());
                     if (pd != null)
                     {
@@ -219,17 +255,63 @@ namespace StudentManagement.Web.Areas.Student.Controllers
 
                         var updateResult = await _personalDetailService.UpdateAsync(pd, Accessor, User.GetUserId());
 
-
-
                     }
-                }
-                catch (Exception e)
-                {
-
-                    return RedirectToAction("Index");
-                }
+               
                 return RedirectToAction("Index");
             
+            }
+            return RedirectToAction("Index");
+        }
+
+
+
+        [HttpPost]
+        public async Task<IActionResult> UpdateParentDetail(StudentProfileDto model)
+        {
+            if (model != null)
+            {
+
+                var pd = _parentService.GetSingle(x => x.UserId == User.GetUserId());
+                if (pd != null)
+                {
+                    pd.FatherName = model.FatherName;
+                    pd.FatherMobile1 = model.FatherMobile1;
+                    pd.FatherMobile2 = model.FatherMobile2;
+                    pd.FatherEmail = model.FatherEmail;
+                    pd.FatherAddress = model.FatherAddress;
+                    pd.FatherCityId = model.FatherCityId;
+                    pd.FatherStateId = model.FatherStateId;
+                    pd.FatherCountryId = model.FatherCountryId;
+                    pd.FatherPincode = model.FatherPinCode;
+
+                    pd.MotherName = model.MotherName;
+                    pd.MotherMobile1 = model.MotherMobile1;
+                    pd.MotherMobile2 = model.MotherMobile2;
+                    pd.MotherEmail = model.MotherEmail;
+                    pd.MotherAddress = model.MotherAddress;
+                    pd.MotherCityId = model.MotherCityId;
+                    pd.MotherStateId = model.MotherStateId;
+                    pd.MotherCountryId = model.MotherCountryId;
+                    pd.MotherPincode = model.MotherPinCode;
+
+                    pd.LGName = model.LGName;
+                    pd.LGMobile1 = model.LGMobile1;
+                    pd.LGMobile2 = model.LGMobile2;
+                    pd.LGEmail = model.LGEmail;
+                    pd.LGAddress = model.LGAddress;
+                    pd.LGCityId = model.LGCityId;
+                    pd.LGStateId = model.LGStateId;
+                    pd.LGCountryId = model.LGCountryId;
+                    pd.LGPincode = model.LGPinCode;
+                    pd.RelationId = model.LGRelationId;
+
+
+                    var updateResult = await _parentService.UpdateAsync(pd, Accessor, User.GetUserId());
+
+                }
+
+                return RedirectToAction("Index");
+
             }
             return RedirectToAction("Index");
         }

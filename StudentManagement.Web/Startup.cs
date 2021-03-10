@@ -127,6 +127,7 @@ namespace StudentManagement.Web
             services.AddScoped<ICollegeDetailService, CollegeDetailRepository>();
             services.AddScoped<IStayTypeService, StayTypeRepository>();
             services.AddScoped<IRelationService, RelationRepository>();
+            services.AddScoped<IParentdetailService, ParentDetailRepository>();
 
 
 
