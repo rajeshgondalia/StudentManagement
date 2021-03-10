@@ -125,6 +125,8 @@ namespace StudentManagement.Web
             services.AddScoped<IBatchMasterService, BatchRepostitory>();
             services.AddScoped<IAdmissionTypeMasterService, AdmissionTypeRepository>();
             services.AddScoped<ICollegeDetailService, CollegeDetailRepository>();
+            services.AddScoped<IStayTypeService, StayTypeRepository>();
+            services.AddScoped<IRelationService, RelationRepository>();
 
 
 

@@ -303,10 +303,79 @@
                             Current Address Details
                         </h6>
                     </div>
-                    <div class="card-body modal-body">
-                        <!-- form start here -->
-                        <!-- form end here -->
-                    </div>
+                    <form id="frmCurrentAddress" asp-controller="StudentProfile" asp-area="Student" asp-action="UpdateCurrentAddress" method="post">
+                        <div class="card-body modal-body">
+                            <!-- form start here -->
+                            <div class="default-form">
+                                <div class="row">
+                                    <div class="col-lg-4 col-md-4 col-12">
+                                        <div class="form-group mb-4">
+                                            <label class="form-label">Stay Type</label>
+                                            <select name="StayTypeId" asp-for="StayTypeId" class="form-control" asp-items="@ViewBag.StayTypeList">
+                                                <option value="">--Select Campus--</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-12">
+                                        <div class="form-group mb-4">
+                                            <label class="form-label">Stay Address</label>
+                                            <input type="text" name="StayAddress" asp-for="StayAddress" class="form-control" placeholder="Stay Address" />
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-12">
+                                        <div class="form-group mb-4">
+                                            <label class="form-label">Stay Relation</label>
+                                            <select name="StayRelationId" asp-for="StayRelationId" class="form-control" asp-items="@ViewBag.RelationList">
+                                                <option value="">--Select Stay Relation--</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-4 col-md-4 col-12">
+                                        <div class="form-group mb-4">
+                                            <label class="form-label">Stay City</label>
+                                            <select name="StayCityId" asp-for="StayCityId" class="form-control" asp-items="@ViewBag.CityList">
+                                                <option value="">--Select Stay City--</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-12">
+                                        <div class="form-group mb-4">
+                                            <label class="form-label">Stay State</label>
+                                            <select name="StayStateId" asp-for="StayStateId" class="form-control" asp-items="@ViewBag.StateList">
+                                                <option value="">--Select Stay State--</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-12">
+                                        <div class="form-group mb-4">
+                                            <label class="form-label">Stay Country</label>
+                                            <select name="StayCountryId" asp-for="StayCountryId" class="form-control" asp-items="@ViewBag.CountryList">
+                                                <option value="">--Select Stay Country--</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-4 col-md-4 col-12">
+                                        <div class="form-group mb-4">
+                                            <label class="form-label">PinCode</label>
+                                            <input type="text" name="StayPinCode" asp-for="StayPinCode" class="form-control" placeholder="pincode" />
+                                        </div>
+                                    </div>
+                                 
+                                </div>
+
+                
+                            </div>
+                            <!-- form end here -->
+                        </div>
+                        <div class="modal-footer">
+                            <button class="btn btn-secondary">Cancel</button>
+                            <button type="submit" class="btn btn-primary">Save</button>
+                        </div>
+                    </form>
                 </div>
             </div>
             <div id="menu4" class="tab-pane fade">
@@ -506,6 +575,37 @@
                 "UniversityEnrollmentNumber": { required: "Please enter  enrollment number" },
                 "PassportNumber": { required: "Please enter passport number" },
                 "AdharNumber": { required: "Please enter adhar number" }
+
+            },
+            submitHandler: function (form) {
+                let post_url = form.action;
+                let form_data = $(form).serialize();
+
+                $.post(post_url, form_data, function (response) {
+
+                });
+            }
+
+        });
+        var currentAddressvalidation = $("#frmCurrentAddress").validate({
+            rules: {
+                "StayTypeId": { required: true },
+                "StayAddress": { required: true },
+                "StayRelationId": { required: true },
+                "StayCityId": { required: true },
+                "StayStateId": { required: true },
+                "StayCountryId": { required: true },
+                "StayPinCode": { required: true }
+            },
+
+            messages: {
+                "StayTypeId": { required: "Please select stay type " },
+                "StayAddress": { required: "Please enter stay address " },
+                "StayRelationId": { required: "Please select stay relation " },
+                "StayCityId": { required: "Please select stay city" },
+                "StayStateId": { required: "Please select stay state " },
+                "StayCountryId": { required: "Please select stay country " },
+                "StayPinCode": { required: "Please stay pincode " }
 
             },
             submitHandler: function (form) {

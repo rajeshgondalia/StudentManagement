@@ -38,6 +38,9 @@ namespace StudentManagement.Web.Areas.Student.Controllers
         private readonly ICollegeDetailService _collegeDetailService;
         private readonly IAdmissionTypeMasterService _admissionTypeService;
         private readonly UserManager<ApplicationUser> _userManager;
+        private readonly IStayTypeService _staytypeService;
+        private readonly IRelationService _relationService;
+         
 
         #endregion
 
@@ -57,6 +60,8 @@ namespace StudentManagement.Web.Areas.Student.Controllers
         IBatchMasterService batchService,
         ICollegeDetailService collegeDetailService,
         IAdmissionTypeMasterService admissionTypeMasterService,
+        IStayTypeService staytypeService,
+        IRelationService relationService,
         UserManager<ApplicationUser> userManager,
             IGenderService genderService
             )
@@ -78,6 +83,8 @@ namespace StudentManagement.Web.Areas.Student.Controllers
             _userManager = userManager;
             _collegeDetailService = collegeDetailService;
             _admissionTypeService = admissionTypeMasterService;
+            _staytypeService = staytypeService;
+            _relationService = relationService;
         }
 
         #endregion
@@ -106,6 +113,16 @@ namespace StudentManagement.Web.Areas.Student.Controllers
             model.CountryId = pd.CountryId;
             model.StateId = pd.StateId;
             model.Dob = pd.Dob;
+
+            //current address details
+            model.StayTypeId = pd.StayTypeId;
+            model.StayAddress = pd.StayAddress;
+            model.StayRelationId = pd.StayRelationId ?? 0;
+            model.StayCityId = pd.StayCityId ?? 0;
+            model.StayCountryId = pd.StayCountryId ?? 0;
+            model.StayStateId = pd.StayStateId??0;
+            model.StayPinCode = pd.StayPinCode;
+
 
             var cgDetail = _collegeDetailService.GetSingle(x => x.UserId == User.GetUserId());
 
@@ -177,6 +194,42 @@ namespace StudentManagement.Web.Areas.Student.Controllers
 
 
                 }
+            }
+            return RedirectToAction("Index");
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> UpdateCurrentAddress(StudentProfileDto model)
+        {
+            if (model != null)
+            {
+                try
+                {
+                    var pd = _personalDetailService.GetSingle(x => x.UserId == User.GetUserId());
+                    if (pd != null)
+                    {
+                        pd.StayTypeId = model.StayTypeId;
+                        pd.StayAddress = model.StayAddress;
+                        pd.StayRelationId = model.StayRelationId;
+                        pd.StayCityId = model.StayCityId;
+                        pd.StayCountryId = model.StayCountryId;
+                        pd.StayStateId = model.StayStateId;
+                        pd.StayPinCode = model.StayPinCode;
+
+
+                        var updateResult = await _personalDetailService.UpdateAsync(pd, Accessor, User.GetUserId());
+
+
+
+                    }
+                }
+                catch (Exception e)
+                {
+
+                    return RedirectToAction("Index");
+                }
+                return RedirectToAction("Index");
+            
             }
             return RedirectToAction("Index");
         }
@@ -273,7 +326,17 @@ namespace StudentManagement.Web.Areas.Student.Controllers
                 Value = x.AdmissiontypeId.ToString()
             }).OrderBy(x => x.Text).ToList();
 
+            ViewBag.StayTypeList = _staytypeService.GetAll(x => x.IsActive == true).Select(x => new SelectListItem
+            {
+                Text = x.Staytype,
+                Value = x.StaytypeId.ToString()
+            }).OrderBy(x => x.Text).ToList();
 
+            ViewBag.RelationList = _relationService.GetAll(x => x.IsActive == true).Select(x => new SelectListItem
+            {
+                Text = x.Name,
+                Value = x.RelationId.ToString()
+            }).OrderBy(x => x.Text).ToList();
 
         }
         #endregion

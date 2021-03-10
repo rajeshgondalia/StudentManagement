@@ -39,5 +39,13 @@ namespace StudentManagement.Service.Dto
         public string AdharNumber { get; set; }
 
 
+        public long StayTypeId { get; set; }
+        public string    StayAddress { get; set; }
+        public long   StayRelationId { get; set; }
+
+        public long StayCityId { get; set; }
+        public long StayStateId { get; set; }
+        public long StayCountryId { get; set; }
+        public string StayPinCode { get; set; }
     }
 }
