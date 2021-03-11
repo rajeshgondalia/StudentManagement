@@ -583,10 +583,74 @@
                             Educational Details
                         </h6>
                     </div>
-                    <div class="card-body modal-body">
-                        <!-- form start here -->
-                        <!-- form end here -->
-                    </div>
+                    <form id="frmEducationalDetails" asp-controller="StudentProfile" asp-area="Student" asp-action="UpdateEntranceExamDetail" method="post">
+                        <div class="card-body modal-body">
+                            <!-- form start here -->
+                            <div class="default-form">
+                                <div class="row">
+                                    <div class="col-lg-4 col-md-4 col-12">
+                                        <div class="form-group mb-4">
+                                            <label class="form-label">Have you given any entrance exam?</label>
+                                            <select name="IsEntrance" asp-for="IsEntrance" class="form-control">
+                                                <option value="1">Yes</option>
+                                                <option value="0">No</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-12">
+                                        <div class="form-group mb-4">
+                                            <label class="form-label">Exam Name</label>
+                                            <select name="EntranceExamId" asp-for="EntranceExamId" class="form-control" asp-items="@ViewBag.RelationList">
+                                                <option value="">--Select Exam Name--</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-12">
+                                        <div class="form-group mb-4">
+                                            <label class="form-label">Exam Year</label>
+                                            <input type="text" name="EntranceExamYear" asp-for="EntranceExamYear" class="form-control" placeholder="EntranceExamYear" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-4 col-md-4 col-12">
+                                        <div class="form-group mb-4">
+                                            <label class="form-label">Exam Rollno</label>
+                                            <input type="text" name="EntranceExamRollno" asp-for="EntranceExamRollno" class="form-control" placeholder="EntranceExamRollno" />
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-12">
+                                        <div class="form-group mb-4">
+                                            <label class="form-label">Marks Obtained</label>
+                                            <input type="number" name="EntranceExamMarkObt" asp-for="EntranceExamMarkObt" class="form-control" placeholder="Marks Obtained" />
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-12">
+                                        <div class="form-group mb-4">
+                                            <label class="form-label">Exam Air</label>
+                                            <input type="number" name="EntranceExamAir" asp-for="EntranceExamAir" class="form-control" placeholder="EntranceExamAir" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-4 col-md-4 col-12">
+                                        <div class="form-group mb-4">
+                                            <label class="form-label">Exam category rank</label>
+                                            <input type="text" name="EntranceExamCatefgoryRank" asp-for="EntranceExamCatefgoryRank" class="form-control" placeholder="ExamCatefgory Rank" />
+                                        </div>
+                                    </div>
+
+                                </div>
+
+
+                            </div>
+                            <!-- form end here -->
+                        </div>
+                        <div class="modal-footer">
+                            <button class="btn btn-secondary">Cancel</button>
+                            <button type="submit" class="btn btn-primary">Save</button>
+                        </div>
+                    </form>
                 </div>
             </div>
             <div id="menu5" class="tab-pane fade">

@@ -111,5 +111,35 @@ namespace StudentManagement.Service.Dto
         public IFormFile Adharcard { get; set; }
 
 
+       public long DegreeId {get;set;}
+      public long DiplomaId {get;set;}
+      public long TenMarkingScheameId {get;set;}
+      public string TenBoardName {get;set;}
+      public string TenYearOfPassing {get;set;}
+      public string TenCGPA {get;set;}
+      public string TenSchoolName {get;set;}
+      public long TwelveMakingScheameId {get;set;}
+      public string TwelveBoardName {get;set;}
+      public string TwelveYearOfPassing {get;set;}
+      public string TwelveCGPA {get;set;}
+      public string TwelvePCM {get;set;}
+      public string TwelveSchoolName {get;set;}
+      public int DiplomaYear {get;set;}
+      public string DiplomaMarkingScheameId {get;set;}
+      public string DiplomaCGPA {get;set;}
+      public string DiplomaBoardName {get;set;}
+      public string DiplomaSchoolName {get;set;}
+      public int DegreeYear {get;set;}
+      public long DegreeMarkingScheameId {get;set;}
+      public string DegreeCGPA {get;set;}
+      public string DegreeSchoolName {get;set;}
+      public string DegreeBoardName {get;set;}
+      public long PGDegreeId {get;set;}
+      public int PGDegreeYear {get;set;}
+      public long PGDegreeMarkingScheameId {get;set;}
+      public string PGDegreeCGPA {get;set;}
+      public string PGDegreeSchoolName {get;set;}
+      public string PGDegreeBoardName {get;set;}
+      
     }
 }
