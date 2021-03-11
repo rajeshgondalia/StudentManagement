@@ -115,29 +115,29 @@ namespace StudentManagement.Service.Dto
       public long DiplomaId {get;set;}
       public long TenMarkingScheameId {get;set;}
       public string TenBoardName {get;set;}
-      public string TenYearOfPassing {get;set;}
-      public string TenCGPA {get;set;}
+      public int TenYearOfPassing {get;set;}
+      public decimal TenCGPA {get;set;}
       public string TenSchoolName {get;set;}
       public long TwelveMakingScheameId {get;set;}
       public string TwelveBoardName {get;set;}
-      public string TwelveYearOfPassing {get;set;}
-      public string TwelveCGPA {get;set;}
-      public string TwelvePCM {get;set;}
+      public int TwelveYearOfPassing {get;set;}
+      public decimal TwelveCGPA {get;set;}
+      public decimal TwelvePCM {get;set;}
       public string TwelveSchoolName {get;set;}
       public int DiplomaYear {get;set;}
-      public string DiplomaMarkingScheameId {get;set;}
-      public string DiplomaCGPA {get;set;}
+      public long DiplomaMarkingScheameId {get;set;}
+      public decimal DiplomaCGPA {get;set;}
       public string DiplomaBoardName {get;set;}
       public string DiplomaSchoolName {get;set;}
       public int DegreeYear {get;set;}
       public long DegreeMarkingScheameId {get;set;}
-      public string DegreeCGPA {get;set;}
+      public decimal DegreeCGPA {get;set;}
       public string DegreeSchoolName {get;set;}
       public string DegreeBoardName {get;set;}
       public long PGDegreeId {get;set;}
       public int PGDegreeYear {get;set;}
       public long PGDegreeMarkingScheameId {get;set;}
-      public string PGDegreeCGPA {get;set;}
+      public decimal PGDegreeCGPA {get;set;}
       public string PGDegreeSchoolName {get;set;}
       public string PGDegreeBoardName {get;set;}
       

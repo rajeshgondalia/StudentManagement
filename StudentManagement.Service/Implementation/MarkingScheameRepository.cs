@@ -8,10 +8,10 @@ using System.Text;
 
 namespace StudentManagement.Service.Implementation
 {
- public   class MarkingSchemeRepository : GenericRepository<MarkingScheame>, IMarkingSchemeService
+  public   class MarkingScheameRepository : GenericRepository<MarkingScheame>, IMarkingSchemeService
     {
         private readonly StudentDbContext _db;
-        public MarkingSchemeRepository(StudentDbContext db) : base(db)
+        public MarkingScheameRepository(StudentDbContext db) : base(db)
         {
             _db = db;
         }

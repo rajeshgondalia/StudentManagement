@@ -403,3 +403,10 @@ button:focus,input[type=checkbox]:focus, input[type=radio]:focus{
 .default-table td  .custom-control-label::after,.default-table td  .custom-control-label::before{
     top:0.15rem;    
 }
+
+.student-major-details {
+    background: #f5f5f5;
+    border-bottom: 1px solid #ddd;
+    padding: 15px;
+    margin-bottom: 20px;
+}

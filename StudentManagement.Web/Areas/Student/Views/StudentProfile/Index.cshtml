@@ -7,6 +7,80 @@
 
 <!-- right main container start here -->
 <div class="app-container">
+    <div class="student-major-details default-form col-12">
+        <div class="row mb-4">
+
+            <div class="col-lg-4 col-md-4 col-12">
+                <div class="form-group mb-0">
+                    <label class="form-label">Name</label>
+                    <input type="text" disabled asp-for="Name" class="form-control" placeholder="student name" value="KPT Narola">
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-4 col-12">
+                <div class="form-group mb-0">
+                    <label class="form-label">Email</label>
+                    <input type="email" disabled asp-for="OfficialEmail" class="form-control" placeholder="student name" value="keyupatel007@gmail.com">
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-4 col-12">
+                <div class="form-group mb-0">
+                    <label class="form-label">Username</label>
+                    <input type="text" asp-for="UserName" disabled class="form-control" placeholder="user name" value="keyur patel">
+                </div>
+            </div>
+
+        </div>
+        <div class="row mb-4">
+
+            <div class="col-lg-4 col-md-4 col-12">
+                <div class="form-group mb-0">
+                    <label class="form-label">College Name</label>
+                    <select name="CollegeList" asp-for="CollegeId" disabled class="form-control" asp-items="@ViewBag.CollegeList">
+                        <option value="">--Select College--</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-4 col-12">
+                <div class="form-group mb-0">
+                    <label class="form-label">Course Name</label>
+                    <select name="CourseId" disabled asp-for="CourseId" class="form-control" asp-items="@ViewBag.CourseList">
+                        <option value="">--Select Course--</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-4 col-12">
+                <div class="form-group mb-0">
+                    <label class="form-label">Branch</label>
+                    <select name="BranchId" disabled asp-for="BranchId" class="form-control" asp-items="@ViewBag.BranchList">
+                        <option value="">--Select Branch--</option>
+                    </select>
+                </div>
+            </div>
+
+        </div>
+        <div class="row mb-3">
+
+            <div class="col-lg-4 col-md-4 col-12">
+                <div class="form-group mb-0">
+                    <label class="form-label">Father Name</label>
+                    <input type="text" name="FatherName" asp-for="FatherName" class="form-control" placeholder="FatherName" disabled />
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-4 col-12">
+                <div class="form-group mb-0">
+                    <label class="form-label">Father Mobile 1</label>
+                    <input type="text" name="FatherMobile1" asp-for="FatherMobile1" class="form-control" placeholder="father mobile 1 " disabled />
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-4 col-12">
+                <div class="form-group mb-0">
+                    <label class="form-label">Father Email</label>
+                    <input type="text" name="FatherEmail" asp-for="FatherEmail" class="form-control" placeholder="Father email" disabled />
+                </div>
+            </div>
+
+        </div>
+    </div>
     <div class="inner-tab-panel">
         <!-- Nav tabs -->
         <ul class="nav nav-tabs topnav" role="tablist">
@@ -187,7 +261,7 @@
                                     <div class="col-lg-4 col-md-4 col-12">
                                         <div class="form-group mb-4">
                                             <label class="form-label">College</label>
-                                            <select name="CollegeList" asp-for="CollegeId" class="form-control" asp-items="@ViewBag.CollegeList">
+                                            <select name="CollegeId" asp-for="CollegeId" class="form-control" asp-items="@ViewBag.CollegeList">
                                                 <option value="">--Select College--</option>
                                             </select>
                                         </div>
@@ -583,60 +657,271 @@
                             Educational Details
                         </h6>
                     </div>
-                    <form id="frmEducationalDetails" asp-controller="StudentProfile" asp-area="Student" asp-action="UpdateEntranceExamDetail" method="post">
+                    <form id="frmEducationalDetails" asp-controller="StudentProfile" asp-area="Student" asp-action="UpdateQualificationDetail" method="post">
                         <div class="card-body modal-body">
                             <!-- form start here -->
                             <div class="default-form">
                                 <div class="row">
                                     <div class="col-lg-4 col-md-4 col-12">
+                                        <div class="form-group mb-4 ">
+                                            <input class="educationchk" type="checkbox" id="chk10th" />
+                                            <label class="form-label">10th</label>
+
+                                            <input class="educationchk" type="checkbox" id="chk12th" />
+                                            <label class="form-label">12th</label>
+
+                                            <input class="educationchk" type="checkbox" id="chkDiploma" />
+                                            <label class="form-label">Diploma</label>
+
+                                            <input class="educationchk" type="checkbox" id="chkDegree" />
+                                            <label class="form-label">Degree</label>
+
+                                            
+                                        
+                                            <input class="educationchk" type="checkbox" id="chkPostGrad" />
+                                            <label class="form-label">PostGraduation</label>
+                                        </div>
+                                        
+
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-12">
+
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-12">
+
+                                    </div>
+                                </div>
+                                <h3 class="tenStudn">10 Equivalent Details</h3>
+                                <div class="row tenStudn">
+                                    <div class="col-lg-4 col-md-4 col-12">
+
                                         <div class="form-group mb-4">
-                                            <label class="form-label">Have you given any entrance exam?</label>
-                                            <select name="IsEntrance" asp-for="IsEntrance" class="form-control">
-                                                <option value="1">Yes</option>
-                                                <option value="0">No</option>
+                                            <label class="form-label">Year of Passing</label>
+                                            <input type="text" name="TenYearOfPassing" asp-for="TenYearOfPassing" class="form-control" placeholder="EntranceExamRollno" />
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-12">
+                                        <div class="form-group mb-4">
+                                            <label class="form-label">Marking Scheme</label>
+                                            <select name="TenMarkingScheameId" asp-for="TenMarkingScheameId" class="form-control" asp-items="@ViewBag.MarkingSchemeList">
+                                                <option value="">--Marking Scheme--</option>
                                             </select>
                                         </div>
                                     </div>
                                     <div class="col-lg-4 col-md-4 col-12">
                                         <div class="form-group mb-4">
-                                            <label class="form-label">Exam Name</label>
-                                            <select name="EntranceExamId" asp-for="EntranceExamId" class="form-control" asp-items="@ViewBag.RelationList">
-                                                <option value="">--Select Exam Name--</option>
+                                            <label class="form-label">Overall CGPA</label>
+                                            <input type="number" name="TenCGPA" asp-for="TenCGPA" class="form-control" placeholder="CGPA" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row tenStudn">
+                                    <div class="col-lg-4 col-md-4 col-12">
+                                        <div class="form-group mb-4">
+                                            <label class="form-label">School Name</label>
+                                            <input type="text" name="TenSchoolName" asp-for="TenSchoolName" class="form-control" placeholder="Ten SchoolName" />
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-12">
+                                        <div class="form-group mb-4">
+                                            <label class="form-label">Ten BoardName</label>
+                                            <input type="text" name="TenBoardName" asp-for="TenBoardName" class="form-control" placeholder="Ten BoardName" />
+                                        </div>
+                                    </div>
+
+                                </div>
+
+
+                                <h3 class="dipStun">Diploma Equivalent Details</h3>
+                                <div class="row dipStun">
+                                    <div class="col-lg-4 col-md-4 col-12">
+
+                                        <div class="form-group mb-4">
+                                            <label class="form-label">Diploma Name</label>
+                                            <select name="DiplomaId" asp-for="DiplomaId" class="form-control" asp-items="@ViewBag.DiplomaList">
+                                                <option value="">--Diploma Name--</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-4 col-md-4 col-12">
+                                        <div class="form-group mb-4">
+                                            <label class="form-label">Passing Year</label>
+                                            <input type="number" name="DiplomaYear" asp-for="DiplomaYear" class="form-control" placeholder="DiplomaYear" />
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-12">
+                                        <div class="form-group mb-4">
+                                            <label class="form-label">Marking Scheme</label>
+                                            <select name="DiplomaMarkingScheameId" asp-for="DiplomaMarkingScheameId" class="form-control" asp-items="@ViewBag.MarkingSchemeList">
+                                                <option value="">--Marking Scheme--</option>
                                             </select>
                                         </div>
                                     </div>
                                     <div class="col-lg-4 col-md-4 col-12">
                                         <div class="form-group mb-4">
-                                            <label class="form-label">Exam Year</label>
-                                            <input type="text" name="EntranceExamYear" asp-for="EntranceExamYear" class="form-control" placeholder="EntranceExamYear" />
+                                            <label class="form-label">Overall CGPA</label>
+                                            <input type="number" name="DiplomaCGPA" asp-for="DiplomaCGPA" class="form-control" placeholder="CGPA" />
                                         </div>
                                     </div>
                                 </div>
-                                <div class="row">
+                                <div class="row dipStun">
                                     <div class="col-lg-4 col-md-4 col-12">
                                         <div class="form-group mb-4">
-                                            <label class="form-label">Exam Rollno</label>
-                                            <input type="text" name="EntranceExamRollno" asp-for="EntranceExamRollno" class="form-control" placeholder="EntranceExamRollno" />
+                                            <label class="form-label">Name</label>
+                                            <input type="text" name="DiplomaSchoolName" asp-for="DiplomaSchoolName" class="form-control" placeholder="Name" />
                                         </div>
                                     </div>
                                     <div class="col-lg-4 col-md-4 col-12">
                                         <div class="form-group mb-4">
-                                            <label class="form-label">Marks Obtained</label>
-                                            <input type="number" name="EntranceExamMarkObt" asp-for="EntranceExamMarkObt" class="form-control" placeholder="Marks Obtained" />
+                                            <label class="form-label">Board</label>
+                                            <input type="text" name="DiplomaBoardName" asp-for="DiplomaBoardName" class="form-control" placeholder="Board" />
+                                        </div>
+                                    </div>
+
+                                </div>
+
+
+                                <h3 class="ugStun">UG Equivalent Details</h3>
+                                <div class="row ugStun">
+                                    <div class="col-lg-4 col-md-4 col-12">
+
+                                        <div class="form-group mb-4">
+                                            <label class="form-label">Degree Name</label>
+                                            <select name="DegreeId" asp-for="DegreeId" class="form-control" asp-items="@ViewBag.DegreeList">
+                                                <option value="">--Degree Name--</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-4 col-md-4 col-12">
+                                        <div class="form-group mb-4">
+                                            <label class="form-label">Passing Year</label>
+                                            <input type="number" name="DegreeYear" asp-for="DegreeYear" class="form-control" placeholder="DegreeYear" />
                                         </div>
                                     </div>
                                     <div class="col-lg-4 col-md-4 col-12">
                                         <div class="form-group mb-4">
-                                            <label class="form-label">Exam Air</label>
-                                            <input type="number" name="EntranceExamAir" asp-for="EntranceExamAir" class="form-control" placeholder="EntranceExamAir" />
+                                            <label class="form-label">Marking Scheme</label>
+                                            <select name="DegreeMarkingScheameId" asp-for="DegreeMarkingScheameId" class="form-control" asp-items="@ViewBag.MarkingSchemeList">
+                                                <option value="">--Marking Scheme--</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-12">
+                                        <div class="form-group mb-4">
+                                            <label class="form-label">Overall CGPA</label>
+                                            <input type="number" name="DegreeCGPA" asp-for="DegreeCGPA" class="form-control" placeholder="CGPA" />
                                         </div>
                                     </div>
                                 </div>
-                                <div class="row">
+                                <div class="row ugStun">
                                     <div class="col-lg-4 col-md-4 col-12">
                                         <div class="form-group mb-4">
-                                            <label class="form-label">Exam category rank</label>
-                                            <input type="text" name="EntranceExamCatefgoryRank" asp-for="EntranceExamCatefgoryRank" class="form-control" placeholder="ExamCatefgory Rank" />
+                                            <label class="form-label">Name</label>
+                                            <input type="text" name="DegreeSchoolName" asp-for="DegreeSchoolName" class="form-control" placeholder="Name" />
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-12">
+                                        <div class="form-group mb-4">
+                                            <label class="form-label">Board</label>
+                                            <input type="text" name="DegreeBoardName" asp-for="DegreeBoardName" class="form-control" placeholder="Board" />
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                <h3 class="pgStun">PG Equivalent Details</h3>
+                                <div class="row pgStun">
+                                    <div class="col-lg-4 col-md-4 col-12">
+
+                                        <div class="form-group mb-4">
+                                            <label class="form-label">PG Degree Name</label>
+                                            <select name="PGDegreeId" asp-for="PGDegreeId" class="form-control" asp-items="@ViewBag.PGDegreeList">
+                                                <option value="">-- Slect PGDegree Name--</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-4 col-md-4 col-12">
+                                        <div class="form-group mb-4">
+                                            <label class="form-label">Passing Year</label>
+                                            <input type="number" name="PGDegreeYear" asp-for="PGDegreeYear" class="form-control" placeholder="DegreeYear" />
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-12">
+                                        <div class="form-group mb-4">
+                                            <label class="form-label">Marking Scheme</label>
+                                            <select name="PGDegreeMarkingScheameId" asp-for="PGDegreeMarkingScheameId" class="form-control" asp-items="@ViewBag.MarkingSchemeList">
+                                                <option value="">--Marking Scheme--</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-12">
+                                        <div class="form-group mb-4">
+                                            <label class="form-label">Overall CGPA</label>
+                                            <input type="number" name="PGDegreeCGPA" asp-for="PGDegreeCGPA" class="form-control" placeholder="CGPA" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row pgStun">
+                                    <div class="col-lg-4 col-md-4 col-12">
+                                        <div class="form-group mb-4">
+                                            <label class="form-label">Name</label>
+                                            <input type="text" name="PGDegreeSchoolName" asp-for="PGDegreeSchoolName" class="form-control" placeholder="Name" />
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-12">
+                                        <div class="form-group mb-4">
+                                            <label class="form-label">Board</label>
+                                            <input type="text" name="PGDegreeBoardName" asp-for="PGDegreeBoardName" class="form-control" placeholder="Board" />
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                <h3 class="TwelStun">12 Equivalent Details</h3>
+                                <div class="row TwelStun">
+
+
+                                    <div class="col-lg-4 col-md-4 col-12">
+                                        <div class="form-group mb-4">
+                                            <label class="form-label">Passing Year</label>
+                                            <input type="number" name="TwelveYearOfPassing" asp-for="TwelveYearOfPassing" class="form-control" placeholder="Twelve Year Of Passing" />
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-12">
+                                        <div class="form-group mb-4">
+                                            <label class="form-label">Marking Scheme</label>
+                                            <select name="TwelveMakingScheameId" asp-for="TwelveMakingScheameId" class="form-control" asp-items="@ViewBag.MarkingSchemeList">
+                                                <option value="">--Marking Scheme--</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-12">
+                                        <div class="form-group mb-4">
+                                            <label class="form-label">Overall CGPA</label>
+                                            <input type="number" name="TwelveCGPA" asp-for="TwelveCGPA" class="form-control" placeholder="CGPA" />
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-12">
+                                        <div class="form-group mb-4">
+                                            <label class="form-label">PCM CGPA</label>
+                                            <input type="number" name="TwelvePCM" asp-for="TwelvePCM" class="form-control" placeholder="CGPA" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row TwelStun">
+                                    <div class="col-lg-4 col-md-4 col-12">
+                                        <div class="form-group mb-4">
+                                            <label class="form-label">Name</label>
+                                            <input type="text" name="TwelveSchoolName" asp-for="TwelveSchoolName" class="form-control" placeholder="Name" />
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-12">
+                                        <div class="form-group mb-4">
+                                            <label class="form-label">Board</label>
+                                            <input type="text" name="TwelveBoardName" asp-for="TwelveBoardName" class="form-control" placeholder="Board" />
                                         </div>
                                     </div>
 
@@ -646,7 +931,7 @@
                             </div>
                             <!-- form end here -->
                         </div>
-                        <div class="modal-footer">
+                        <div class="modal-footer educationCancelSave">
                             <button class="btn btn-secondary">Cancel</button>
                             <button type="submit" class="btn btn-primary">Save</button>
                         </div>
@@ -745,7 +1030,7 @@
                                     <div class="form-group mb-4">
                                         <label class="form-label">10th Marksheet</label>
                                         <div class="upload-document position-relative">
-                                            <input type="file" name="TenMarksheetPath" asp-for="TenMarksheetPath" class="form-control" />
+                                            <input type="file" name="TenMarksheetPath" asp-for="TenMarksheetPath" class="form-control  DocumentFiles" />
                                             <div class="upload-img-section">
                                                 <i class="fal fa-upload"></i>
                                                 <p class="text-center upload-document-title">Upload Document</p>
@@ -757,7 +1042,7 @@
                                     <div class="form-group mb-4">
                                         <label class="form-label">12th Marksheet</label>
                                         <div class="upload-document position-relative">
-                                            <input type="file" name="TwelveMarksheetPath" asp-for="TwelveMarksheetPath" class="form-control" />
+                                            <input type="file" name="TwelveMarksheetPath" asp-for="TwelveMarksheetPath" class="form-control  DocumentFiles" />
                                             <div class="upload-img-section">
                                                 <i class="fal fa-upload"></i>
                                                 <p class="text-center upload-document-title">Upload Document</p>
@@ -769,7 +1054,7 @@
                                     <div class="form-group mb-4">
                                         <label class="form-label">Diploma Marksheet</label>
                                         <div class="upload-document position-relative">
-                                            <input type="file" name="DiplomaMarksheetPath" asp-for="DiplomaMarksheetPath" class="form-control" />
+                                            <input type="file" name="DiplomaMarksheetPath" asp-for="DiplomaMarksheetPath" class="form-control  DocumentFiles" />
                                             <div class="upload-img-section">
                                                 <i class="fal fa-upload"></i>
                                                 <p class="text-center upload-document-title">Upload Document</p>
@@ -784,7 +1069,7 @@
                                     <div class="form-group mb-4">
                                         <label class="form-label">Degree Marksheet</label>
                                         <div class="upload-document position-relative">
-                                            <input type="file" name="DegreeMarksheetPath" asp-for="DegreeMarksheetPath" class="form-control" />
+                                            <input type="file" name="DegreeMarksheetPath" asp-for="DegreeMarksheetPath" class="form-control  DocumentFiles" />
                                             <div class="upload-img-section">
                                                 <i class="fal fa-upload"></i>
                                                 <p class="text-center upload-document-title">Upload Document</p>
@@ -796,7 +1081,7 @@
                                     <div class="form-group mb-4">
                                         <label class="form-label">Post Graduation Marksheet</label>
                                         <div class="upload-document position-relative">
-                                            <input type="file" name="PGMarksheetPath" asp-for="PGMarksheetPath" class="form-control" />
+                                            <input type="file" name="PGMarksheetPath" asp-for="PGMarksheetPath" class="form-control  DocumentFiles" />
                                             <div class="upload-img-section">
                                                 <i class="fal fa-upload"></i>
                                                 <p class="text-center upload-document-title">Upload Document</p>
@@ -808,7 +1093,7 @@
                                     <div class="form-group mb-4">
                                         <label class="form-label">Colored Photograph</label>
                                         <div class="upload-document position-relative">
-                                            <input type="file" name="ColoredPhotograph" asp-for="ColoredPhotograph" class="form-control" />
+                                            <input type="file" name="ColoredPhotograph" asp-for="ColoredPhotograph" class="form-control  DocumentFiles" />
                                             <div class="upload-img-section">
                                                 <i class="fal fa-upload"></i>
                                                 <p class="text-center upload-document-title">Upload Document</p>
@@ -820,7 +1105,7 @@
                                     <div class="form-group mb-4">
                                         <label class="form-label">Caste Certificate</label>
                                         <div class="upload-document position-relative">
-                                            <input type="file" name="CasteCertificate" asp-for="CasteCertificate" class="form-control" />
+                                            <input type="file" name="CasteCertificate" asp-for="CasteCertificate" class="form-control  DocumentFiles" />
                                             <div class="upload-img-section">
                                                 <i class="fal fa-upload"></i>
                                                 <p class="text-center upload-document-title">Upload Document</p>
@@ -832,7 +1117,7 @@
                                     <div class="form-group mb-4">
                                         <label class="form-label">Domicile Certificate </label>
                                         <div class="upload-document position-relative">
-                                            <input type="file" name="DomicileCertificate" asp-for="DomicileCertificate" class="form-control" />
+                                            <input type="file" name="DomicileCertificate" asp-for="DomicileCertificate" class="form-control  DocumentFiles" />
                                             <div class="upload-img-section">
                                                 <i class="fal fa-upload"></i>
                                                 <p class="text-center upload-document-title">Upload Document</p>
@@ -844,7 +1129,7 @@
                                     <div class="form-group mb-4">
                                         <label class="form-label">Birth Certificate</label>
                                         <div class="upload-document position-relative">
-                                            <input type="file" name="BirthCertificate" asp-for="BirthCertificate" class="form-control" />
+                                            <input type="file" name="BirthCertificate" asp-for="BirthCertificate" class="form-control  DocumentFiles" />
                                             <div class="upload-img-section">
                                                 <i class="fal fa-upload"></i>
                                                 <p class="text-center upload-document-title">Upload Document</p>
@@ -856,7 +1141,7 @@
                                     <div class="form-group mb-4">
                                         <label class="form-label">Passport</label>
                                         <div class="upload-document position-relative">
-                                            <input type="file" name="Passport" asp-for="Passport" class="form-control" />
+                                            <input type="file" name="Passport" asp-for="Passport" class="form-control  DocumentFiles" />
                                             <div class="upload-img-section">
                                                 <i class="fal fa-upload"></i>
                                                 <p class="text-center upload-document-title">Upload Document</p>
@@ -868,7 +1153,7 @@
                                     <div class="form-group mb-4">
                                         <label class="form-label">Adharcard</label>
                                         <div class="upload-document position-relative">
-                                            <input type="file" name="Adharcard" asp-for="Adharcard" class="form-control" />
+                                            <input type="file" name="Adharcard" asp-for="Adharcard" class="form-control  DocumentFiles" />
                                             <div class="upload-img-section">
                                                 <i class="fal fa-upload"></i>
                                                 <p class="text-center upload-document-title">Upload Document</p>
@@ -930,7 +1215,11 @@
                     let form_data = $(form).serialize();
 
                     $.post(post_url, form_data, function (response) {
-
+                        swal({
+                            title: "updated",
+                            text: "Records updated successfully ",
+                            icon: "success",
+                        });
                     });
                 }
 
@@ -970,7 +1259,11 @@
                     let form_data = $(form).serialize();
 
                     $.post(post_url, form_data, function (response) {
-
+                        swal({
+                            title: "updated",
+                            text: "Records updated successfully ",
+                            icon: "success",
+                        });
                     });
                 }
 
@@ -1001,7 +1294,11 @@
                     let form_data = $(form).serialize();
 
                     $.post(post_url, form_data, function (response) {
-
+                        swal({
+                            title: "updated",
+                            text: "Records updated successfully ",
+                            icon: "success",
+                        });
                     });
                 }
 
@@ -1055,7 +1352,11 @@
                     let form_data = $(form).serialize();
 
                     $.post(post_url, form_data, function (response) {
-
+                        swal({
+                            title: "updated",
+                            text: "Records updated successfully ",
+                            icon: "success",
+                        });
                     });
                 }
 
@@ -1087,7 +1388,61 @@
                     let form_data = $(form).serialize();
 
                     $.post(post_url, form_data, function (response) {
+                        swal({
+                            title: "updated",
+                            text: "Records updated successfully ",
+                            icon: "success",
+                        });
+                    });
+                }
 
+            });
+
+            var entranceExamvalidation = $("#frmEducationalDetails").validate({
+                rules: {
+                    "DegreeId": { required: true },
+                    "DiplomaId": { required: true },
+                    "TenMarkingScheameId": { required: true },
+                    "TenBoardName": { required: true },
+                    "TenYearOfPassing": { required: true },
+                    "TenCGPA": { required: true },
+                    "TenSchoolName": { required: true },
+                    "TwelveMakingScheameId": { required: true },
+                    "TwelveBoardName": { required: true },
+                    "TwelveYearOfPassing": { required: true },
+                    "TwelveCGPA": { required: true },
+                    "TwelvePCM": { required: true },
+                    "TwelveSchoolName": { required: true },
+                    "DiplomaYear": { required: true },
+                    "DiplomaMarkingScheameId": { required: true },
+                    "DiplomaCGPA": { required: true },
+                    "DiplomaBoardName": { required: true },
+                    "DiplomaSchoolName": { required: true },
+                    "DegreeYear": { required: true },
+                    "DegreeMarkingScheameId": { required: true },
+                    "DegreeCGPA": { required: true },
+                    "DegreeSchoolName": { required: true },
+                    "DegreeBoardName": { required: true },
+                    "PGDegreeId": { required: true },
+                    "PGDegreeYear": { required: true },
+                    "PGDegreeMarkingScheameId": { required: true },
+                    "PGDegreeCGPA": { required: true },
+                    "PGDegreeSchoolName": { required: true },
+                    "PGDegreeBoardName": { required: true }
+
+
+                },
+
+                submitHandler: function (form) {
+                    let post_url = form.action;
+                    let form_data = $(form).serialize();
+
+                    $.post(post_url, form_data, function (response) {
+                        swal({
+                            title: "updated",
+                            text: "Records updated successfully ",
+                            icon: "success",
+                        });
                     });
                 }
 
@@ -1133,14 +1488,72 @@
                         traditional: true,
                         data: formData,
                         success: function (response) {
-                            window.location.href = `/Student/StudentProfile/index`;
+                            swal({
+                                title: "Uploaded",
+                                text: response.message,
+                                icon: "success",
+                            });
+                            /*window.location.href = `/Student/StudentProfile/index`;*/
 
                         }
                     });
                 }
 
             });
+
+            hideShowEducation();
+         
+           
         });
+        $(document).off("click", ".educationchk");
+        $(document).on("click", ".educationchk", function () { hideShowEducation(); });
+
+        $(document).off("change", ".DocumentFiles");
+        $(document).on("change", ".DocumentFiles", function () {
+            debugger;
+            $(this).next().hide();
+            $(this).parent().prepend("<h5>" + this.files[0].name.substring(0, 20) + "</h5>");
+            $(this).parent().css("background-color", "#ffcccb");
+        });
+        function hideShowEducation() {
+            if ($("#chk10th").prop("checked")) {
+                $(".tenStudn").show();
+            } else {
+                $(".tenStudn").hide();
+            }
+
+            if ($("#chkDiploma").prop("checked")) {
+                $(".dipStun").show();
+            } else {
+                $(".dipStun").hide();
+            }
+
+            if ($("#chkDegree").prop("checked")) {
+                $(".ugStun").show();
+            } else {
+                $(".ugStun").hide();
+            }
+
+            if ($("#chkPostGrad").prop("checked")) {
+                $(".pgStun").show();
+            } else {
+                $(".pgStun").hide();
+            }
+            
+
+            if ($("#chk12th").prop("checked")) {
+                $(".TwelStun").show();
+            } else {
+                $(".TwelStun").hide();
+            }
+
+            if ($(document).find(".educationchk:checked").length == 0)
+                $(".educationCancelSave").hide();
+            else
+                $(".educationCancelSave").show();
+        }
+
+
     </script>
 }
 

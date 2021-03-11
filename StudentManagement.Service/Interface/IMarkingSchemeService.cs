@@ -4,10 +4,11 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace StudentManagement.Service.Implementation
+namespace StudentManagement.Service.Interface
 {
     public interface IMarkingSchemeService : IGenericService<MarkingScheame>
     {
 
     }
 }
+

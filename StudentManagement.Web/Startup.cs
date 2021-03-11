@@ -134,6 +134,7 @@ namespace StudentManagement.Web
             services.AddScoped<IEntranceExamService, EntranceExamRepository>();
             services.AddScoped<IStudentQualificationSerivce, StudentQualificationRepository>();
             services.AddScoped<IDocumentService, DocumentRepository>();
+            services.AddScoped<IPGDegreeService, PGRpository>();
 
 
 
