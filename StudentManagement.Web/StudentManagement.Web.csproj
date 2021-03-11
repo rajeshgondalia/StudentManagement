@@ -7,6 +7,57 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="wwwroot\10ThMarkSheet\**" />
+    <Compile Remove="wwwroot\12ThMarkSheet\**" />
+    <Compile Remove="wwwroot\Adharcard\**" />
+    <Compile Remove="wwwroot\BirthCertificate\**" />
+    <Compile Remove="wwwroot\CasteCertificate\**" />
+    <Compile Remove="wwwroot\ColoredPhotoGraph\**" />
+    <Compile Remove="wwwroot\DegreeMarkSheet\**" />
+    <Compile Remove="wwwroot\DiplomaMarkSheet\**" />
+    <Compile Remove="wwwroot\DomicileCertificate\**" />
+    <Compile Remove="wwwroot\EntranceExamMarkSheet\**" />
+    <Compile Remove="wwwroot\Passport\**" />
+    <Compile Remove="wwwroot\PostGraduationMarkSheet\**" />
+    <Content Remove="wwwroot\10ThMarkSheet\**" />
+    <Content Remove="wwwroot\12ThMarkSheet\**" />
+    <Content Remove="wwwroot\Adharcard\**" />
+    <Content Remove="wwwroot\BirthCertificate\**" />
+    <Content Remove="wwwroot\CasteCertificate\**" />
+    <Content Remove="wwwroot\ColoredPhotoGraph\**" />
+    <Content Remove="wwwroot\DegreeMarkSheet\**" />
+    <Content Remove="wwwroot\DiplomaMarkSheet\**" />
+    <Content Remove="wwwroot\DomicileCertificate\**" />
+    <Content Remove="wwwroot\EntranceExamMarkSheet\**" />
+    <Content Remove="wwwroot\Passport\**" />
+    <Content Remove="wwwroot\PostGraduationMarkSheet\**" />
+    <EmbeddedResource Remove="wwwroot\10ThMarkSheet\**" />
+    <EmbeddedResource Remove="wwwroot\12ThMarkSheet\**" />
+    <EmbeddedResource Remove="wwwroot\Adharcard\**" />
+    <EmbeddedResource Remove="wwwroot\BirthCertificate\**" />
+    <EmbeddedResource Remove="wwwroot\CasteCertificate\**" />
+    <EmbeddedResource Remove="wwwroot\ColoredPhotoGraph\**" />
+    <EmbeddedResource Remove="wwwroot\DegreeMarkSheet\**" />
+    <EmbeddedResource Remove="wwwroot\DiplomaMarkSheet\**" />
+    <EmbeddedResource Remove="wwwroot\DomicileCertificate\**" />
+    <EmbeddedResource Remove="wwwroot\EntranceExamMarkSheet\**" />
+    <EmbeddedResource Remove="wwwroot\Passport\**" />
+    <EmbeddedResource Remove="wwwroot\PostGraduationMarkSheet\**" />
+    <None Remove="wwwroot\10ThMarkSheet\**" />
+    <None Remove="wwwroot\12ThMarkSheet\**" />
+    <None Remove="wwwroot\Adharcard\**" />
+    <None Remove="wwwroot\BirthCertificate\**" />
+    <None Remove="wwwroot\CasteCertificate\**" />
+    <None Remove="wwwroot\ColoredPhotoGraph\**" />
+    <None Remove="wwwroot\DegreeMarkSheet\**" />
+    <None Remove="wwwroot\DiplomaMarkSheet\**" />
+    <None Remove="wwwroot\DomicileCertificate\**" />
+    <None Remove="wwwroot\EntranceExamMarkSheet\**" />
+    <None Remove="wwwroot\Passport\**" />
+    <None Remove="wwwroot\PostGraduationMarkSheet\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="AutoMapper" Version="10.1.1" />
     <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="3.1.12" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="3.1.12" />
@@ -30,6 +81,18 @@
     <Folder Include="Controllers\" />
     <Folder Include="Data\" />
     <Folder Include="Views\Shared\" />
+    <Folder Include="wwwroot\Documents\10ThMarkSheet\" />
+    <Folder Include="wwwroot\Documents\12ThMarkSheet\" />
+    <Folder Include="wwwroot\Documents\Adharcard\" />
+    <Folder Include="wwwroot\Documents\BirthCertificate\" />
+    <Folder Include="wwwroot\Documents\CasteCertificate\" />
+    <Folder Include="wwwroot\Documents\ColoredPhotoGraph\" />
+    <Folder Include="wwwroot\Documents\DegreeMarkSheet\" />
+    <Folder Include="wwwroot\Documents\DiplomaMarkSheet\" />
+    <Folder Include="wwwroot\Documents\DomicileCertificate\" />
+    <Folder Include="wwwroot\Documents\EntranceExamMarkSheet\" />
+    <Folder Include="wwwroot\Documents\Passport\" />
+    <Folder Include="wwwroot\Documents\PostGraduationMarkSheet\" />
     <Folder Include="wwwroot\lib\bootstrap\" />
     <Folder Include="wwwroot\lib\bootstrap\dist\css\" />
     <Folder Include="wwwroot\lib\bootstrap\dist\js\" />

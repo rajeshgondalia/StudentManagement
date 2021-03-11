@@ -33,7 +33,7 @@ namespace StudentManagement
             {
                 new Claim("UserRole", role),
                 new Claim("UserId", user.Id.ToString() ?? ""),
-                new Claim("FullName", user.FullName ??"" )
+                new Claim("FullName", user.FirstName ??"" )
 
             };
             identity.AddClaims(claims);

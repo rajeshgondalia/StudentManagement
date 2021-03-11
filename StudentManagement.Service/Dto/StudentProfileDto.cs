@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Http;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -40,8 +41,8 @@ namespace StudentManagement.Service.Dto
 
 
         public long StayTypeId { get; set; }
-        public string    StayAddress { get; set; }
-        public long   StayRelationId { get; set; }
+        public string StayAddress { get; set; }
+        public long StayRelationId { get; set; }
 
         public long StayCityId { get; set; }
         public long StayStateId { get; set; }
@@ -95,5 +96,20 @@ namespace StudentManagement.Service.Dto
         public string EntranceExamMarkObt { get; set; }
         public string EntranceExamAir { get; set; }
         public string EntranceExamCatefgoryRank { get; set; }
+
+        public IFormFile TenMarksheetPath { get; set; }
+        public IFormFile TwelveMarksheetPath { get; set; }
+        public IFormFile DiplomaMarksheetPath { get; set; }
+        public IFormFile DegreeMarksheetPath { get; set; }
+        public IFormFile PGMarksheetPath { get; set; }
+        public IFormFile EntranceExamMasrksheetPath { get; set; }
+        public IFormFile ColoredPhotograph { get; set; }
+        public IFormFile CasteCertificate { get; set; }
+        public IFormFile DomicileCertificate { get; set; }
+        public IFormFile BirthCertificate { get; set; }
+        public IFormFile Passport { get; set; }
+        public IFormFile Adharcard { get; set; }
+
+
     }
 }

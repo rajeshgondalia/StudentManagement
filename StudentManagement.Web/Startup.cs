@@ -133,6 +133,7 @@ namespace StudentManagement.Web
             services.AddScoped<IDegreeService, DegreeRepository>();
             services.AddScoped<IEntranceExamService, EntranceExamRepository>();
             services.AddScoped<IStudentQualificationSerivce, StudentQualificationRepository>();
+            services.AddScoped<IDocumentService, DocumentRepository>();
 
 
 

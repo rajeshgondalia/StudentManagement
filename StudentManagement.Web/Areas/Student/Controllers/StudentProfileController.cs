@@ -1,8 +1,11 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using EasyLearnerAdmin.Utility.Common;
+using EasyLearnerAdmin.Utility.JqueryDataTable;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using StudentManagement.Data.DBContexts;
+using StudentManagement.Data.Models;
 using StudentManagement.Service.Dto;
 using StudentManagement.Service.Exception;
 using StudentManagement.Service.Interface;
@@ -43,6 +46,8 @@ namespace StudentManagement.Web.Areas.Student.Controllers
         private readonly IParentdetailService _parentService;
         private readonly IEntranceExamService _entranceExamService;
         private readonly IStudentQualificationSerivce _sqService;
+        private readonly IDocumentService _documentService;
+        private readonly SignInManager<ApplicationUser> _signInManager;
          
 
         #endregion
@@ -69,7 +74,9 @@ namespace StudentManagement.Web.Areas.Student.Controllers
         UserManager<ApplicationUser> userManager,
             IGenderService genderService,
             IEntranceExamService entranceExamService,
-            IStudentQualificationSerivce sqService
+            IStudentQualificationSerivce sqService,
+            IDocumentService documentService,
+            SignInManager<ApplicationUser> signInManager
             )
         {
             _personalDetailService = personalDetailService;
@@ -94,6 +101,8 @@ namespace StudentManagement.Web.Areas.Student.Controllers
             _parentService = parentService;
             _entranceExamService = entranceExamService;
             _sqService = sqService;
+            _documentService = documentService;
+            _signInManager = signInManager;
         }
 
         #endregion
@@ -282,7 +291,6 @@ namespace StudentManagement.Web.Areas.Student.Controllers
         }
 
 
-
         [HttpPost]
         public async Task<IActionResult> UpdateParentDetail(StudentProfileDto model)
         {
@@ -362,6 +370,173 @@ namespace StudentManagement.Web.Areas.Student.Controllers
             return RedirectToAction("Index");
         }
 
+        [HttpPost]
+        public async Task<IActionResult> UpdateDocuments([FromForm]StudentProfileDto model)
+        {
+            if (model != null)
+            {
+                #region TenMarksheetPath
+                string TenMarksheetPath = string.Empty;
+                if (model.TenMarksheetPath != null)
+                {
+                    TenMarksheetPath = User.GetUserId()+CommonMethod.GetFileName(model.TenMarksheetPath.FileName);
+                    await CommonMethod.UploadFileAsync(HostingEnvironment.WebRootPath, FilePathListConstant.TenMarksheetPath, TenMarksheetPath, model.TenMarksheetPath);
+
+                }
+                #endregion
+                #region TwelveMarksheetPath
+                string TwelveMarksheetPath = string.Empty;
+                if (model.TwelveMarksheetPath != null)
+                {
+                    TwelveMarksheetPath = User.GetUserId() + CommonMethod.GetFileName(model.TwelveMarksheetPath.FileName);
+                    await CommonMethod.UploadFileAsync(HostingEnvironment.WebRootPath, FilePathListConstant.TwelveMarksheetPath, TwelveMarksheetPath, model.TwelveMarksheetPath);
+
+                }
+                #endregion
+                #region DiplomaMarksheetPath
+                string DiplomaMarksheetPath = string.Empty;
+                if (model.DiplomaMarksheetPath != null)
+                {
+                    DiplomaMarksheetPath = User.GetUserId() + CommonMethod.GetFileName(model.DiplomaMarksheetPath.FileName);
+                    await CommonMethod.UploadFileAsync(HostingEnvironment.WebRootPath, FilePathListConstant.DiplomaMarksheetPath, DiplomaMarksheetPath, model.DiplomaMarksheetPath);
+
+                }
+                #endregion
+                #region DegreeMarksheetPath
+                string DegreeMarksheetPath = string.Empty;
+                if (model.DegreeMarksheetPath != null)
+                {
+                    DegreeMarksheetPath = User.GetUserId() + CommonMethod.GetFileName(model.DegreeMarksheetPath.FileName);
+                    await CommonMethod.UploadFileAsync(HostingEnvironment.WebRootPath, FilePathListConstant.TenMarksheetPath, DegreeMarksheetPath, model.DegreeMarksheetPath);
+
+                }
+                #endregion
+                #region PGMarksheetPath
+                string PGMarksheetPath = string.Empty;
+                if (model.PGMarksheetPath != null)
+                {
+                    PGMarksheetPath = User.GetUserId() + CommonMethod.GetFileName(model.PGMarksheetPath.FileName);
+                    await CommonMethod.UploadFileAsync(HostingEnvironment.WebRootPath, FilePathListConstant.TenMarksheetPath, PGMarksheetPath, model.PGMarksheetPath);
+
+                }
+                #endregion
+                #region EntranceExamMasrksheetPath
+                string EntranceExamMasrksheetPath = string.Empty;
+                if (model.EntranceExamMasrksheetPath != null)
+                {
+                    EntranceExamMasrksheetPath = User.GetUserId() + CommonMethod.GetFileName(model.EntranceExamMasrksheetPath.FileName);
+                    await CommonMethod.UploadFileAsync(HostingEnvironment.WebRootPath, FilePathListConstant.EntranceExamMasrksheetPath, EntranceExamMasrksheetPath, model.EntranceExamMasrksheetPath);
+
+                }
+                #endregion
+                #region ColoredPhotograph
+                string ColoredPhotograph = string.Empty;
+                if (model.ColoredPhotograph != null)
+                {
+                    ColoredPhotograph = User.GetUserId() + CommonMethod.GetFileName(model.ColoredPhotograph.FileName);
+                    await CommonMethod.UploadFileAsync(HostingEnvironment.WebRootPath, FilePathListConstant.ColoredPhotograph, ColoredPhotograph, model.ColoredPhotograph);
+
+                }
+                #endregion
+                #region CasteCertificate
+                string CasteCertificate = string.Empty;
+                if (model.CasteCertificate != null)
+                {
+                    CasteCertificate = User.GetUserId() + CommonMethod.GetFileName(model.CasteCertificate.FileName);
+                    await CommonMethod.UploadFileAsync(HostingEnvironment.WebRootPath, FilePathListConstant.CasteCertificate, CasteCertificate, model.CasteCertificate);
+
+                }
+                #endregion
+                #region DomicileCertificate
+                string DomicileCertificate = string.Empty;
+                if (model.CasteCertificate != null)
+                {
+                    DomicileCertificate = User.GetUserId() + CommonMethod.GetFileName(model.DomicileCertificate.FileName);
+                    await CommonMethod.UploadFileAsync(HostingEnvironment.WebRootPath, FilePathListConstant.DomicileCertificate, DomicileCertificate, model.DomicileCertificate);
+
+                }
+                #endregion
+                #region BirthCertificate
+                string BirthCertificate = string.Empty;
+                if (model.BirthCertificate != null)
+                {
+                    CasteCertificate = User.GetUserId() + CommonMethod.GetFileName(model.BirthCertificate.FileName);
+                    await CommonMethod.UploadFileAsync(HostingEnvironment.WebRootPath, FilePathListConstant.BirthCertificate, BirthCertificate, model.BirthCertificate);
+
+                }
+                #endregion
+                #region Passport
+                string Passport = string.Empty;
+                if (model.Passport != null)
+                {
+                    Passport = User.GetUserId() + CommonMethod.GetFileName(model.Passport.FileName);
+                    await CommonMethod.UploadFileAsync(HostingEnvironment.WebRootPath, FilePathListConstant.Passport, Passport, model.Passport);
+
+                }
+                #endregion
+
+                #region Adharcard
+                string Adharcard = string.Empty;
+                if (model.Adharcard != null)
+                {
+                    Adharcard = User.GetUserId() + CommonMethod.GetFileName(model.Adharcard.FileName);
+                    await CommonMethod.UploadFileAsync(HostingEnvironment.WebRootPath, FilePathListConstant.Adharcard, Adharcard, model.Adharcard);
+
+                }
+                #endregion
+
+                var pd = _documentService.GetSingle(x => x.UserId == User.GetUserId());
+                if (pd != null)
+                {
+                    pd.TenMarksheetPath = TenMarksheetPath;
+                    pd.TwelveMarksheetPath = TwelveMarksheetPath;
+                    pd.DiplomaMarksheetPath = DiplomaMarksheetPath;
+                    pd.DegreeMarksheetPath = DegreeMarksheetPath;
+                    pd.PGMarksheetPath = PGMarksheetPath;
+                    pd.EntranceExamMasrksheetPath = EntranceExamMasrksheetPath;
+                    pd.ColoredPhotograph = ColoredPhotograph;
+                    pd.CasteCertificate = CasteCertificate;
+                    pd.DomicileCertificate = DomicileCertificate;
+                    pd.BirthCertificate = BirthCertificate;
+                    pd.Passport = Passport;
+                    pd.Adharcard = Adharcard;
+
+                    var updateResult = await _documentService.UpdateAsync(pd, Accessor, User.GetUserId());
+
+                }
+                else {
+                    var npd = new Documents();
+                    npd.TenMarksheetPath = TenMarksheetPath;
+                    npd.TwelveMarksheetPath = TwelveMarksheetPath;
+                    npd.DiplomaMarksheetPath = DiplomaMarksheetPath;
+                    npd.DegreeMarksheetPath = DegreeMarksheetPath;
+                    npd.PGMarksheetPath = PGMarksheetPath;
+                    npd.EntranceExamMasrksheetPath = EntranceExamMasrksheetPath;
+                    npd.ColoredPhotograph = ColoredPhotograph;
+                    npd.CasteCertificate = CasteCertificate;
+                    npd.DomicileCertificate = DomicileCertificate;
+                    npd.BirthCertificate = BirthCertificate;
+                    npd.Passport = Passport;
+                    npd.Adharcard = Adharcard;
+                    npd.UserId = User.GetUserId();
+
+                    var inserResult = _documentService.InsertAsync(npd,Accessor,User.GetUserId());
+                }
+
+                return RedirectToAction("Index");
+
+            }
+            return RedirectToAction("Index");
+        }
+
+
+
+        public async Task<IActionResult> Logout()
+        {
+            
+            await _signInManager.SignOutAsync();
+            return RedirectToAction("index");
+        }
         #endregion
         #region Common
 

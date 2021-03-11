@@ -42,7 +42,7 @@
                             Add Personal Details
                         </h6>
                     </div>
-                    <form  id="frmPersonalDetail" asp-controller="StudentProfile" asp-area="Student" asp-action="Updatestudent" method="post">
+                    <form id="frmPersonalDetail" asp-controller="StudentProfile" asp-area="Student" asp-action="Updatestudent" method="post">
                         <div class="card-body modal-body">
                             <!-- form start here -->
 
@@ -151,7 +151,7 @@
                                                 <option value="">--Select Domicile--</option>
                                             </select>
                                         </div>
-                        </div>
+                                    </div>
                                 </div>
                             </div>
 
@@ -281,7 +281,7 @@
                         </div>
                     </form>
                 </div>
-                
+
             </div>
             <div id="menu2" class="tab-pane fade">
                 <div class="card">
@@ -562,10 +562,10 @@
                                             <input type="text" name="StayPinCode" asp-for="StayPinCode" class="form-control" placeholder="pincode" />
                                         </div>
                                     </div>
-                                 
+
                                 </div>
 
-                
+
                             </div>
                             <!-- form end here -->
                         </div>
@@ -673,300 +673,410 @@
                             Upload Documents
                         </h6>
                     </div>
-                    <div class="card-body modal-body">
-                        <!-- form start here -->
-                        <div class="row">
-                            <div class="col-lg-4 col-md-4 col-12">
-                                <div class="form-group mb-4">
-                                    <label class="form-label">10th Marksheet</label>
-                                    <div class="upload-document position-relative">
-                                        <input type="file" class="form-control" />
-                                        <div class="upload-img-section">
-                                            <i class="fal fa-upload"></i>
-                                            <p class="text-center upload-document-title">Upload Document</p>
+                    <form id="frmDocument" asp-controller="StudentProfile" asp-area="Student" asp-action="UpdateDocuments" method="post">
+                        <div class="card-body modal-body">
+                            <!-- form start here -->
+                            <div class="row">
+                                <div class="col-lg-4 col-md-4 col-12">
+                                    <div class="form-group mb-4">
+                                        <label class="form-label">10th Marksheet</label>
+                                        <div class="upload-document position-relative">
+                                            <input type="file" name="TenMarksheetPath" asp-for="TenMarksheetPath" class="form-control" />
+                                            <div class="upload-img-section">
+                                                <i class="fal fa-upload"></i>
+                                                <p class="text-center upload-document-title">Upload Document</p>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="col-lg-4 col-md-4 col-12">
-                                <div class="form-group mb-4">
-                                    <label class="form-label">12th Marksheet</label>
-                                    <div class="upload-document position-relative">
-                                        <input type="file" class="form-control" />
-                                        <div class="upload-img-section">
-                                            <i class="fal fa-upload"></i>
-                                            <p class="text-center upload-document-title">Upload Document</p>
+                                <div class="col-lg-4 col-md-4 col-12">
+                                    <div class="form-group mb-4">
+                                        <label class="form-label">12th Marksheet</label>
+                                        <div class="upload-document position-relative">
+                                            <input type="file" name="TwelveMarksheetPath" asp-for="TwelveMarksheetPath" class="form-control" />
+                                            <div class="upload-img-section">
+                                                <i class="fal fa-upload"></i>
+                                                <p class="text-center upload-document-title">Upload Document</p>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="col-lg-4 col-md-4 col-12">
-                                <div class="form-group mb-4">
-                                    <label class="form-label">Diploma Marksheet</label>
-                                    <div class="upload-document position-relative">
-                                        <input type="file" class="form-control" />
-                                        <div class="upload-img-section">
-                                            <i class="fal fa-upload"></i>
-                                            <p class="text-center upload-document-title">Upload Document</p>
+                                <div class="col-lg-4 col-md-4 col-12">
+                                    <div class="form-group mb-4">
+                                        <label class="form-label">Diploma Marksheet</label>
+                                        <div class="upload-document position-relative">
+                                            <input type="file" name="DiplomaMarksheetPath" asp-for="DiplomaMarksheetPath" class="form-control" />
+                                            <div class="upload-img-section">
+                                                <i class="fal fa-upload"></i>
+                                                <p class="text-center upload-document-title">Upload Document</p>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
+                                <!-- form end here -->
                             </div>
-                            <!-- form end here -->
+                            <div class="row">
+                                <div class="col-lg-4 col-md-4 col-12">
+                                    <div class="form-group mb-4">
+                                        <label class="form-label">Degree Marksheet</label>
+                                        <div class="upload-document position-relative">
+                                            <input type="file" name="DegreeMarksheetPath" asp-for="DegreeMarksheetPath" class="form-control" />
+                                            <div class="upload-img-section">
+                                                <i class="fal fa-upload"></i>
+                                                <p class="text-center upload-document-title">Upload Document</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-md-4 col-12">
+                                    <div class="form-group mb-4">
+                                        <label class="form-label">Post Graduation Marksheet</label>
+                                        <div class="upload-document position-relative">
+                                            <input type="file" name="PGMarksheetPath" asp-for="PGMarksheetPath" class="form-control" />
+                                            <div class="upload-img-section">
+                                                <i class="fal fa-upload"></i>
+                                                <p class="text-center upload-document-title">Upload Document</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-md-4 col-12">
+                                    <div class="form-group mb-4">
+                                        <label class="form-label">Colored Photograph</label>
+                                        <div class="upload-document position-relative">
+                                            <input type="file" name="ColoredPhotograph" asp-for="ColoredPhotograph" class="form-control" />
+                                            <div class="upload-img-section">
+                                                <i class="fal fa-upload"></i>
+                                                <p class="text-center upload-document-title">Upload Document</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-md-4 col-12">
+                                    <div class="form-group mb-4">
+                                        <label class="form-label">Caste Certificate</label>
+                                        <div class="upload-document position-relative">
+                                            <input type="file" name="CasteCertificate" asp-for="CasteCertificate" class="form-control" />
+                                            <div class="upload-img-section">
+                                                <i class="fal fa-upload"></i>
+                                                <p class="text-center upload-document-title">Upload Document</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-md-4 col-12">
+                                    <div class="form-group mb-4">
+                                        <label class="form-label">Domicile Certificate </label>
+                                        <div class="upload-document position-relative">
+                                            <input type="file" name="DomicileCertificate" asp-for="DomicileCertificate" class="form-control" />
+                                            <div class="upload-img-section">
+                                                <i class="fal fa-upload"></i>
+                                                <p class="text-center upload-document-title">Upload Document</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-md-4 col-12">
+                                    <div class="form-group mb-4">
+                                        <label class="form-label">Birth Certificate</label>
+                                        <div class="upload-document position-relative">
+                                            <input type="file" name="BirthCertificate" asp-for="BirthCertificate" class="form-control" />
+                                            <div class="upload-img-section">
+                                                <i class="fal fa-upload"></i>
+                                                <p class="text-center upload-document-title">Upload Document</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-md-4 col-12">
+                                    <div class="form-group mb-4">
+                                        <label class="form-label">Passport</label>
+                                        <div class="upload-document position-relative">
+                                            <input type="file" name="Passport" asp-for="Passport" class="form-control" />
+                                            <div class="upload-img-section">
+                                                <i class="fal fa-upload"></i>
+                                                <p class="text-center upload-document-title">Upload Document</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-md-4 col-12">
+                                    <div class="form-group mb-4">
+                                        <label class="form-label">Adharcard</label>
+                                        <div class="upload-document position-relative">
+                                            <input type="file" name="Adharcard" asp-for="Adharcard" class="form-control" />
+                                            <div class="upload-img-section">
+                                                <i class="fal fa-upload"></i>
+                                                <p class="text-center upload-document-title">Upload Document</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- form end here -->
+                            </div>
                         </div>
-                        <div class="row">
-                            <div class="col-lg-4 col-md-4 col-12">
-                                <div class="form-group mb-4">
-                                    <label class="form-label">Degree Marksheet</label>
-                                    <div class="upload-document position-relative">
-                                        <input type="file" class="form-control" />
-                                        <div class="upload-img-section">
-                                            <i class="fal fa-upload"></i>
-                                            <p class="text-center upload-document-title">Upload Document</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-4 col-md-4 col-12">
-                                <div class="form-group mb-4">
-                                    <label class="form-label">Post Graduation Marksheet</label>
-                                    <div class="upload-document position-relative">
-                                        <input type="file" class="form-control" />
-                                        <div class="upload-img-section">
-                                            <i class="fal fa-upload"></i>
-                                            <p class="text-center upload-document-title">Upload Document</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-4 col-md-4 col-12">
-                                <div class="form-group mb-4">
-                                    <label class="form-label">Colored Photograph</label>
-                                    <div class="upload-document position-relative">
-                                        <input type="file" class="form-control" />
-                                        <div class="upload-img-section">
-                                            <i class="fal fa-upload"></i>
-                                            <p class="text-center upload-document-title">Upload Document</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- form end here -->
+                        <div class="modal-footer">
+                            <button class="btn btn-secondary">Cancel</button>
+                            <button class="btn btn-primary">Save</button>
                         </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button class="btn btn-secondary">Cancel</button>
-                        <button class="btn btn-primary">Save</button>
-                    </div>
+                    </form>
                 </div>
             </div>
         </div>
     </div>
 </div>
-@section Scripts{ 
+@section Scripts{
 
-<script>
-    $(document).ready(function () {
+    <script>
+        $(document).ready(function () {
 
-        var PersonalValidation = $("#frmPersonalDetail").validate({
-        rules: {
-                "Mobile1": { required: true, minlength: 10, maxlength: 10, number: true},
-            "Mobile2": { required: true },
-            "PersonalEmail1": { required: true ,email:true},
-                "PersonalEmail2": { required: true, email: true},
-            "GenderId": { required: true },
-            "Dob": { required: true },
-            "CategoryId": { required: true },
-            "BloodGroupId": { required: true },
-            "ReligionId": { required: true },
-            "CountryId": { required: true },
-            "StateId": { required: true },
-           
+            var PersonalValidation = $("#frmPersonalDetail").validate({
+                rules: {
+                    "Mobile1": { required: true, minlength: 10, maxlength: 10, number: true },
+                    "Mobile2": { required: true },
+                    "PersonalEmail1": { required: true, email: true },
+                    "PersonalEmail2": { required: true, email: true },
+                    "GenderId": { required: true },
+                    "Dob": { required: true },
+                    "CategoryId": { required: true },
+                    "BloodGroupId": { required: true },
+                    "ReligionId": { required: true },
+                    "CountryId": { required: true },
+                    "StateId": { required: true },
 
-        },
 
-        messages: {
-            "Mobile1": { required: "Please insert MobileNumber1", minlength: "Please enter at least 10 numbers.", maxlength: "Please enter at least 10 numbers."},
-            "Mobile2": { required: "Please insert MobileNumber2"},
-            "PersonalEmail1": { required: "Please insert Personal Email 1"},
-            "PersonalEmail2": { required: "Please insert Personal Email 1"},
-            "GenderId": { required: "Please insert Personal Gender"},
-            "Dob": { required: "Please insert Personal Gender"},
-            "CategoryId": { required: "Please insert Personal Category"},
-            "BloodGroupId": { required: "Please insert Personal BloodGroup"},
-            "ReligionId": { required: "Please insert Personal Religion"},
-            "CountryId": { required: "Please insert Personal Nationality"},
-            "StateId": { required: "Please insert Personal Domicile"},
-            
-        },
-        submitHandler: function (form) {
-            let post_url = form.action;
-            let form_data = $(form).serialize();
-          
-            $.post(post_url, form_data, function (response) {
-              
+                },
+
+                messages: {
+                    "Mobile1": { required: "Please insert MobileNumber1", minlength: "Please enter at least 10 numbers.", maxlength: "Please enter at least 10 numbers." },
+                    "Mobile2": { required: "Please insert MobileNumber2" },
+                    "PersonalEmail1": { required: "Please insert Personal Email 1" },
+                    "PersonalEmail2": { required: "Please insert Personal Email 1" },
+                    "GenderId": { required: "Please insert Personal Gender" },
+                    "Dob": { required: "Please insert Personal Gender" },
+                    "CategoryId": { required: "Please insert Personal Category" },
+                    "BloodGroupId": { required: "Please insert Personal BloodGroup" },
+                    "ReligionId": { required: "Please insert Personal Religion" },
+                    "CountryId": { required: "Please insert Personal Nationality" },
+                    "StateId": { required: "Please insert Personal Domicile" },
+
+                },
+                submitHandler: function (form) {
+                    let post_url = form.action;
+                    let form_data = $(form).serialize();
+
+                    $.post(post_url, form_data, function (response) {
+
+                    });
+                }
+
             });
-        }
+            var CollegeValidation = $("#frmCollegeDetail").validate({
+                rules: {
+                    "CampusId": { required: true },
+                    "CollegeId": { required: true },
+                    "CourseId": { required: true },
+                    "BranchId": { required: true },
+                    "AdmissionTypeId": { required: true },
+                    "AdmissionBatchTypeId": { required: true },
+                    "CollegeRollNo": { required: true },
+                    "UniversityEnrollmentNumber": { required: true },
+                    "PassportNumber": { required: true },
+                    "AdharNumber": { required: true }
 
+
+
+                },
+
+                messages: {
+                    "CampusId": { required: "Please select campus" },
+                    "CollegeId": { required: "Please select college " },
+                    "CourseId": { required: "Please select course " },
+                    "BranchId": { required: "Please select branch " },
+                    "AdmissionTypeId": { required: "Please select admission type " },
+                    "AdmissionBatchTypeId": { required: "Please select admission batch type " },
+                    "CollegeRollNo": { required: "Please enter college roll number " },
+                    "UniversityEnrollmentNumber": { required: "Please enter  enrollment number" },
+                    "PassportNumber": { required: "Please enter passport number" },
+                    "AdharNumber": { required: "Please enter adhar number" }
+
+                },
+                submitHandler: function (form) {
+                    let post_url = form.action;
+                    let form_data = $(form).serialize();
+
+                    $.post(post_url, form_data, function (response) {
+
+                    });
+                }
+
+            });
+            var currentAddressvalidation = $("#frmCurrentAddress").validate({
+                rules: {
+                    "StayTypeId": { required: true },
+                    "StayAddress": { required: true },
+                    "StayRelationId": { required: true },
+                    "StayCityId": { required: true },
+                    "StayStateId": { required: true },
+                    "StayCountryId": { required: true },
+                    "StayPinCode": { required: true }
+                },
+
+                messages: {
+                    "StayTypeId": { required: "Please select stay type " },
+                    "StayAddress": { required: "Please enter stay address " },
+                    "StayRelationId": { required: "Please select stay relation " },
+                    "StayCityId": { required: "Please select stay city" },
+                    "StayStateId": { required: "Please select stay state " },
+                    "StayCountryId": { required: "Please select stay country " },
+                    "StayPinCode": { required: "Please stay pincode " }
+
+                },
+                submitHandler: function (form) {
+                    let post_url = form.action;
+                    let form_data = $(form).serialize();
+
+                    $.post(post_url, form_data, function (response) {
+
+                    });
+                }
+
+            });
+            var parentDetailvalidation = $("#frmParentDetail").validate({
+                rules: {
+                    "FatherName": { required: true },
+                    "FatherMobile1": { required: true, minlength: 10, maxlength: 10, number: true },
+                    "FatherMobile2": { required: true, minlength: 10, maxlength: 10, number: true },
+                    "FatherEmail": { required: true, email: true },
+                    "FatherAddress": { required: true },
+
+                    "MotherName": { required: true },
+                    "MotherMobile1": { required: true, minlength: 10, maxlength: 10, number: true, minlength: 10, maxlength: 10, number: true },
+                    "MotherMobile2": { required: true, minlength: 10, maxlength: 10, number: true, minlength: 10, maxlength: 10, number: true },
+                    "MotherEmail": { required: true, email: true },
+                    "MotherAddress": { required: true },
+
+                    "LGName": { required: true },
+                    "LGMobile1": { required: true, minlength: 10, maxlength: 10, number: true, minlength: 10, maxlength: 10, number: true },
+                    "LGMobile2": { required: true, minlength: 10, maxlength: 10, number: true, minlength: 10, maxlength: 10, number: true },
+                    "LGEmail": { required: true },
+                    "LGAddress": { required: true },
+                    "LGRelationId": { required: true }
+
+                },
+
+                messages: {
+                    "FatherName": { required: "This field is required" },
+                    "FatherMobile1": { required: "This field is required", minlength: "Please enter at least 10 numbers.", maxlength: "Please enter at least 10 numbers." },
+                    "FatherMobile2": { required: "This field is required", minlength: "Please enter at least 10 numbers.", maxlength: "Please enter at least 10 numbers." },
+                    "FatherEmail": { required: "This field is required" },
+                    "FatherAddress": { required: "This field is required" },
+
+                    "MotherName": { required: "This field is required" },
+                    "MotherMobile1": { required: "This field is required", minlength: "Please enter at least 10 numbers.", maxlength: "Please enter at least 10 numbers." },
+                    "MotherMobile2": { required: "This field is required", minlength: "Please enter at least 10 numbers.", maxlength: "Please enter at least 10 numbers." },
+                    "MotherEmail": { required: "This field is required" },
+                    "MotherAddress": { required: "This field is required" },
+
+                    "LGName": { required: "This field is required" },
+                    "LGMobile1": { required: "This field is required", minlength: "Please enter at least 10 numbers.", maxlength: "Please enter at least 10 numbers." },
+                    "LGMobile2": { required: "This field is required", minlength: "Please enter at least 10 numbers.", maxlength: "Please enter at least 10 numbers." },
+                    "LGEmail": { required: "This field is required" },
+                    "LGAddress": { required: "This field is required" },
+                    "LGRelationId": { required: "This field is required" }
+
+                },
+                submitHandler: function (form) {
+                    let post_url = form.action;
+                    let form_data = $(form).serialize();
+
+                    $.post(post_url, form_data, function (response) {
+
+                    });
+                }
+
+            });
+
+            var entranceExamvalidation = $("#frmEntranceExam").validate({
+                rules: {
+                    "EntranceExamId": { required: true },
+                    "EntranceExamYear": { required: true },
+                    "EntranceExamRollno": { required: true },
+                    "EntranceExamMarkObt": { required: true },
+                    "EntranceExamAir": { required: true },
+                    "EntranceExamCatefgoryRank": { required: true },
+
+
+                },
+
+                messages: {
+                    "EntranceExamId": { required: "This field is  required" },
+                    "EntranceExamYear": { required: "This field is  required" },
+                    "EntranceExamRollno": { required: "This field is  required" },
+                    "EntranceExamMarkObt": { required: "This field is  required" },
+                    "EntranceExamAir": { required: "This field is  required" },
+                    "EntranceExamCatefgoryRank": { required: "This field is  required" },
+
+                },
+                submitHandler: function (form) {
+                    let post_url = form.action;
+                    let form_data = $(form).serialize();
+
+                    $.post(post_url, form_data, function (response) {
+
+                    });
+                }
+
+            });
+
+            var document = $("#frmDocument").validate({
+
+                submitHandler: function (form) {
+                    let post_url = form.action;
+                    // let form_data = $(form).serialize();
+                    var formData = new FormData();
+                    var TenMarksheetPath = $("#TenMarksheetPath").get(0).files;
+                    var TwelveMarksheetPath = $("#TwelveMarksheetPath").get(0).files;
+                    var DiplomaMarksheetPath = $("#DiplomaMarksheetPath").get(0).files;
+                    var DegreeMarksheetPath = $("#DegreeMarksheetPath").get(0).files;
+                    var PGMarksheetPath = $("#PGMarksheetPath").get(0).files;
+                    var ColoredPhotograph = $("#ColoredPhotograph").get(0).files;
+                    var CasteCertificate = $("#CasteCertificate").get(0).files;
+                    var DomicileCertificate = $("#DomicileCertificate").get(0).files;
+                    var BirthCertificate = $("#BirthCertificate").get(0).files;
+                    var Passport = $("#Passport").get(0).files;
+                    var Adharcard = $("#Adharcard").get(0).files;
+
+                    formData.append("TenMarksheetPath", TenMarksheetPath[0]);
+                    formData.append("TwelveMarksheetPath", TwelveMarksheetPath[0]);
+                    formData.append("DiplomaMarksheetPath", DiplomaMarksheetPath[0]);
+                    formData.append("DegreeMarksheetPath", DegreeMarksheetPath[0]);
+                    formData.append("PGMarksheetPath", PGMarksheetPath[0]);
+                    formData.append("ColoredPhotograph", ColoredPhotograph[0]);
+                    formData.append("CasteCertificate", CasteCertificate[0]);
+                    formData.append("DomicileCertificate", DomicileCertificate[0]);
+                    formData.append("BirthCertificate", BirthCertificate[0]);
+                    formData.append("Passport", Passport[0]);
+                    formData.append("Adharcard", Adharcard[0]);
+
+
+                    $.ajax({
+                        type: "POST",
+                        contentType: false,
+                        processData: false,
+                        url: post_url,
+                        dataType: "JSON",
+                        traditional: true,
+                        data: formData,
+                        success: function (response) {
+                            window.location.href = `/Student/StudentProfile/index`;
+
+                        }
+                    });
+                }
+
+            });
         });
-        var CollegeValidation = $("#frmCollegeDetail").validate({
-            rules: {
-                "CampusId": { required: true},
-                "CollegeId": { required: true },
-                "CourseId": { required: true},
-                "BranchId": { required: true },
-                "AdmissionTypeId": { required: true },
-                "AdmissionBatchTypeId": { required: true },
-                "CollegeRollNo": { required: true },
-                "UniversityEnrollmentNumber": { required: true },
-                "PassportNumber": { required: true },
-                "AdharNumber": { required: true }
-                
-
-
-            },
-
-            messages: {
-                "CampusId": { required: "Please select campus" },
-                "CollegeId": { required: "Please select college " },
-                "CourseId": { required: "Please select course " },
-                "BranchId": { required: "Please select branch " },
-                "AdmissionTypeId": { required: "Please select admission type " },
-                "AdmissionBatchTypeId": { required: "Please select admission batch type " },
-                "CollegeRollNo": { required: "Please enter college roll number " },
-                "UniversityEnrollmentNumber": { required: "Please enter  enrollment number" },
-                "PassportNumber": { required: "Please enter passport number" },
-                "AdharNumber": { required: "Please enter adhar number" }
-
-            },
-            submitHandler: function (form) {
-                let post_url = form.action;
-                let form_data = $(form).serialize();
-
-                $.post(post_url, form_data, function (response) {
-
-                });
-            }
-
-        });
-        var currentAddressvalidation = $("#frmCurrentAddress").validate({
-            rules: {
-                "StayTypeId": { required: true },
-                "StayAddress": { required: true },
-                "StayRelationId": { required: true },
-                "StayCityId": { required: true },
-                "StayStateId": { required: true },
-                "StayCountryId": { required: true },
-                "StayPinCode": { required: true }
-            },
-
-            messages: {
-                "StayTypeId": { required: "Please select stay type " },
-                "StayAddress": { required: "Please enter stay address " },
-                "StayRelationId": { required: "Please select stay relation " },
-                "StayCityId": { required: "Please select stay city" },
-                "StayStateId": { required: "Please select stay state " },
-                "StayCountryId": { required: "Please select stay country " },
-                "StayPinCode": { required: "Please stay pincode " }
-
-            },
-            submitHandler: function (form) {
-                let post_url = form.action;
-                let form_data = $(form).serialize();
-
-                $.post(post_url, form_data, function (response) {
-
-                });
-            }
-
-        });
-        var parentDetailvalidation = $("#frmParentDetail").validate({
-            rules: {
-                "FatherName": { required: true },
-                "FatherMobile1": { required: true, minlength: 10, maxlength: 10, number: true },
-                "FatherMobile2": { required: true, minlength: 10, maxlength: 10, number: true },
-                "FatherEmail": { required: true, email: true},
-                "FatherAddress": { required: true },
-
-                "MotherName": { required: true },
-                "MotherMobile1": { required: true ,minlength: 10, maxlength: 10, number: true , minlength: 10, maxlength: 10, number: true},
-                "MotherMobile2": { required: true ,minlength: 10, maxlength: 10, number: true , minlength: 10, maxlength: 10, number: true},
-                "MotherEmail": { required: true, email: true},
-                "MotherAddress": { required: true },
-
-                "LGName": { required: true },
-                "LGMobile1": { required: true ,minlength: 10, maxlength: 10, number: true , minlength: 10, maxlength: 10, number: true},
-                "LGMobile2": { required: true ,minlength: 10, maxlength: 10, number: true , minlength: 10, maxlength: 10, number: true},
-                "LGEmail": { required: true },
-                "LGAddress": { required: true },
-                "LGRelationId": { required: true }
-              
-            },
-
-            messages: {
-                "FatherName": { required: "This field is required"    },
-                "FatherMobile1": { required: "This field is required", minlength: "Please enter at least 10 numbers.", maxlength: "Please enter at least 10 numbers." },
-                "FatherMobile2": { required: "This field is required", minlength: "Please enter at least 10 numbers.", maxlength: "Please enter at least 10 numbers." },
-                "FatherEmail": { required: "This field is required"},
-                "FatherAddress": { required: "This field is required" },
-
-                "MotherName": { required: "This field is required" },
-                "MotherMobile1": { required: "This field is required" , minlength: "Please enter at least 10 numbers.", maxlength: "Please enter at least 10 numbers."},
-                "MotherMobile2": { required: "This field is required", minlength: "Please enter at least 10 numbers.", maxlength: "Please enter at least 10 numbers."},
-                "MotherEmail": { required: "This field is required" },
-                "MotherAddress": { required: "This field is required" },
-
-                "LGName": { required: "This field is required" },
-                "LGMobile1": { required: "This field is required" , minlength: "Please enter at least 10 numbers.", maxlength: "Please enter at least 10 numbers." },
-                "LGMobile2": { required: "This field is required", minlength: "Please enter at least 10 numbers.", maxlength: "Please enter at least 10 numbers."},
-                "LGEmail": { required: "This field is required" },
-                "LGAddress": { required: "This field is required" },
-                "LGRelationId": { required: "This field is required" }
-
-            },
-            submitHandler: function (form) {
-                let post_url = form.action;
-                let form_data = $(form).serialize();
-
-                $.post(post_url, form_data, function (response) {
-
-                });
-            }
-
-        });
-
-        var entranceExamvalidation = $("#frmEntranceExam").validate({
-            rules: {
-                "EntranceExamId": { required: true },
-                "EntranceExamYear": { required: true },
-                "EntranceExamRollno": { required: true },
-                "EntranceExamMarkObt": { required: true },
-                "EntranceExamAir": { required: true },
-                "EntranceExamCatefgoryRank": { required: true },
-                
-
-            },
-
-            messages: {
-                "EntranceExamId": { required: "This field is  required" },
-                "EntranceExamYear": { required: "This field is  required" },
-                "EntranceExamRollno": { required: "This field is  required" },
-                "EntranceExamMarkObt": { required: "This field is  required" },
-                "EntranceExamAir": { required: "This field is  required" },
-                "EntranceExamCatefgoryRank": { required: "This field is  required" },
-
-            },
-            submitHandler: function (form) {
-                let post_url = form.action;
-                let form_data = $(form).serialize();
-
-                $.post(post_url, form_data, function (response) {
-
-                });
-            }
-
-        });
-    });       
-</script>
+    </script>
 }
 
