@@ -61,7 +61,6 @@ namespace StudentManagement.Service.Dto
 
         public string FatherPinCode { get; set; }
 
-
         public string MotherName { get; set; }
         public string MotherMobile1 { get; set; }
         public string MotherMobile2 { get; set; }
@@ -87,5 +86,14 @@ namespace StudentManagement.Service.Dto
         public string LGPinCode { get; set; }
 
         public long LGRelationId { get; set; }
+
+
+        public bool IsEntrance { get; set; }
+        public long EntranceExamId { get; set; }
+        public int EntranceExamYear { get; set; }
+        public string EntranceExamRollno { get; set; }
+        public string EntranceExamMarkObt { get; set; }
+        public string EntranceExamAir { get; set; }
+        public string EntranceExamCatefgoryRank { get; set; }
     }
 }

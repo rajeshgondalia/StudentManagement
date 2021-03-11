@@ -41,6 +41,8 @@ namespace StudentManagement.Web.Areas.Student.Controllers
         private readonly IStayTypeService _staytypeService;
         private readonly IRelationService _relationService;
         private readonly IParentdetailService _parentService;
+        private readonly IEntranceExamService _entranceExamService;
+        private readonly IStudentQualificationSerivce _sqService;
          
 
         #endregion
@@ -65,7 +67,9 @@ namespace StudentManagement.Web.Areas.Student.Controllers
         IRelationService relationService,
         IParentdetailService parentService,
         UserManager<ApplicationUser> userManager,
-            IGenderService genderService
+            IGenderService genderService,
+            IEntranceExamService entranceExamService,
+            IStudentQualificationSerivce sqService
             )
         {
             _personalDetailService = personalDetailService;
@@ -88,6 +92,8 @@ namespace StudentManagement.Web.Areas.Student.Controllers
             _staytypeService = staytypeService;
             _relationService = relationService;
             _parentService = parentService;
+            _entranceExamService = entranceExamService;
+            _sqService = sqService;
         }
 
         #endregion
@@ -175,6 +181,18 @@ namespace StudentManagement.Web.Areas.Student.Controllers
             model.LGCountryId = parent.LGCountryId??0;
             model.LGPinCode = parent.LGPincode;
             model.LGRelationId = parent.RelationId??0 ;
+
+            //entrance exam details
+            var ee= _sqService.GetSingle(x => x.UserId == User.GetUserId());
+
+            model.IsEntrance = ee.IsEntrance;
+            model.EntranceExamAir = ee.EntranceExamAir;
+            model.EntranceExamRollno = ee.EntranceExamRollno;
+            model.EntranceExamYear = ee.EntranceExamYear??0;
+            model.EntranceExamId = ee.EntranceExamId;
+            model.EntranceExamMarkObt = ee.EntranceExamMarkObt;
+            model.EntranceExamCatefgoryRank = ee.EntranceExamCatefgoryRank;
+
 
 
             return View(model);
@@ -315,6 +333,35 @@ namespace StudentManagement.Web.Areas.Student.Controllers
             }
             return RedirectToAction("Index");
         }
+
+        [HttpPost]
+        public async Task<IActionResult> UpdateEntranceExamDetail(StudentProfileDto model)
+        {
+            if (model != null)
+            {
+
+                var pd = _sqService.GetSingle(x => x.UserId == User.GetUserId());
+                if (pd != null)
+                {
+                    pd.IsEntrance = model.IsEntrance;
+                    pd.EntranceExamAir = model.EntranceExamAir;
+                    pd.EntranceExamRollno = model.EntranceExamRollno;
+                    pd.EntranceExamYear = model.EntranceExamYear;
+                    pd.EntranceExamId = model.EntranceExamId;
+                    pd.EntranceExamMarkObt = model.EntranceExamMarkObt;
+                    pd.EntranceExamCatefgoryRank = model.EntranceExamCatefgoryRank;
+
+
+                    var updateResult = await _sqService.UpdateAsync(pd, Accessor, User.GetUserId());
+
+                }
+
+                return RedirectToAction("Index");
+
+            }
+            return RedirectToAction("Index");
+        }
+
         #endregion
         #region Common
 

@@ -128,6 +128,11 @@ namespace StudentManagement.Web
             services.AddScoped<IStayTypeService, StayTypeRepository>();
             services.AddScoped<IRelationService, RelationRepository>();
             services.AddScoped<IParentdetailService, ParentDetailRepository>();
+            services.AddScoped<IMarkingSchemeService, MarkingSchemeRepository>();
+            services.AddScoped<IDiplomaService, DiplomaRepository>();
+            services.AddScoped<IDegreeService, DegreeRepository>();
+            services.AddScoped<IEntranceExamService, EntranceExamRepository>();
+            services.AddScoped<IStudentQualificationSerivce, StudentQualificationRepository>();
 
 
 
