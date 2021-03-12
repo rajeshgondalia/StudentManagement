@@ -2,13 +2,14 @@
 using StudentManagementAdmin.Data.DbModel.BaseModel;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
 
 namespace StudentManagement.Data.Models
 {
- public   class HistoryDocuments:EntityWithAudit
+ public   class HistoryDocuments
     {
         [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public long Id { get; set; }
@@ -57,5 +58,13 @@ namespace StudentManagement.Data.Models
         public long? UserId { get; set; }
         [ForeignKey("UserId")]
         public virtual ApplicationUser ApplicationUser { get; set; }
+
+        public long? CreatedBy { get; set; }
+
+        [Column(TypeName = "datetime")]
+        public DateTime CreatedDate { get; set; }
+
+        [DefaultValue(true)]
+        public bool IsActive { get; set; }
     }
 }

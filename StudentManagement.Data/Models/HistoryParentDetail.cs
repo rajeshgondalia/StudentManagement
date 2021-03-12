@@ -2,13 +2,14 @@
 using StudentManagementAdmin.Data.DbModel.BaseModel;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
 
 namespace StudentManagement.Data.Models
 {
-   public class HistoryParentDetail:EntityWithAudit
+   public class HistoryParentDetail
     {
         [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public long Id { get; set; }
@@ -119,5 +120,13 @@ namespace StudentManagement.Data.Models
         public long? RelationId { get; set; }
         [ForeignKey("RelationId")]
         public virtual RelationMaster RelationMaster { get; set; }
+
+        public long? CreatedBy { get; set; }
+
+        [Column(TypeName = "datetime")]
+        public DateTime CreatedDate { get; set; }
+
+        [DefaultValue(true)]
+        public bool IsActive { get; set; }
     }
 }

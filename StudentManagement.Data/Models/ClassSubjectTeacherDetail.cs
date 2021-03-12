@@ -7,16 +7,19 @@ using System.Text;
 
 namespace StudentManagement.Data.Models
 {
- public   class StateMaster:EntityWithAudit
+    public class ClassSubjectTeacherDetail:EntityWithAudit
     {
         [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public long StateId { get; set; }
+        public long ClassSubjectTeacherId { get; set; }
 
-        [Column(TypeName = "nvarchar(100)")]
-        public string StateName { get; set; }
+        public long? ClassSubjectDetailId { get; set; }
+        [ForeignKey("ClassSubjectDetailId")]
+        public virtual ClassSubjectDetail ClassSubjectDetail { get; set; }
 
-        public long? CountryId { get; set; }
-        [ForeignKey("CountryId")]
-        public virtual CountryMaster CountryMaster { get; set; }
+        public long TeacherId { get; set; }
+
+
+
+
     }
 }

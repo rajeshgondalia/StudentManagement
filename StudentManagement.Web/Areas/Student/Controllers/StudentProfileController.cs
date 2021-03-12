@@ -139,14 +139,14 @@ namespace StudentManagement.Web.Areas.Student.Controllers
             model.PersonalEmail2 = pd.PersonalEmail2;
             model.GenderId = pd.GenderId;
             model.CategoryId = pd.CategoryId;
-            model.BloodGroupId = pd.BloodGroupdId;
+            model.BloodGroupId = pd.BloodGroupdId??0;
             model.ReligionId = pd.ReligionId;
             model.CountryId = pd.CountryId;
             model.StateId = pd.StateId;
             model.Dob = pd.Dob;
 
             //current address details
-            model.StayTypeId = pd.StayTypeId;
+            model.StayTypeId = pd.StayTypeId??0;
             model.StayAddress = pd.StayAddress;
             model.StayRelationId = pd.StayRelationId ?? 0;
             model.StayCityId = pd.StayCityId ?? 0;

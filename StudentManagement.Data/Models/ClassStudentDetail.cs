@@ -8,21 +8,21 @@ using System.Text;
 
 namespace StudentManagement.Data.Models
 {
-   public  class StudentRoleno:EntityWithAudit
+   public class ClassStudentDetail:EntityWithAudit
     {
 
         [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public long RoleId { get; set; }
+        public long ClassStudentId { get; set; }
 
 
-        [Column(TypeName = "bigint")]
-        public long RoleNo { get; set; }
+        public long ClassId { get; set; }
+        [ForeignKey("ClassId")]
+        public virtual ClassMaster ClassMaster { get; set; }
 
-        public long UserId { get; set; }
-        [ForeignKey("UserId")]
+
+        public long StudentId { get; set; }
+        [ForeignKey("StudentId")]
         public virtual ApplicationUser ApplicationUser { get; set; }
-
-
 
     }
 }

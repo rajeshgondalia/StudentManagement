@@ -9,7 +9,18 @@ using System.Text;
 
 namespace StudentManagement.Data.DBContexts
 {
-    public class UserRole : IdentityUserRole<long> { }
+    public class UserRole : IdentityUserRole<long> {
+
+
+        [NotMapped]
+        public string NormalizedName { get; set; }
+        [NotMapped]
+        public string ConcurrencyStamp { get; set; }
+
+        [NotMapped]
+        public string Discriminator { get; set; }
+
+    }
 
     public class UserClaim : IdentityUserClaim<long> { }
 
@@ -17,12 +28,23 @@ namespace StudentManagement.Data.DBContexts
 
     public class Role : IdentityRole<long>
     {
+        
         public Role()
         {
             DisplayRoleName = "";
         }
+      
         [NotMapped]
-        public string DisplayRoleName { get; set; }
+        public  string DisplayRoleName { get; set; }
+
+        [NotMapped]
+        public override  string NormalizedName { get; set; }
+
+
+        [NotMapped]
+        public override string ConcurrencyStamp { get; set; }
+
+
 
         public long? CreatedBy { get; set; }
 

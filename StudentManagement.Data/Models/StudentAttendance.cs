@@ -11,11 +11,7 @@ namespace StudentManagement.Data.Models
    public  class StudentAttendance:EntityWithAudit
     {
         [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public long AttendanceId { get; set; }
-
-        public long UserId { get; set; }
-        [ForeignKey("UserId")]
-        public virtual ApplicationUser ApplicationUser { get; set; }
+        public long AttendanceId { get; set; }      
 
         public long ClassId { get; set; }
         [ForeignKey("ClassId")]
@@ -33,8 +29,6 @@ namespace StudentManagement.Data.Models
         public DateTime AttendanceDate { get; set; }
 
 
-        [Column(TypeName = "bit")]
-        public bool IsPresent { get; set; }
 
         public long? AttendanceBy { get; set; }
         [ForeignKey("AttendanceBy")]

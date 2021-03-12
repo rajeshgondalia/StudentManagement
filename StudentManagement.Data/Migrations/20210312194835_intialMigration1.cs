@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace StudentManagement.Data.Migrations
 {
-    public partial class initial_migration : Migration
+    public partial class intialMigration1 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -14,11 +14,10 @@ namespace StudentManagement.Data.Migrations
                     AdmissiontypeId = table.Column<long>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     CreatedBy = table.Column<long>(nullable: true),
-                    CreatedDate = table.Column<DateTime>(nullable: false),
+                    CreatedDate = table.Column<DateTime>(type: "datetime", nullable: false),
                     ModifiedBy = table.Column<long>(nullable: true),
-                    ModifiedDate = table.Column<DateTime>(nullable: true),
+                    ModifiedDate = table.Column<DateTime>(type: "datetime", nullable: true),
                     IsActive = table.Column<bool>(nullable: false),
-                    IsDelete = table.Column<bool>(nullable: false),
                     Admissiontype = table.Column<string>(type: "nvarchar(200)", nullable: true)
                 },
                 constraints: table =>
@@ -32,10 +31,13 @@ namespace StudentManagement.Data.Migrations
                 {
                     Id = table.Column<long>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(maxLength: 256, nullable: true),
                     NormalizedName = table.Column<string>(maxLength: 256, nullable: true),
                     ConcurrencyStamp = table.Column<string>(nullable: true),
-                    Discriminator = table.Column<string>(nullable: false)
+                    Name = table.Column<string>(maxLength: 256, nullable: true),
+                    CreatedBy = table.Column<long>(nullable: true),
+                    CreatedDate = table.Column<DateTime>(nullable: true),
+                    ModifiedBy = table.Column<long>(nullable: true),
+                    ModifiedDate = table.Column<DateTime>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -87,11 +89,10 @@ namespace StudentManagement.Data.Migrations
                     BatchId = table.Column<long>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     CreatedBy = table.Column<long>(nullable: true),
-                    CreatedDate = table.Column<DateTime>(nullable: false),
+                    CreatedDate = table.Column<DateTime>(type: "datetime", nullable: false),
                     ModifiedBy = table.Column<long>(nullable: true),
-                    ModifiedDate = table.Column<DateTime>(nullable: true),
+                    ModifiedDate = table.Column<DateTime>(type: "datetime", nullable: true),
                     IsActive = table.Column<bool>(nullable: false),
-                    IsDelete = table.Column<bool>(nullable: false),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
@@ -106,11 +107,10 @@ namespace StudentManagement.Data.Migrations
                     BloodgroupId = table.Column<long>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     CreatedBy = table.Column<long>(nullable: true),
-                    CreatedDate = table.Column<DateTime>(nullable: false),
+                    CreatedDate = table.Column<DateTime>(type: "datetime", nullable: false),
                     ModifiedBy = table.Column<long>(nullable: true),
-                    ModifiedDate = table.Column<DateTime>(nullable: true),
+                    ModifiedDate = table.Column<DateTime>(type: "datetime", nullable: true),
                     IsActive = table.Column<bool>(nullable: false),
-                    IsDelete = table.Column<bool>(nullable: false),
                     Bloodgroup = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
@@ -125,11 +125,10 @@ namespace StudentManagement.Data.Migrations
                     CampusId = table.Column<long>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     CreatedBy = table.Column<long>(nullable: true),
-                    CreatedDate = table.Column<DateTime>(nullable: false),
+                    CreatedDate = table.Column<DateTime>(type: "datetime", nullable: false),
                     ModifiedBy = table.Column<long>(nullable: true),
-                    ModifiedDate = table.Column<DateTime>(nullable: true),
+                    ModifiedDate = table.Column<DateTime>(type: "datetime", nullable: true),
                     IsActive = table.Column<bool>(nullable: false),
-                    IsDelete = table.Column<bool>(nullable: false),
                     Name = table.Column<string>(type: "nvarchar(100)", nullable: true)
                 },
                 constraints: table =>
@@ -144,11 +143,10 @@ namespace StudentManagement.Data.Migrations
                     CategoryId = table.Column<long>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     CreatedBy = table.Column<long>(nullable: true),
-                    CreatedDate = table.Column<DateTime>(nullable: false),
+                    CreatedDate = table.Column<DateTime>(type: "datetime", nullable: false),
                     ModifiedBy = table.Column<long>(nullable: true),
-                    ModifiedDate = table.Column<DateTime>(nullable: true),
+                    ModifiedDate = table.Column<DateTime>(type: "datetime", nullable: true),
                     IsActive = table.Column<bool>(nullable: false),
-                    IsDelete = table.Column<bool>(nullable: false),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
@@ -163,11 +161,10 @@ namespace StudentManagement.Data.Migrations
                     CityId = table.Column<long>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     CreatedBy = table.Column<long>(nullable: true),
-                    CreatedDate = table.Column<DateTime>(nullable: false),
+                    CreatedDate = table.Column<DateTime>(type: "datetime", nullable: false),
                     ModifiedBy = table.Column<long>(nullable: true),
-                    ModifiedDate = table.Column<DateTime>(nullable: true),
+                    ModifiedDate = table.Column<DateTime>(type: "datetime", nullable: true),
                     IsActive = table.Column<bool>(nullable: false),
-                    IsDelete = table.Column<bool>(nullable: false),
                     CityName = table.Column<string>(type: "nvarchar(100)", nullable: true)
                 },
                 constraints: table =>
@@ -182,11 +179,10 @@ namespace StudentManagement.Data.Migrations
                     ClassId = table.Column<long>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     CreatedBy = table.Column<long>(nullable: true),
-                    CreatedDate = table.Column<DateTime>(nullable: false),
+                    CreatedDate = table.Column<DateTime>(type: "datetime", nullable: false),
                     ModifiedBy = table.Column<long>(nullable: true),
-                    ModifiedDate = table.Column<DateTime>(nullable: true),
+                    ModifiedDate = table.Column<DateTime>(type: "datetime", nullable: true),
                     IsActive = table.Column<bool>(nullable: false),
-                    IsDelete = table.Column<bool>(nullable: false),
                     ClassName = table.Column<string>(type: "nvarchar(50)", nullable: true)
                 },
                 constraints: table =>
@@ -201,11 +197,10 @@ namespace StudentManagement.Data.Migrations
                     CountryId = table.Column<long>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     CreatedBy = table.Column<long>(nullable: true),
-                    CreatedDate = table.Column<DateTime>(nullable: false),
+                    CreatedDate = table.Column<DateTime>(type: "datetime", nullable: false),
                     ModifiedBy = table.Column<long>(nullable: true),
-                    ModifiedDate = table.Column<DateTime>(nullable: true),
+                    ModifiedDate = table.Column<DateTime>(type: "datetime", nullable: true),
                     IsActive = table.Column<bool>(nullable: false),
-                    IsDelete = table.Column<bool>(nullable: false),
                     CountryName = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
@@ -220,11 +215,10 @@ namespace StudentManagement.Data.Migrations
                     CourseId = table.Column<long>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     CreatedBy = table.Column<long>(nullable: true),
-                    CreatedDate = table.Column<DateTime>(nullable: false),
+                    CreatedDate = table.Column<DateTime>(type: "datetime", nullable: false),
                     ModifiedBy = table.Column<long>(nullable: true),
-                    ModifiedDate = table.Column<DateTime>(nullable: true),
+                    ModifiedDate = table.Column<DateTime>(type: "datetime", nullable: true),
                     IsActive = table.Column<bool>(nullable: false),
-                    IsDelete = table.Column<bool>(nullable: false),
                     CourseName = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
@@ -239,11 +233,10 @@ namespace StudentManagement.Data.Migrations
                     DegreeId = table.Column<long>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     CreatedBy = table.Column<long>(nullable: true),
-                    CreatedDate = table.Column<DateTime>(nullable: false),
+                    CreatedDate = table.Column<DateTime>(type: "datetime", nullable: false),
                     ModifiedBy = table.Column<long>(nullable: true),
-                    ModifiedDate = table.Column<DateTime>(nullable: true),
+                    ModifiedDate = table.Column<DateTime>(type: "datetime", nullable: true),
                     IsActive = table.Column<bool>(nullable: false),
-                    IsDelete = table.Column<bool>(nullable: false),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
@@ -258,11 +251,10 @@ namespace StudentManagement.Data.Migrations
                     DiplomaId = table.Column<long>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     CreatedBy = table.Column<long>(nullable: true),
-                    CreatedDate = table.Column<DateTime>(nullable: false),
+                    CreatedDate = table.Column<DateTime>(type: "datetime", nullable: false),
                     ModifiedBy = table.Column<long>(nullable: true),
-                    ModifiedDate = table.Column<DateTime>(nullable: true),
+                    ModifiedDate = table.Column<DateTime>(type: "datetime", nullable: true),
                     IsActive = table.Column<bool>(nullable: false),
-                    IsDelete = table.Column<bool>(nullable: false),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
@@ -277,11 +269,10 @@ namespace StudentManagement.Data.Migrations
                     EntranceExamId = table.Column<long>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     CreatedBy = table.Column<long>(nullable: true),
-                    CreatedDate = table.Column<DateTime>(nullable: false),
+                    CreatedDate = table.Column<DateTime>(type: "datetime", nullable: false),
                     ModifiedBy = table.Column<long>(nullable: true),
-                    ModifiedDate = table.Column<DateTime>(nullable: true),
+                    ModifiedDate = table.Column<DateTime>(type: "datetime", nullable: true),
                     IsActive = table.Column<bool>(nullable: false),
-                    IsDelete = table.Column<bool>(nullable: false),
                     EntranceExamName = table.Column<string>(type: "nvarchar(200)", nullable: true)
                 },
                 constraints: table =>
@@ -315,16 +306,57 @@ namespace StudentManagement.Data.Migrations
                     GenId = table.Column<long>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     CreatedBy = table.Column<long>(nullable: true),
-                    CreatedDate = table.Column<DateTime>(nullable: false),
+                    CreatedDate = table.Column<DateTime>(type: "datetime", nullable: false),
                     ModifiedBy = table.Column<long>(nullable: true),
-                    ModifiedDate = table.Column<DateTime>(nullable: true),
+                    ModifiedDate = table.Column<DateTime>(type: "datetime", nullable: true),
                     IsActive = table.Column<bool>(nullable: false),
-                    IsDelete = table.Column<bool>(nullable: false),
                     Name = table.Column<string>(type: "nvarchar(200)", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_GenderMaster", x => x.GenId);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "HistoryStudentAttendance",
+                columns: table => new
+                {
+                    Id = table.Column<long>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    ModifiedBy = table.Column<long>(nullable: true),
+                    ModifiedDate = table.Column<DateTime>(type: "datetime", nullable: true),
+                    CreatedBy = table.Column<long>(nullable: true),
+                    CreatedDate = table.Column<DateTime>(type: "datetime", nullable: false),
+                    IsActive = table.Column<bool>(nullable: false),
+                    AttendanceId = table.Column<long>(nullable: false),
+                    ClassId = table.Column<long>(nullable: false),
+                    SubjectId = table.Column<long>(nullable: false),
+                    LectureNoId = table.Column<long>(nullable: false),
+                    AttendanceDate = table.Column<DateTime>(type: "datetime", nullable: false),
+                    AttendanceBy = table.Column<long>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_HistoryStudentAttendance", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "HistoryStudentAttendanceDetail",
+                columns: table => new
+                {
+                    Id = table.Column<long>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    CreatedBy = table.Column<long>(nullable: true),
+                    CreatedDate = table.Column<DateTime>(type: "datetime", nullable: false),
+                    IsActive = table.Column<bool>(nullable: false),
+                    AttendanceDetail = table.Column<long>(nullable: false),
+                    AttendanceId = table.Column<long>(nullable: false),
+                    StudentId = table.Column<long>(nullable: false),
+                    IsPresent = table.Column<bool>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_HistoryStudentAttendanceDetail", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -334,11 +366,10 @@ namespace StudentManagement.Data.Migrations
                     LectureId = table.Column<long>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     CreatedBy = table.Column<long>(nullable: true),
-                    CreatedDate = table.Column<DateTime>(nullable: false),
+                    CreatedDate = table.Column<DateTime>(type: "datetime", nullable: false),
                     ModifiedBy = table.Column<long>(nullable: true),
-                    ModifiedDate = table.Column<DateTime>(nullable: true),
+                    ModifiedDate = table.Column<DateTime>(type: "datetime", nullable: true),
                     IsActive = table.Column<bool>(nullable: false),
-                    IsDelete = table.Column<bool>(nullable: false),
                     LactureName = table.Column<string>(type: "nvarchar(50)", nullable: true)
                 },
                 constraints: table =>
@@ -353,11 +384,10 @@ namespace StudentManagement.Data.Migrations
                     MarkingShchemId = table.Column<long>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     CreatedBy = table.Column<long>(nullable: true),
-                    CreatedDate = table.Column<DateTime>(nullable: false),
+                    CreatedDate = table.Column<DateTime>(type: "datetime", nullable: false),
                     ModifiedBy = table.Column<long>(nullable: true),
-                    ModifiedDate = table.Column<DateTime>(nullable: true),
+                    ModifiedDate = table.Column<DateTime>(type: "datetime", nullable: true),
                     IsActive = table.Column<bool>(nullable: false),
-                    IsDelete = table.Column<bool>(nullable: false),
                     MarkingShchem = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
@@ -372,11 +402,10 @@ namespace StudentManagement.Data.Migrations
                     PGDegreeId = table.Column<long>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     CreatedBy = table.Column<long>(nullable: true),
-                    CreatedDate = table.Column<DateTime>(nullable: false),
+                    CreatedDate = table.Column<DateTime>(type: "datetime", nullable: false),
                     ModifiedBy = table.Column<long>(nullable: true),
-                    ModifiedDate = table.Column<DateTime>(nullable: true),
+                    ModifiedDate = table.Column<DateTime>(type: "datetime", nullable: true),
                     IsActive = table.Column<bool>(nullable: false),
-                    IsDelete = table.Column<bool>(nullable: false),
                     PGDegreeName = table.Column<string>(type: "nvarchar(500)", nullable: true)
                 },
                 constraints: table =>
@@ -391,11 +420,10 @@ namespace StudentManagement.Data.Migrations
                     RelationId = table.Column<long>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     CreatedBy = table.Column<long>(nullable: true),
-                    CreatedDate = table.Column<DateTime>(nullable: false),
+                    CreatedDate = table.Column<DateTime>(type: "datetime", nullable: false),
                     ModifiedBy = table.Column<long>(nullable: true),
-                    ModifiedDate = table.Column<DateTime>(nullable: true),
+                    ModifiedDate = table.Column<DateTime>(type: "datetime", nullable: true),
                     IsActive = table.Column<bool>(nullable: false),
-                    IsDelete = table.Column<bool>(nullable: false),
                     Name = table.Column<string>(type: "nvarchar(200)", nullable: true)
                 },
                 constraints: table =>
@@ -410,11 +438,10 @@ namespace StudentManagement.Data.Migrations
                     ReligionId = table.Column<long>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     CreatedBy = table.Column<long>(nullable: true),
-                    CreatedDate = table.Column<DateTime>(nullable: false),
+                    CreatedDate = table.Column<DateTime>(type: "datetime", nullable: false),
                     ModifiedBy = table.Column<long>(nullable: true),
-                    ModifiedDate = table.Column<DateTime>(nullable: true),
+                    ModifiedDate = table.Column<DateTime>(type: "datetime", nullable: true),
                     IsActive = table.Column<bool>(nullable: false),
-                    IsDelete = table.Column<bool>(nullable: false),
                     Religion = table.Column<string>(type: "nvarchar(200)", nullable: true)
                 },
                 constraints: table =>
@@ -429,11 +456,10 @@ namespace StudentManagement.Data.Migrations
                     StaytypeId = table.Column<long>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     CreatedBy = table.Column<long>(nullable: true),
-                    CreatedDate = table.Column<DateTime>(nullable: false),
+                    CreatedDate = table.Column<DateTime>(type: "datetime", nullable: false),
                     ModifiedBy = table.Column<long>(nullable: true),
-                    ModifiedDate = table.Column<DateTime>(nullable: true),
+                    ModifiedDate = table.Column<DateTime>(type: "datetime", nullable: true),
                     IsActive = table.Column<bool>(nullable: false),
-                    IsDelete = table.Column<bool>(nullable: false),
                     Staytype = table.Column<string>(type: "nvarchar(200)", nullable: true)
                 },
                 constraints: table =>
@@ -448,11 +474,10 @@ namespace StudentManagement.Data.Migrations
                     SubjectId = table.Column<long>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     CreatedBy = table.Column<long>(nullable: true),
-                    CreatedDate = table.Column<DateTime>(nullable: false),
+                    CreatedDate = table.Column<DateTime>(type: "datetime", nullable: false),
                     ModifiedBy = table.Column<long>(nullable: true),
-                    ModifiedDate = table.Column<DateTime>(nullable: true),
+                    ModifiedDate = table.Column<DateTime>(type: "datetime", nullable: true),
                     IsActive = table.Column<bool>(nullable: false),
-                    IsDelete = table.Column<bool>(nullable: false),
                     SubjectName = table.Column<string>(type: "nvarchar(50)", nullable: true)
                 },
                 constraints: table =>
@@ -467,11 +492,10 @@ namespace StudentManagement.Data.Migrations
                     YearSemesterId = table.Column<long>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     CreatedBy = table.Column<long>(nullable: true),
-                    CreatedDate = table.Column<DateTime>(nullable: false),
+                    CreatedDate = table.Column<DateTime>(type: "datetime", nullable: false),
                     ModifiedBy = table.Column<long>(nullable: true),
-                    ModifiedDate = table.Column<DateTime>(nullable: true),
+                    ModifiedDate = table.Column<DateTime>(type: "datetime", nullable: true),
                     IsActive = table.Column<bool>(nullable: false),
-                    IsDelete = table.Column<bool>(nullable: false),
                     YearSemester = table.Column<string>(type: "nvarchar(50)", nullable: true)
                 },
                 constraints: table =>
@@ -507,9 +531,8 @@ namespace StudentManagement.Data.Migrations
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     UserId = table.Column<long>(nullable: false),
-                    ClaimType = table.Column<string>(maxLength: 50, nullable: true),
-                    ClaimValue = table.Column<string>(maxLength: 200, nullable: true),
-                    Discriminator = table.Column<string>(nullable: false)
+                    ClaimType = table.Column<string>(nullable: true),
+                    ClaimValue = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -593,11 +616,10 @@ namespace StudentManagement.Data.Migrations
                     DocumentId = table.Column<long>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     CreatedBy = table.Column<long>(nullable: true),
-                    CreatedDate = table.Column<DateTime>(nullable: false),
+                    CreatedDate = table.Column<DateTime>(type: "datetime", nullable: false),
                     ModifiedBy = table.Column<long>(nullable: true),
-                    ModifiedDate = table.Column<DateTime>(nullable: true),
+                    ModifiedDate = table.Column<DateTime>(type: "datetime", nullable: true),
                     IsActive = table.Column<bool>(nullable: false),
-                    IsDelete = table.Column<bool>(nullable: false),
                     TenMarksheetPath = table.Column<string>(type: "nvarchar(200)", nullable: true),
                     TwelveMarksheetPath = table.Column<string>(type: "nvarchar(200)", nullable: true),
                     DiplomaMarksheetPath = table.Column<string>(type: "nvarchar(200)", nullable: true),
@@ -624,43 +646,16 @@ namespace StudentManagement.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "StudentRoleno",
-                columns: table => new
-                {
-                    RoleId = table.Column<long>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    CreatedBy = table.Column<long>(nullable: true),
-                    CreatedDate = table.Column<DateTime>(nullable: false),
-                    ModifiedBy = table.Column<long>(nullable: true),
-                    ModifiedDate = table.Column<DateTime>(nullable: true),
-                    IsActive = table.Column<bool>(nullable: false),
-                    IsDelete = table.Column<bool>(nullable: false),
-                    RoleNo = table.Column<long>(type: "bigint", nullable: false),
-                    UserId = table.Column<long>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_StudentRoleno", x => x.RoleId);
-                    table.ForeignKey(
-                        name: "FK_StudentRoleno_AspNetUsers_UserId",
-                        column: x => x.UserId,
-                        principalTable: "AspNetUsers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "CollegeMaster",
                 columns: table => new
                 {
                     CollegeId = table.Column<long>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     CreatedBy = table.Column<long>(nullable: true),
-                    CreatedDate = table.Column<DateTime>(nullable: false),
+                    CreatedDate = table.Column<DateTime>(type: "datetime", nullable: false),
                     ModifiedBy = table.Column<long>(nullable: true),
-                    ModifiedDate = table.Column<DateTime>(nullable: true),
+                    ModifiedDate = table.Column<DateTime>(type: "datetime", nullable: true),
                     IsActive = table.Column<bool>(nullable: false),
-                    IsDelete = table.Column<bool>(nullable: false),
                     CampusId = table.Column<long>(nullable: false),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
@@ -676,19 +671,49 @@ namespace StudentManagement.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "ClassStudentDetail",
+                columns: table => new
+                {
+                    ClassStudentId = table.Column<long>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    CreatedBy = table.Column<long>(nullable: true),
+                    CreatedDate = table.Column<DateTime>(type: "datetime", nullable: false),
+                    ModifiedBy = table.Column<long>(nullable: true),
+                    ModifiedDate = table.Column<DateTime>(type: "datetime", nullable: true),
+                    IsActive = table.Column<bool>(nullable: false),
+                    ClassId = table.Column<long>(nullable: false),
+                    StudentId = table.Column<long>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ClassStudentDetail", x => x.ClassStudentId);
+                    table.ForeignKey(
+                        name: "FK_ClassStudentDetail_ClassMaster_ClassId",
+                        column: x => x.ClassId,
+                        principalTable: "ClassMaster",
+                        principalColumn: "ClassId",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_ClassStudentDetail_AspNetUsers_StudentId",
+                        column: x => x.StudentId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "StateMaster",
                 columns: table => new
                 {
                     StateId = table.Column<long>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     CreatedBy = table.Column<long>(nullable: true),
-                    CreatedDate = table.Column<DateTime>(nullable: false),
+                    CreatedDate = table.Column<DateTime>(type: "datetime", nullable: false),
                     ModifiedBy = table.Column<long>(nullable: true),
-                    ModifiedDate = table.Column<DateTime>(nullable: true),
+                    ModifiedDate = table.Column<DateTime>(type: "datetime", nullable: true),
                     IsActive = table.Column<bool>(nullable: false),
-                    IsDelete = table.Column<bool>(nullable: false),
                     StateName = table.Column<string>(type: "nvarchar(100)", nullable: true),
-                    CountryId = table.Column<long>(nullable: false)
+                    CountryId = table.Column<long>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -698,7 +723,7 @@ namespace StudentManagement.Data.Migrations
                         column: x => x.CountryId,
                         principalTable: "CountryMaster",
                         principalColumn: "CountryId",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -708,11 +733,10 @@ namespace StudentManagement.Data.Migrations
                     BranchId = table.Column<long>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     CreatedBy = table.Column<long>(nullable: true),
-                    CreatedDate = table.Column<DateTime>(nullable: false),
+                    CreatedDate = table.Column<DateTime>(type: "datetime", nullable: false),
                     ModifiedBy = table.Column<long>(nullable: true),
-                    ModifiedDate = table.Column<DateTime>(nullable: true),
+                    ModifiedDate = table.Column<DateTime>(type: "datetime", nullable: true),
                     IsActive = table.Column<bool>(nullable: false),
-                    IsDelete = table.Column<bool>(nullable: false),
                     CourseId = table.Column<long>(nullable: false),
                     Name = table.Column<string>(type: "nvarchar(100)", nullable: true)
                 },
@@ -734,11 +758,10 @@ namespace StudentManagement.Data.Migrations
                     StudentQualicationId = table.Column<long>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     CreatedBy = table.Column<long>(nullable: true),
-                    CreatedDate = table.Column<DateTime>(nullable: false),
+                    CreatedDate = table.Column<DateTime>(type: "datetime", nullable: false),
                     ModifiedBy = table.Column<long>(nullable: true),
-                    ModifiedDate = table.Column<DateTime>(nullable: true),
+                    ModifiedDate = table.Column<DateTime>(type: "datetime", nullable: true),
                     IsActive = table.Column<bool>(nullable: false),
-                    IsDelete = table.Column<bool>(nullable: false),
                     UserId = table.Column<long>(nullable: false),
                     DegreeId = table.Column<long>(nullable: true),
                     DiplomaId = table.Column<long>(nullable: true),
@@ -843,23 +866,51 @@ namespace StudentManagement.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "ClassSubjectDetail",
+                columns: table => new
+                {
+                    ClassSubjectDetailId = table.Column<long>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    CreatedBy = table.Column<long>(nullable: true),
+                    CreatedDate = table.Column<DateTime>(type: "datetime", nullable: false),
+                    ModifiedBy = table.Column<long>(nullable: true),
+                    ModifiedDate = table.Column<DateTime>(type: "datetime", nullable: true),
+                    IsActive = table.Column<bool>(nullable: false),
+                    ClassId = table.Column<long>(nullable: false),
+                    SubjectId = table.Column<long>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ClassSubjectDetail", x => x.ClassSubjectDetailId);
+                    table.ForeignKey(
+                        name: "FK_ClassSubjectDetail_ClassMaster_ClassId",
+                        column: x => x.ClassId,
+                        principalTable: "ClassMaster",
+                        principalColumn: "ClassId",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_ClassSubjectDetail_SubjectMaster_SubjectId",
+                        column: x => x.SubjectId,
+                        principalTable: "SubjectMaster",
+                        principalColumn: "SubjectId",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "StudentAttendance",
                 columns: table => new
                 {
                     AttendanceId = table.Column<long>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     CreatedBy = table.Column<long>(nullable: true),
-                    CreatedDate = table.Column<DateTime>(nullable: false),
+                    CreatedDate = table.Column<DateTime>(type: "datetime", nullable: false),
                     ModifiedBy = table.Column<long>(nullable: true),
-                    ModifiedDate = table.Column<DateTime>(nullable: true),
+                    ModifiedDate = table.Column<DateTime>(type: "datetime", nullable: true),
                     IsActive = table.Column<bool>(nullable: false),
-                    IsDelete = table.Column<bool>(nullable: false),
-                    UserId = table.Column<long>(nullable: false),
                     ClassId = table.Column<long>(nullable: false),
                     SubjectId = table.Column<long>(nullable: false),
                     LectureId = table.Column<long>(nullable: false),
                     AttendanceDate = table.Column<DateTime>(type: "datetime", nullable: false),
-                    IsPresent = table.Column<bool>(type: "bit", nullable: false),
                     AttendanceBy = table.Column<long>(nullable: true)
                 },
                 constraints: table =>
@@ -889,12 +940,6 @@ namespace StudentManagement.Data.Migrations
                         principalTable: "SubjectMaster",
                         principalColumn: "SubjectId",
                         onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_StudentAttendance_AspNetUsers_UserId",
-                        column: x => x.UserId,
-                        principalTable: "AspNetUsers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -903,12 +948,6 @@ namespace StudentManagement.Data.Migrations
                 {
                     Id = table.Column<long>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    CreatedBy = table.Column<long>(nullable: true),
-                    CreatedDate = table.Column<DateTime>(nullable: false),
-                    ModifiedBy = table.Column<long>(nullable: true),
-                    ModifiedDate = table.Column<DateTime>(nullable: true),
-                    IsActive = table.Column<bool>(nullable: false),
-                    IsDelete = table.Column<bool>(nullable: false),
                     DocumentId = table.Column<long>(nullable: true),
                     TenMarksheetPath = table.Column<string>(type: "nvarchar(200)", nullable: true),
                     TwelveMarksheetPath = table.Column<string>(type: "nvarchar(200)", nullable: true),
@@ -922,7 +961,10 @@ namespace StudentManagement.Data.Migrations
                     BirthCertificate = table.Column<string>(type: "nvarchar(200)", nullable: true),
                     Passport = table.Column<string>(type: "nvarchar(200)", nullable: true),
                     Adharcard = table.Column<string>(type: "nvarchar(200)", nullable: true),
-                    UserId = table.Column<long>(nullable: true)
+                    UserId = table.Column<long>(nullable: true),
+                    CreatedBy = table.Column<long>(nullable: true),
+                    CreatedDate = table.Column<DateTime>(type: "datetime", nullable: false),
+                    IsActive = table.Column<bool>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -942,17 +984,52 @@ namespace StudentManagement.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "HistoryClassStudentDetail",
+                columns: table => new
+                {
+                    Id = table.Column<long>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    ClassStudentId = table.Column<long>(nullable: false),
+                    ClassId = table.Column<long>(nullable: true),
+                    StudentId = table.Column<long>(nullable: true),
+                    CreatedBy = table.Column<long>(nullable: true),
+                    CreatedDate = table.Column<DateTime>(type: "datetime", nullable: false),
+                    IsActive = table.Column<bool>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_HistoryClassStudentDetail", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_HistoryClassStudentDetail_ClassMaster_ClassId",
+                        column: x => x.ClassId,
+                        principalTable: "ClassMaster",
+                        principalColumn: "ClassId",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_HistoryClassStudentDetail_ClassStudentDetail_ClassStudentId",
+                        column: x => x.ClassStudentId,
+                        principalTable: "ClassStudentDetail",
+                        principalColumn: "ClassStudentId",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_HistoryClassStudentDetail_AspNetUsers_StudentId",
+                        column: x => x.StudentId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "ParentDetail",
                 columns: table => new
                 {
                     ParentDetailId = table.Column<long>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     CreatedBy = table.Column<long>(nullable: true),
-                    CreatedDate = table.Column<DateTime>(nullable: false),
+                    CreatedDate = table.Column<DateTime>(type: "datetime", nullable: false),
                     ModifiedBy = table.Column<long>(nullable: true),
-                    ModifiedDate = table.Column<DateTime>(nullable: true),
+                    ModifiedDate = table.Column<DateTime>(type: "datetime", nullable: true),
                     IsActive = table.Column<bool>(nullable: false),
-                    IsDelete = table.Column<bool>(nullable: false),
                     UserId = table.Column<long>(nullable: false),
                     FatherName = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     FatherMobile1 = table.Column<string>(type: "nvarchar(max)", nullable: true),
@@ -1061,11 +1138,10 @@ namespace StudentManagement.Data.Migrations
                     PersonalDetailId = table.Column<long>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     CreatedBy = table.Column<long>(nullable: true),
-                    CreatedDate = table.Column<DateTime>(nullable: false),
+                    CreatedDate = table.Column<DateTime>(type: "datetime", nullable: false),
                     ModifiedBy = table.Column<long>(nullable: true),
-                    ModifiedDate = table.Column<DateTime>(nullable: true),
+                    ModifiedDate = table.Column<DateTime>(type: "datetime", nullable: true),
                     IsActive = table.Column<bool>(nullable: false),
-                    IsDelete = table.Column<bool>(nullable: false),
                     UserId = table.Column<long>(nullable: false),
                     Mobile1 = table.Column<string>(type: "nvarchar(20)", nullable: true),
                     Mobile2 = table.Column<string>(type: "nvarchar(20)", nullable: true),
@@ -1074,16 +1150,18 @@ namespace StudentManagement.Data.Migrations
                     GenderId = table.Column<long>(nullable: false),
                     Dob = table.Column<DateTime>(type: "datetime2(7)", nullable: false),
                     CategoryId = table.Column<long>(nullable: false),
-                    BloodGroupdId = table.Column<long>(nullable: false),
+                    BloodGroupdId = table.Column<long>(nullable: true),
                     ReligionId = table.Column<long>(nullable: false),
                     CityId = table.Column<long>(nullable: false),
                     CountryId = table.Column<long>(nullable: false),
-                    StateId = table.Column<long>(nullable: true),
-                    StatePincode = table.Column<string>(type: "varchar(10)", nullable: true),
-                    CountryPincode = table.Column<string>(type: "varchar(10)", nullable: true),
-                    StayTypeId = table.Column<long>(nullable: false),
+                    StateId = table.Column<long>(nullable: false),
+                    StayTypeId = table.Column<long>(nullable: true),
                     StayAddress = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    StayRelationId = table.Column<long>(nullable: false)
+                    StayRelationId = table.Column<long>(nullable: true),
+                    StayCountryId = table.Column<long>(nullable: true),
+                    StayStateId = table.Column<long>(nullable: true),
+                    StayCityId = table.Column<long>(nullable: true),
+                    StayPinCode = table.Column<string>(type: "varchar(10)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -1093,7 +1171,7 @@ namespace StudentManagement.Data.Migrations
                         column: x => x.BloodGroupdId,
                         principalTable: "BloodgroupMaster",
                         principalColumn: "BloodgroupId",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_PersonalDetail_CategoryMaster_CategoryId",
                         column: x => x.CategoryId,
@@ -1129,19 +1207,37 @@ namespace StudentManagement.Data.Migrations
                         column: x => x.StateId,
                         principalTable: "StateMaster",
                         principalColumn: "StateId",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_PersonalDetail_CityMaster_StayCityId",
+                        column: x => x.StayCityId,
+                        principalTable: "CityMaster",
+                        principalColumn: "CityId",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_PersonalDetail_CountryMaster_StayCountryId",
+                        column: x => x.StayCountryId,
+                        principalTable: "CountryMaster",
+                        principalColumn: "CountryId",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_PersonalDetail_RelationMaster_StayRelationId",
                         column: x => x.StayRelationId,
                         principalTable: "RelationMaster",
                         principalColumn: "RelationId",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_PersonalDetail_StateMaster_StayStateId",
+                        column: x => x.StayStateId,
+                        principalTable: "StateMaster",
+                        principalColumn: "StateId",
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_PersonalDetail_StaytypeMaster_StayTypeId",
                         column: x => x.StayTypeId,
                         principalTable: "StaytypeMaster",
                         principalColumn: "StaytypeId",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_PersonalDetail_AspNetUsers_UserId",
                         column: x => x.UserId,
@@ -1157,11 +1253,10 @@ namespace StudentManagement.Data.Migrations
                     CollegeDetailId = table.Column<long>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     CreatedBy = table.Column<long>(nullable: true),
-                    CreatedDate = table.Column<DateTime>(nullable: false),
+                    CreatedDate = table.Column<DateTime>(type: "datetime", nullable: false),
                     ModifiedBy = table.Column<long>(nullable: true),
-                    ModifiedDate = table.Column<DateTime>(nullable: true),
+                    ModifiedDate = table.Column<DateTime>(type: "datetime", nullable: true),
                     IsActive = table.Column<bool>(nullable: false),
-                    IsDelete = table.Column<bool>(nullable: false),
                     UserId = table.Column<long>(nullable: false),
                     CampusId = table.Column<long>(nullable: false),
                     CollegeId = table.Column<long>(nullable: false),
@@ -1236,12 +1331,6 @@ namespace StudentManagement.Data.Migrations
                 {
                     Id = table.Column<long>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    CreatedBy = table.Column<long>(nullable: true),
-                    CreatedDate = table.Column<DateTime>(nullable: false),
-                    ModifiedBy = table.Column<long>(nullable: true),
-                    ModifiedDate = table.Column<DateTime>(nullable: true),
-                    IsActive = table.Column<bool>(nullable: false),
-                    IsDelete = table.Column<bool>(nullable: false),
                     StudentQualicationId = table.Column<long>(nullable: true),
                     UserId = table.Column<long>(nullable: true),
                     DegreeId = table.Column<long>(nullable: true),
@@ -1279,7 +1368,10 @@ namespace StudentManagement.Data.Migrations
                     EntranceExamRollno = table.Column<string>(type: "nvarchar(50)", nullable: true),
                     EntranceExamMarkObt = table.Column<string>(type: "nvarchar(50)", nullable: true),
                     EntranceExamAir = table.Column<string>(type: "nvarchar(50)", nullable: true),
-                    EntranceExamCatefgoryRank = table.Column<string>(type: "nvarchar(50)", nullable: true)
+                    EntranceExamCatefgoryRank = table.Column<string>(type: "nvarchar(50)", nullable: true),
+                    CreatedBy = table.Column<long>(nullable: true),
+                    CreatedDate = table.Column<DateTime>(type: "datetime", nullable: false),
+                    IsActive = table.Column<bool>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -1353,17 +1445,36 @@ namespace StudentManagement.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "ClassSubjectTeacherDetail",
+                columns: table => new
+                {
+                    ClassSubjectTeacherId = table.Column<long>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    CreatedBy = table.Column<long>(nullable: true),
+                    CreatedDate = table.Column<DateTime>(type: "datetime", nullable: false),
+                    ModifiedBy = table.Column<long>(nullable: true),
+                    ModifiedDate = table.Column<DateTime>(type: "datetime", nullable: true),
+                    IsActive = table.Column<bool>(nullable: false),
+                    ClassSubjectDetailId = table.Column<long>(nullable: true),
+                    TeacherId = table.Column<long>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ClassSubjectTeacherDetail", x => x.ClassSubjectTeacherId);
+                    table.ForeignKey(
+                        name: "FK_ClassSubjectTeacherDetail_ClassSubjectDetail_ClassSubjectDetailId",
+                        column: x => x.ClassSubjectDetailId,
+                        principalTable: "ClassSubjectDetail",
+                        principalColumn: "ClassSubjectDetailId",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "HistoryParentDetail",
                 columns: table => new
                 {
                     Id = table.Column<long>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    CreatedBy = table.Column<long>(nullable: true),
-                    CreatedDate = table.Column<DateTime>(nullable: false),
-                    ModifiedBy = table.Column<long>(nullable: true),
-                    ModifiedDate = table.Column<DateTime>(nullable: true),
-                    IsActive = table.Column<bool>(nullable: false),
-                    IsDelete = table.Column<bool>(nullable: false),
                     ParentDetailId = table.Column<long>(nullable: true),
                     UserId = table.Column<long>(nullable: true),
                     FatherName = table.Column<string>(type: "nvarchar(max)", nullable: true),
@@ -1393,7 +1504,10 @@ namespace StudentManagement.Data.Migrations
                     LGCityId = table.Column<long>(nullable: true),
                     LGStateId = table.Column<long>(nullable: true),
                     LGCountryId = table.Column<long>(nullable: true),
-                    RelationId = table.Column<long>(nullable: true)
+                    RelationId = table.Column<long>(nullable: true),
+                    CreatedBy = table.Column<long>(nullable: true),
+                    CreatedDate = table.Column<DateTime>(type: "datetime", nullable: false),
+                    IsActive = table.Column<bool>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -1478,12 +1592,6 @@ namespace StudentManagement.Data.Migrations
                 {
                     Id = table.Column<long>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    CreatedBy = table.Column<long>(nullable: true),
-                    CreatedDate = table.Column<DateTime>(nullable: false),
-                    ModifiedBy = table.Column<long>(nullable: true),
-                    ModifiedDate = table.Column<DateTime>(nullable: true),
-                    IsActive = table.Column<bool>(nullable: false),
-                    IsDelete = table.Column<bool>(nullable: false),
                     PersonalDetailId = table.Column<long>(nullable: true),
                     UserId = table.Column<long>(nullable: true),
                     Mobile1 = table.Column<string>(type: "nvarchar(20)", nullable: true),
@@ -1502,7 +1610,10 @@ namespace StudentManagement.Data.Migrations
                     CountryPincode = table.Column<string>(type: "varchar(10)", nullable: true),
                     StayTypeId = table.Column<long>(nullable: false),
                     StayAddress = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    StayRelationId = table.Column<long>(nullable: false)
+                    StayRelationId = table.Column<long>(nullable: false),
+                    CreatedBy = table.Column<long>(nullable: true),
+                    CreatedDate = table.Column<DateTime>(type: "datetime", nullable: false),
+                    IsActive = table.Column<bool>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -1581,12 +1692,6 @@ namespace StudentManagement.Data.Migrations
                 {
                     Id = table.Column<long>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    CreatedBy = table.Column<long>(nullable: true),
-                    CreatedDate = table.Column<DateTime>(nullable: false),
-                    ModifiedBy = table.Column<long>(nullable: true),
-                    ModifiedDate = table.Column<DateTime>(nullable: true),
-                    IsActive = table.Column<bool>(nullable: false),
-                    IsDelete = table.Column<bool>(nullable: false),
                     CollegeDetailId = table.Column<long>(nullable: true),
                     UserId = table.Column<long>(nullable: false),
                     CampusId = table.Column<long>(nullable: false),
@@ -1601,7 +1706,10 @@ namespace StudentManagement.Data.Migrations
                     PassportNumber = table.Column<string>(type: "nvarchar(100)", nullable: true),
                     AdharNumber = table.Column<string>(type: "nvarchar(100)", nullable: true),
                     CollegeRollNumber = table.Column<string>(type: "nvarchar(100)", nullable: true),
-                    UniversityExamRoleNo = table.Column<string>(type: "nvarchar(200)", nullable: true)
+                    UniversityExamRoleNo = table.Column<string>(type: "nvarchar(200)", nullable: true),
+                    CreatedBy = table.Column<long>(nullable: true),
+                    CreatedDate = table.Column<DateTime>(type: "datetime", nullable: false),
+                    IsActive = table.Column<bool>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -1662,6 +1770,31 @@ namespace StudentManagement.Data.Migrations
                         onDelete: ReferentialAction.Restrict);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "HistoryClassSubjectTeacherDetail",
+                columns: table => new
+                {
+                    Id = table.Column<long>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    CreatedBy = table.Column<long>(nullable: true),
+                    CreatedDate = table.Column<DateTime>(type: "datetime", nullable: false),
+                    IsActive = table.Column<bool>(nullable: false),
+                    ClassSubjectTeacherId = table.Column<long>(nullable: true),
+                    ClassSubjectDetailId = table.Column<long>(nullable: true),
+                    TeacherName = table.Column<string>(type: "nvarchar(200)", nullable: true),
+                    TeacherId = table.Column<long>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_HistoryClassSubjectTeacherDetail", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_HistoryClassSubjectTeacherDetail_ClassSubjectTeacherDetail_ClassSubjectDetailId",
+                        column: x => x.ClassSubjectDetailId,
+                        principalTable: "ClassSubjectTeacherDetail",
+                        principalColumn: "ClassSubjectTeacherId",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
                 table: "AspNetRoleClaims",
@@ -1705,6 +1838,31 @@ namespace StudentManagement.Data.Migrations
                 name: "IX_BranchMaster_CourseId",
                 table: "BranchMaster",
                 column: "CourseId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ClassStudentDetail_ClassId",
+                table: "ClassStudentDetail",
+                column: "ClassId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ClassStudentDetail_StudentId",
+                table: "ClassStudentDetail",
+                column: "StudentId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ClassSubjectDetail_ClassId",
+                table: "ClassSubjectDetail",
+                column: "ClassId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ClassSubjectDetail_SubjectId",
+                table: "ClassSubjectDetail",
+                column: "SubjectId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ClassSubjectTeacherDetail_ClassSubjectDetailId",
+                table: "ClassSubjectTeacherDetail",
+                column: "ClassSubjectDetailId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_CollegeDetail_AdmissionBatchTypeId",
@@ -1755,6 +1913,26 @@ namespace StudentManagement.Data.Migrations
                 name: "IX_Documents_UserId",
                 table: "Documents",
                 column: "UserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_HistoryClassStudentDetail_ClassId",
+                table: "HistoryClassStudentDetail",
+                column: "ClassId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_HistoryClassStudentDetail_ClassStudentId",
+                table: "HistoryClassStudentDetail",
+                column: "ClassStudentId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_HistoryClassStudentDetail_StudentId",
+                table: "HistoryClassStudentDetail",
+                column: "StudentId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_HistoryClassSubjectTeacherDetail_ClassSubjectDetailId",
+                table: "HistoryClassSubjectTeacherDetail",
+                column: "ClassSubjectDetailId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_HistoryCollegeDetail_AdmissionBatchTypeId",
@@ -2072,9 +2250,24 @@ namespace StudentManagement.Data.Migrations
                 column: "StateId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_PersonalDetail_StayCityId",
+                table: "PersonalDetail",
+                column: "StayCityId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_PersonalDetail_StayCountryId",
+                table: "PersonalDetail",
+                column: "StayCountryId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_PersonalDetail_StayRelationId",
                 table: "PersonalDetail",
                 column: "StayRelationId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_PersonalDetail_StayStateId",
+                table: "PersonalDetail",
+                column: "StayStateId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_PersonalDetail_StayTypeId",
@@ -2110,11 +2303,6 @@ namespace StudentManagement.Data.Migrations
                 name: "IX_StudentAttendance_SubjectId",
                 table: "StudentAttendance",
                 column: "SubjectId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_StudentAttendance_UserId",
-                table: "StudentAttendance",
-                column: "UserId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_StudentQualication_DegreeId",
@@ -2165,11 +2353,6 @@ namespace StudentManagement.Data.Migrations
                 name: "IX_StudentQualication_UserId",
                 table: "StudentQualication",
                 column: "UserId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_StudentRoleno_UserId",
-                table: "StudentRoleno",
-                column: "UserId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -2196,6 +2379,12 @@ namespace StudentManagement.Data.Migrations
                 name: "ErrorLogs");
 
             migrationBuilder.DropTable(
+                name: "HistoryClassStudentDetail");
+
+            migrationBuilder.DropTable(
+                name: "HistoryClassSubjectTeacherDetail");
+
+            migrationBuilder.DropTable(
                 name: "HistoryCollegeDetail");
 
             migrationBuilder.DropTable(
@@ -2208,16 +2397,25 @@ namespace StudentManagement.Data.Migrations
                 name: "HistoryPersonalDetail");
 
             migrationBuilder.DropTable(
+                name: "HistoryStudentAttendance");
+
+            migrationBuilder.DropTable(
+                name: "HistoryStudentAttendanceDetail");
+
+            migrationBuilder.DropTable(
                 name: "HistoryStudentQualication");
 
             migrationBuilder.DropTable(
                 name: "StudentAttendance");
 
             migrationBuilder.DropTable(
-                name: "StudentRoleno");
+                name: "AspNetRoles");
 
             migrationBuilder.DropTable(
-                name: "AspNetRoles");
+                name: "ClassStudentDetail");
+
+            migrationBuilder.DropTable(
+                name: "ClassSubjectTeacherDetail");
 
             migrationBuilder.DropTable(
                 name: "CollegeDetail");
@@ -2235,13 +2433,10 @@ namespace StudentManagement.Data.Migrations
                 name: "StudentQualication");
 
             migrationBuilder.DropTable(
-                name: "ClassMaster");
-
-            migrationBuilder.DropTable(
                 name: "LectureMaster");
 
             migrationBuilder.DropTable(
-                name: "SubjectMaster");
+                name: "ClassSubjectDetail");
 
             migrationBuilder.DropTable(
                 name: "BatchMaster");
@@ -2299,6 +2494,12 @@ namespace StudentManagement.Data.Migrations
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");
+
+            migrationBuilder.DropTable(
+                name: "ClassMaster");
+
+            migrationBuilder.DropTable(
+                name: "SubjectMaster");
 
             migrationBuilder.DropTable(
                 name: "CourseMaster");

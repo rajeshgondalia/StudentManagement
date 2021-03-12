@@ -9,7 +9,7 @@ using System.Text;
 
 namespace StudentManagement.Data.DBContexts
 {
-    public class StudentDbContext : IdentityDbContext<ApplicationUser, IdentityRole<long>, long>
+    public class StudentDbContext : IdentityDbContext<ApplicationUser, Role, long>
     {
 
         #region Db Sets
@@ -21,6 +21,9 @@ namespace StudentManagement.Data.DBContexts
         public DbSet<CategoryMaster> CategoryMaster { get; set; }
         public DbSet<CityMaster> CityMaster { get; set; }
         public DbSet<ClassMaster> ClassMaster { get; set; }
+        public DbSet<ClassStudentDetail> ClassStudentDetail { get; set; }
+        public DbSet<ClassSubjectDetail> ClassSubjectDetail { get; set; }
+        public DbSet<ClassSubjectTeacherDetail> ClassSubjectTeacherDetail { get; set; }
         public DbSet<CollegeMaster> CollegeMaster { get; set; }
         public DbSet<CountryMaster> CountryMaster { get; set; }
         public DbSet<CourseMaster> CourseMaster { get; set; }
@@ -40,7 +43,7 @@ namespace StudentManagement.Data.DBContexts
         public DbSet<StaytypeMaster> StaytypeMaster { get; set; }
         public DbSet<StudentAttendance> StudentAttendance { get; set; }
         public DbSet<StudentQualication> StudentQualication { get; set; }
-        public DbSet<StudentRoleno> StudentRoleno { get; set; }
+      
         public DbSet<SubjectMaster> SubjectMaster { get; set; }
         public DbSet<YearSemesterMaster> YearSemesterMaster { get; set; }
         public DbSet<CollegeDetail> CollegeDetail { get; set; }
@@ -49,6 +52,12 @@ namespace StudentManagement.Data.DBContexts
         public DbSet<HistoryParentDetail> HistoryParentDetail { get; set; }
         public DbSet<HistoryPersonalDetail> HistoryPersonalDetail { get; set; }
         public DbSet<HistoryStudentQualication> HistoryStudentQualication { get; set; }
+        public DbSet<HistoryClassStudentDetail> HistoryClassStudentDetail { get; set; }
+       public DbSet<HistoryClassSubjectDetail> HistoryClassSubjectDetail { get; set; }
+        public DbSet<HistoryClassSubjectTeacherDetail> HistoryClassSubjectTeacherDetail { get; set; }
+        public DbSet<HistoryStudentAttendance> HistoryStudentAttendance { get; set; }
+        public DbSet<HistoryStudentAttendanceDetail> HistoryStudentAttendanceDetail { get; set; }
+        public DbSet<StudentAttendanceDetail> StudentAttendanceDetail { get; set; }
         public DbSet<ErrorLog> ErrorLogs { get; set; }
        
        
@@ -72,9 +81,11 @@ namespace StudentManagement.Data.DBContexts
             // Change Default filed datatype & length
             modelBuilder.Entity<ApplicationUser>().Property(c => c.Id).ValueGeneratedOnAdd();
             modelBuilder.Entity<Role>().Property(c => c.Id).ValueGeneratedOnAdd();
-
-            modelBuilder.Entity<UserClaim>().Property(x => x.ClaimType).HasMaxLength(50);
-            modelBuilder.Entity<UserClaim>().Property(x => x.ClaimValue).HasMaxLength(200);
+            // modelBuilder.Entity<Role>().Ignore(c => c.ConcurrencyStamp);
+            // modelBuilder.Entity<Role>().Ignore(c => c.NormalizedName);
+           
+            //modelBuilder.Entity<UserClaim>().Property(x => x.ClaimType).HasMaxLength(50);
+            // modelBuilder.Entity<UserClaim>().Property(x => x.ClaimValue).HasMaxLength(200);
 
             modelBuilder.Entity<ApplicationUser>().Property(x => x.Email).HasMaxLength(100);
             modelBuilder.Entity<ApplicationUser>().Property(x => x.UserName).HasMaxLength(100);

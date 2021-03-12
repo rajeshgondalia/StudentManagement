@@ -68,6 +68,33 @@ namespace StudentManagement
                 userManager.AddToRoleAsync(studentUser, "Student").Wait();
             }
 
+
+            //var newUser = new ApplicationUser
+            //{
+            //    FirstName = "Bharat",
+            //    LastName = "B",
+            //    MiddleName = "",
+            //    UserName = "Bharat@gmail.com",
+            //    OfficialEmail = "Bharat@gmail.com",
+            //    NormalizedUserName = "Student",
+            //    Email = "Bharat@gmail.com",
+            //    NormalizedEmail = "Bharat@gmail.com",
+            //    EmailConfirmed = true,
+            //    IsActive = true,
+
+
+            //};
+            //if (userManager.FindByEmailAsync(newUser.UserName).Result != null) return;
+
+            //var StudentResult = userManager.CreateAsync(newUser, "Password123#").Result;
+
+            //if (StudentResult.Succeeded)
+            //{
+            //    userManager.AddToRoleAsync(newUser, "Student").Wait();
+            //}
+
+
+
         }
 
         private static void SeedRoles(RoleManager<Role> roleManager)
@@ -87,7 +114,7 @@ namespace StudentManagement
                 foreach (var notRole in notExirst)
                 {
                     string normalized = normalizedName.FirstOrDefault(x => x.Key == notRole).Value;
-                    var roleResult = roleManager.CreateAsync(new Role { Name = notRole, NormalizedName = normalized, DisplayRoleName = normalized }).Result;
+                    var roleResult = roleManager.CreateAsync(new Role { Name = notRole, ConcurrencyStamp = notRole }).Result;
                 }
             }
             else
@@ -95,7 +122,7 @@ namespace StudentManagement
                 foreach (var objRole in normalizedName.Keys)
                 {
                     string normalized = normalizedName.FirstOrDefault(x => x.Key == objRole).Value;
-                    IdentityResult roleResult = roleManager.CreateAsync(new Role { Name = objRole, NormalizedName = normalized, DisplayRoleName = normalized }).Result;
+                    IdentityResult roleResult = roleManager.CreateAsync(new Role { Name = objRole,ConcurrencyStamp =objRole}).Result;
                 }
             }
             #endregion

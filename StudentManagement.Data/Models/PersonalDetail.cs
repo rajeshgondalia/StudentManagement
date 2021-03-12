@@ -41,7 +41,7 @@ namespace StudentManagement.Data.Models
         [ForeignKey("CategoryId")]
         public virtual CategoryMaster CategoryMaster { get; set; }
 
-        public long BloodGroupdId { get; set; }
+        public long? BloodGroupdId { get; set; }
         [ForeignKey("BloodGroupdId")]
         public virtual BloodgroupMaster BloodgroupMaster { get; set; }
         public long ReligionId { get; set; }
@@ -58,7 +58,7 @@ namespace StudentManagement.Data.Models
         [ForeignKey("StateId")]
         public virtual StateMaster StateMaster { get; set; }
 
-        public long StayTypeId { get; set; }
+        public long? StayTypeId { get; set; }
         [ForeignKey("StayTypeId")]
         public virtual StaytypeMaster StaytypeMaster { get; set; }
 

@@ -7,16 +7,15 @@ using System.Text;
 
 namespace StudentManagement.Data.Models
 {
- public   class StateMaster:EntityWithAudit
+   public  class StudentAttendanceDetail:EntityWithAudit
     {
         [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public long StateId { get; set; }
+        public long AttendanceDetailId { get; set; }
 
-        [Column(TypeName = "nvarchar(100)")]
-        public string StateName { get; set; }
+        public long AttendanceId { get; set; }
+        public long StudentId { get; set; }
+        public bool IsPresent { get; set; }
 
-        public long? CountryId { get; set; }
-        [ForeignKey("CountryId")]
-        public virtual CountryMaster CountryMaster { get; set; }
+        
     }
 }
