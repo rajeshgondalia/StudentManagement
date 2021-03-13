@@ -253,7 +253,7 @@
                                     <div class="col-lg-4 col-md-4 col-12">
                                         <div class="form-group mb-4">
                                             <label class="form-label">Campus</label>
-                                            <select name="CampusId" asp-for="CampusId" class="form-control" asp-items="@ViewBag.CampusList">
+                                            <select name="CampusId" asp-for="CampusId" class="form-control" asp-items="@ViewBag.CampusList" disabled>
                                                 <option value="">--Select Campus--</option>
                                             </select>
                                         </div>
@@ -261,7 +261,7 @@
                                     <div class="col-lg-4 col-md-4 col-12">
                                         <div class="form-group mb-4">
                                             <label class="form-label">College</label>
-                                            <select name="CollegeId" asp-for="CollegeId" class="form-control" asp-items="@ViewBag.CollegeList">
+                                            <select name="CollegeId" asp-for="CollegeId" class="form-control" asp-items="@ViewBag.CollegeList" disabled>
                                                 <option value="">--Select College--</option>
                                             </select>
                                         </div>
@@ -269,7 +269,7 @@
                                     <div class="col-lg-4 col-md-4 col-12">
                                         <div class="form-group mb-4">
                                             <label class="form-label">Course</label>
-                                            <select name="CourseId" asp-for="CourseId" class="form-control" asp-items="@ViewBag.CourseList">
+                                            <select name="CourseId" asp-for="CourseId" class="form-control" asp-items="@ViewBag.CourseList" disabled>
                                                 <option value="">--Select Course--</option>
                                             </select>
                                         </div>
@@ -279,7 +279,7 @@
                                     <div class="col-lg-4 col-md-4 col-12">
                                         <div class="form-group mb-4">
                                             <label class="form-label">Branch</label>
-                                            <select name="BranchId" asp-for="BranchId" class="form-control" asp-items="@ViewBag.BranchList">
+                                            <select name="BranchId" asp-for="BranchId" class="form-control" asp-items="@ViewBag.BranchList" disabled>
                                                 <option value="">--Select Branch--</option>
                                             </select>
                                         </div>
@@ -287,7 +287,7 @@
                                     <div class="col-lg-4 col-md-4 col-12">
                                         <div class="form-group mb-4">
                                             <label class="form-label">Year</label>
-                                            <select name="YearSemId" asp-for="YearSemId" class="form-control" asp-items="@ViewBag.YearSemList">
+                                            <select name="YearSemId" asp-for="YearSemId" class="form-control" asp-items="@ViewBag.YearSemList" disabled>
                                                 <option value="">--Select Year--</option>
                                             </select>
                                         </div>
@@ -295,7 +295,7 @@
                                     <div class="col-lg-4 col-md-4 col-12">
                                         <div class="form-group mb-4">
                                             <label class="form-label">Batch</label>
-                                            <select name="BatchId" asp-for="BatchId" class="form-control" asp-items="@ViewBag.BatchList">
+                                            <select name="BatchId" asp-for="BatchId" class="form-control" asp-items="@ViewBag.BatchList" disabled>
                                                 <option value="">--Select Batch--</option>
                                             </select>
                                         </div>
@@ -305,7 +305,7 @@
                                     <div class="col-lg-4 col-md-4 col-12">
                                         <div class="form-group mb-4">
                                             <label class="form-label">Admission Type</label>
-                                            <select name="AdmissionTypeId" asp-for="AdmissionTypeId" class="form-control" asp-items="@ViewBag.AdmissionTypeList">
+                                            <select name="AdmissionTypeId" asp-for="AdmissionTypeId" class="form-control" asp-items="@ViewBag.AdmissionTypeList" disabled>
                                                 <option value="">--Select Admission Type--</option>
                                             </select>
                                         </div>
@@ -313,7 +313,7 @@
                                     <div class="col-lg-4 col-md-4 col-12">
                                         <div class="form-group mb-4">
                                             <label class="form-label">Admission Batch</label>
-                                            <select name="AdmissionBatchTypeId" asp-for="AdmissionBatchTypeId" class="form-control" asp-items="@ViewBag.BatchList">
+                                            <select name="AdmissionBatchTypeId" asp-for="AdmissionBatchTypeId" class="form-control" asp-items="@ViewBag.BatchList" disabled>
                                                 <option value="">--Select Admission Batch--</option>
                                             </select>
                                         </div>
@@ -1553,7 +1553,23 @@
                 $(".educationCancelSave").show();
         }
 
+        $(document).off("change", "#IsEntrance");
+        $(document).on("change", "#IsEntrance", function () {
+            if ($(this).val() == 0) {
 
+                $.each($("#frmEntranceExam").find("input[type='text'] ,select,input[type='number']"), function (key, ele) {
+
+                    $(ele).attr("disabled", true);
+                });
+                $(this).attr("disabled", false);
+            } else {
+
+                $.each($("#frmEntranceExam").find("input[type='text'] ,select,input[type='number']"), function (key, ele) {
+
+                    $(ele).attr("disabled", false);
+                });
+            }
+        });
     </script>
 }
 
