@@ -1569,11 +1569,13 @@
                     $(ele).attr("disabled", true);
                 });
                 $(this).attr("disabled", false);
+                $("#frmEntranceExam").find("button[type='submit']").attr("disabled", true);
             } else {
 
                 $.each($("#frmEntranceExam").find("input[type='text'] ,select,input[type='number']"), function (key, ele) {
 
                     $(ele).attr("disabled", false);
+                    $("#frmEntranceExam").find("button[type='submit']").attr("disabled", false);
                 });
             }
         });
