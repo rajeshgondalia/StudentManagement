@@ -167,6 +167,7 @@ namespace StudentManagement.Web.Areas.Student.Controllers
             model.AdmissionTypeId = cgDetail.AdmissionTypeId;
             model.CollegeRollNo = cgDetail.CollegeRollNumber;
             model.UniversityEnrollmentNumber = cgDetail.Universityenrollmentnumber;
+            model.UniversityExamRoleNo = cgDetail.UniversityExamRoleNo;
             model.PassportNumber = cgDetail.PassportNumber;
             model.AdharNumber = cgDetail.AdharNumber;
 
@@ -283,23 +284,34 @@ namespace StudentManagement.Web.Areas.Student.Controllers
         {
             if (model != null)
             {
-                var cd = _collegeDetailService.GetSingle(x => x.UserId == User.GetUserId());
-                if (cd != null)
+                try
                 {
-                    cd.CampusId = model.CampusId;
-                    cd.CollegeId = model.CollegeId;
-                    cd.YearSemesterId = model.YearSemId;
-                    cd.AdmissionTypeId = model.AdmissionTypeId;
-                    cd.AdmissionBatchTypeId = model.AdmissionBatchTypeId;
-                    cd.CollegeRollNumber = model.CollegeRollNo;
-                    cd.Universityenrollmentnumber = model.UniversityEnrollmentNumber;
-                    cd.PassportNumber = model.PassportNumber;
-                    cd.AdharNumber = model.AdharNumber;
+                    var cd = _collegeDetailService.GetSingle(x => x.UserId == User.GetUserId());
+                    if (cd != null)
+                    {
+                       // cd.CampusId = model.CampusId;
+                       // cd.CollegeId = model.CollegeId;
+                       // cd.YearSemesterId = model.YearSemId;
+                       // cd.AdmissionTypeId = model.AdmissionTypeId;
+                       // cd.AdmissionBatchTypeId = model.AdmissionBatchTypeId;
+                        cd.CollegeRollNumber = model.CollegeRollNo;
+                        cd.Universityenrollmentnumber = model.UniversityEnrollmentNumber;
+                        cd.UniversityExamRoleNo = model.UniversityExamRoleNo;
+                        cd.PassportNumber = model.PassportNumber;
+                        cd.AdharNumber = model.AdharNumber;
 
-                    var updateResult = await _collegeDetailService.UpdateAsync(cd, Accessor, User.GetUserId());
+                        var updateResult = await _collegeDetailService.UpdateAsync(cd, Accessor, User.GetUserId());
 
-
+                    
+                    }
                 }
+                catch (Exception e)
+                {
+
+                    return RedirectToAction("Index");
+                }
+
+               
             }
             return RedirectToAction("Index");
         }
