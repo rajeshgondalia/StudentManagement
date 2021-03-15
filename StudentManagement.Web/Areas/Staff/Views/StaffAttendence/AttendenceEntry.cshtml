@@ -1,0 +1,217 @@
+﻿@model StudentManagement.Service.Dto.StudentAttendenceDto
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@{
+    ViewData["Title"] = "AttendenceEntry";
+    Layout = "~/Areas/Staff/Views/Shared/_Layout.cshtml";
+}
+
+<div class="app-container">
+    <div class="inner-tab-panel">
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs topnav" role="tablist">
+            <li class="nav-item">
+                <a class="nav-link" data-toggle="tab" href="#home">Attendance</a>
+            </li>
+        </ul>
+
+        <!-- Tab panes -->
+        <div class="tab-content page-container">
+            <div id="home" class="tab-pane active">
+                <div class="card">
+                    <div class="modal-header">
+                        <h6 class="modal-title">
+                            Attendance Entry
+                        </h6>
+                    </div>
+                    <div class="card-body modal-body">
+                        <!-- form start here -->
+                        <div class="default-form">
+                            <div class="row">
+                                <div class="col-lg-4 col-md-4 col-12">
+                                    <div class="form-group mb-4">
+                                        <label class="form-label">Class</label>
+                                        <select name="ClassId" asp-for="ClassId" class="form-control" asp-items="@ViewBag.ClassList">
+                                            <option value="">--Select Domicile--</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-md-4 col-12">
+                                    <div class="form-group mb-4">
+                                        <label class="form-label">Subject</label>
+                                        <select name="SubjectId" asp-for="SubjectId" class="form-control" asp-items="@ViewBag.SubjectList">
+                                            <option value="">--Select Subject--</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-md-4 col-12">
+                                    <div class="form-group mb-4">
+                                        <label class="form-label">Lecture</label>
+                                        <select name="LectureId" asp-for="LectureId" class="form-control" asp-items="@ViewBag.lecturelist">
+                                            <option value="">--Select Lecture--</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-4 col-md-4 col-12">
+                                    <div class="form-group mb-4">
+                                        <label class="form-label">Date of Attendance  :</label>
+                                        <b><label class="form-label">@DateTime.Now.ToShortDateString()</label></b>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-md-4 col-12">
+                                    <input type="radio" id="Mark" name="Mark" value="0">
+                                    <label for="Mark">Mark Present</label><br>
+
+
+                                    <input type="radio"  id="Mark" name="Mark" value="1">
+                                    <label for="Mark">Mark Present</label><br>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12 table-responsive">
+                                    <table class="default-table " id="StudentTable">
+                                        <thead>
+                                            <tr>
+                                                <th width="5%" class="td-roll">Roll No.</th>
+                                                <th width="70%" class="td-name">Name</th>
+                                                <th width="15%" class="td-present-absent">Present/Absent</th>
+                                            </tr>
+                                        </thead>
+                                        @*<tbody>
+                                            <tr>
+                                                <td>1</td>
+                                                <td>Keyur Patel</td>
+                                                <td>
+                                                    <div class="custom-control custom-checkbox ml-4">
+                                                        <input type="checkbox" class="custom-control-input" id="tblchk1" name="example2">
+                                                        <label class="custom-control-label form-label d-block" for="tblchk1"></label>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>2</td>
+                                                <td>Dixesh Patel</td>
+                                                <td>
+                                                    <div class="custom-control custom-checkbox ml-4">
+                                                        <input type="checkbox" class="custom-control-input" id="tblchk2" name="example2">
+                                                        <label class="custom-control-label form-label d-block" for="tblchk2"></label>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </tbody>*@
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- form end here -->
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-secondary">Cancel</button>
+                        <button class="btn btn-primary">Save</button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+@section Scripts{
+    <script type="text/javascript">
+
+    $(document).ready(function () {
+
+        $("#ClassId").change(function () {
+            $("#SubjectId").empty();
+            $.ajax({
+                type: 'POST',
+                url: '@Url.Action("getSubjectList")',
+                dataType: 'json',
+                data: { ClassId: $("#ClassId").val() },
+                success: function (city) {
+                    
+                    $.each(city, function (i, city) {
+                        $("#SubjectId").append('<option value="'
+                                                   + city.value + '" selected>'
+                                             + city.text + '</option>');
+                    });
+                },
+                error: function (ex) {
+                    alert('Failed.' + ex);
+                }
+            });
+            return false;
+        })
+        $(document).ready(function () {
+            bindStudentList("#StudentTable");
+        });
+
+        function bindStudentList(tableId) {
+            if ($.fn.DataTable.isDataTable(tableId)) {
+                $(tableId).dataTable().fnDestroy();
+            }
+            dynamic = $(tableId).DataTable({
+                "bProcessing": true,
+                "bServerSide": true,
+                "sAjaxSource": "/Staff/StaffAttendence/GetStudentList",
+                "initComplete": function (settings, json) { },
+                "rowCallback": function (row, data, index) { },
+                "order": [[1, ""]],
+                "language": {
+                    "info": "Showing _START_ to _END_ of _TOTAL_ Students",
+                    "sInfoEmpty": "Showing 0 to 0 of 0 Students"
+                },
+                "columns": [
+                    {
+                        "data": "collegeRollNumber",
+                        "autoWidth": true,
+                        "searchable": true,
+                        "orderable": true
+                    },
+                    {
+                        "data": "firstName",
+                        "autoWidth": true,
+                        "searchable": true,
+                        "orderable": true
+                        
+                    },
+                    {
+                        "data": "id",
+                        "autoWidth": true,
+                        "searchable": true,
+                        "orderable": true,
+                        "render": function (data, type, row) {
+                            return `  <div class="custom-control custom-checkbox ml-4">
+                                                        <input type="checkbox" class="custom-control-input" id="tblchk2" name="example2">
+                                                        <label class="custom-control-label form-label d-block" for="tblchk2"></label>
+                                                    </div>`;
+                        }
+
+                    }
+                ]
+            });
+
+        }
+    });
+
+        function SetAttendence() {
+            var model = new {
+                ClassId:"",
+                SubjectId:"",
+                LectureId:"",
+                StudentList:new Array()
+            }
+            var stList = new {
+                StudentId: "",
+                RollNo: "",
+                Name: "",
+                IsPresent:""
+            }
+            model.ClassId = $("#ClassId").val();
+            model.SubjectId = $("#SubjectId").val();
+            model.LectureId = $("#LectureId").val();
+   
+        }
+    </script>
+
+}

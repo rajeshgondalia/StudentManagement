@@ -135,9 +135,12 @@ namespace StudentManagement.Web
             services.AddScoped<IStudentQualificationSerivce, StudentQualificationRepository>();
             services.AddScoped<IDocumentService, DocumentRepository>();
             services.AddScoped<IPGDegreeService, PGRpository>();
-
-
-
+            services.AddScoped<ILectureService, LectureRepository>();
+            services.AddScoped<ISubjectService, SubjectRepository>();
+            services.AddScoped<IClassService, ClassRepository>();
+            services.AddScoped<IClassSubjectDetailService, ClassSubjectDetailRepository>();
+            services.AddScoped<IUserService, UserRepository>();
+            
 
             #endregion
 
