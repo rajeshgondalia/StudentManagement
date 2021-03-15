@@ -13,6 +13,8 @@ using StudentManagement.Web.Utility;
 using EasyLearnerAdmin.Utility.JqueryDataTable;
 using Microsoft.AspNetCore.Identity;
 using StudentManagement.Data.DBContexts;
+using EasyLearnerAdmin.Utility.Common;
+using StudentManagement.Utility.Common;
 
 namespace StudentManagement.Web.Areas.Staff.Controllers
 {
@@ -122,7 +124,7 @@ namespace StudentManagement.Web.Areas.Staff.Controllers
             {
                 try
                 {
-
+                    return JsonResponse.GenerateJsonResult(0, ResponseConstants.SomethingWrong);
                 }
                 catch (Exception ex)
                 {
@@ -131,6 +133,7 @@ namespace StudentManagement.Web.Areas.Staff.Controllers
                     return JsonResponse.GenerateJsonResult(0, ResponseConstants.SomethingWrong);
                 }
             }
+        }
 
             public JsonResult getSubjectList(long ClassId)
             {

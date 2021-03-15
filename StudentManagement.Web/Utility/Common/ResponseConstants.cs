@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace EasyLearnerAdmin.Utility.Common
+namespace StudentManagement.Utility.Common
 {
     public static class ResponseConstants
     {

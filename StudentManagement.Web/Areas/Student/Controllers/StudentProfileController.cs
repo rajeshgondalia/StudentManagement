@@ -9,6 +9,7 @@ using StudentManagement.Data.Models;
 using StudentManagement.Service.Dto;
 using StudentManagement.Service.Exception;
 using StudentManagement.Service.Interface;
+using StudentManagement.Utility.Common;
 using StudentManagement.Web.Utility.Common;
 using System;
 using System.Collections.Generic;
@@ -674,12 +675,7 @@ namespace StudentManagement.Web.Areas.Student.Controllers
 
 
 
-        public async Task<IActionResult> Logout()
-        {
-            
-            await _signInManager.SignOutAsync();
-            return RedirectToAction("index");
-        }
+       
         #endregion
         #region Common
 
