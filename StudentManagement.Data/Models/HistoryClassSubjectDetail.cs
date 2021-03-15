@@ -29,6 +29,18 @@ namespace StudentManagement.Data.Models
         public virtual ClassMaster ClassMaster { get; set; }
 
         public long SubjectId { get; set; }
+        public long L { get; set; }
+        public long T { get; set; }
+        public long P { get; set; }
+        public long ESE { get; set; }
+        public long CT { get; set; }
+        public long TA { get; set; }
+        public long Credit { get; set; }
+        public long ActaulL { get; set; }
+
+        public long SubjectDepartmentId { get; set; }
+        public long StudentId { get; set; }
       
+
     }
 }

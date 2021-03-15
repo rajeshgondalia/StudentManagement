@@ -7,12 +7,21 @@ using System.Text;
 
 namespace StudentManagement.Data.Models
 {
-    public class SubjectMaster:EntityWithAudit
+    public class SubjectMaster : EntityWithAudit
     {
         [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public long SubjectId { get; set; }
 
         [Column(TypeName = "nvarchar(50)")]
         public string SubjectName { get; set; }
+
+        [Column(TypeName = "nvarchar(50)")]
+        public string SubjectCode { get; set; }
+
+        public long SubjectTypeId { get; set; }
+        [ForeignKey("SubjectTypeId")]
+        public virtual SubjectTypeMaster  SubjectTypeMaster {get;set;}
+
+
     }
 }

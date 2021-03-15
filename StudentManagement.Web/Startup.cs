@@ -228,23 +228,18 @@ namespace StudentManagement.Web
                   areaName: "Student",
                   pattern: "Student/{controller=Home}/{action=Index}");
 
+                endpoints.MapAreaControllerRoute(
+                 name: "Staff",
+                 areaName: "Staff",
+                 pattern: "Staff/{controller=Home}/{action=Index}");
+
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
 
                 endpoints.MapRazorPages();
             });
-            //app.UseEndpoints(endpoints =>
-            //{
-            //    //endpoints.MapControllerRoute("Admin", "{area:Admin}/{controller=Home}/{action=Index}/{id?}");
-            //    endpoints.MapControllerRoute(
-            //        name: "default",
-            //        pattern: "{controller=Home}/{action=Index}/{id?}");
-            //    endpoints.MapRazorPages();
 
-
-
-            //});
             StudentManagementIdentityDataInitializer.SeedData(userManager, roleManager);
         }
     }

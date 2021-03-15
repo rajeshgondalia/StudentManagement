@@ -7,17 +7,12 @@ using System.Text;
 
 namespace StudentManagement.Data.Models
 {
-   public class LectureMaster:EntityWithAudit
+    public class SessionMaster:EntityWithAudit
     {
         [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public long LectureId { get; set; }
+        public long SessionId { get; set; }
 
-        [Column(TypeName = "nvarchar(50)")]
-        public string LactureName { get; set; }
-
-
-        public TimeSpan LectureStartTime { get; set; }
-        public TimeSpan LectureEndTime { get; set; }
-
+        [Column(TypeName = "nvarchar(200)")]
+        public string SessionName { get; set; }
     }
 }

@@ -69,29 +69,29 @@ namespace StudentManagement
             }
 
 
-            //var newUser = new ApplicationUser
-            //{
-            //    FirstName = "Bharat",
-            //    LastName = "B",
-            //    MiddleName = "",
-            //    UserName = "Bharat@gmail.com",
-            //    OfficialEmail = "Bharat@gmail.com",
-            //    NormalizedUserName = "Student",
-            //    Email = "Bharat@gmail.com",
-            //    NormalizedEmail = "Bharat@gmail.com",
-            //    EmailConfirmed = true,
-            //    IsActive = true,
+            var TeacherUser = new ApplicationUser
+            {
+                FirstName = "Staff",
+                LastName = "s",
+                MiddleName = "",
+                UserName = "Staff@gmail.com",
+                OfficialEmail = "Staff@gmail.com",
+                NormalizedUserName = "Staff",
+                Email = "Staff@gmail.com",
+                NormalizedEmail = "Staff@gmail.com",
+                EmailConfirmed = true,
+                IsActive = true,
 
 
-            //};
-            //if (userManager.FindByEmailAsync(newUser.UserName).Result != null) return;
+            };
+            if (userManager.FindByEmailAsync(TeacherUser.UserName).Result != null) return;
 
-            //var StudentResult = userManager.CreateAsync(newUser, "Password123#").Result;
+            var teacherResult = userManager.CreateAsync(TeacherUser, "Password123#").Result;
 
-            //if (StudentResult.Succeeded)
-            //{
-            //    userManager.AddToRoleAsync(newUser, "Student").Wait();
-            //}
+            if (teacherResult.Succeeded)
+            {
+                userManager.AddToRoleAsync(TeacherUser, "Staff").Wait();
+            }
 
 
 
@@ -105,6 +105,7 @@ namespace StudentManagement
                 { "Admin", "Admin"},
                 { "Student", "Student"},
                 { "User", "User"},
+                { "Staff", "Staff"},
             };
 
             var existrolesList = roleManager.Roles.Select(x => x.Name).ToList();

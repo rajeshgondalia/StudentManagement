@@ -88,6 +88,8 @@ namespace StudentManagement.Web.Areas.Identity.Pages.Account
                         return LocalRedirect("/Admin/AdminDashboard");
                     else if (await _userManager.IsInRoleAsync(user, "Student"))
                         return LocalRedirect("/Student/StudentDashboard");
+                    else if (await _userManager.IsInRoleAsync(user, "Staff"))
+                        return LocalRedirect("/Staff/StaffDashboard");
 
                     _logger.LogInformation("User logged in.");
                     return LocalRedirect(returnUrl);

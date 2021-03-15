@@ -58,6 +58,10 @@ namespace StudentManagement.Data.DBContexts
         public DbSet<HistoryStudentAttendance> HistoryStudentAttendance { get; set; }
         public DbSet<HistoryStudentAttendanceDetail> HistoryStudentAttendanceDetail { get; set; }
         public DbSet<StudentAttendanceDetail> StudentAttendanceDetail { get; set; }
+        public DbSet<SubjectTypeMaster> SubjectTypeMaster { get; set; }
+        public DbSet<SubjectDepartmentMaster> SubjectDepartmentMaster { get; set; }
+        public DbSet<SessionMaster> SessionMaster { get; set; }
+        public DbSet<HistoryClassMaster> HistoryClassMaster  { get; set; }
         public DbSet<ErrorLog> ErrorLogs { get; set; }
        
        

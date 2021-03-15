@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using StudentManagement.Data.DBContexts;
 
 namespace StudentManagement.Data.Migrations
 {
     [DbContext(typeof(StudentDbContext))]
-    partial class StudentDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210314231251_Db_Changes")]
+    partial class Db_Changes
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -524,9 +526,6 @@ namespace StudentManagement.Data.Migrations
                     b.Property<DateTime?>("ModifiedDate")
                         .HasColumnType("datetime");
 
-                    b.Property<long>("SessionId")
-                        .HasColumnType("bigint");
-
                     b.Property<long?>("YearSemesterId")
                         .HasColumnType("bigint");
 
@@ -539,8 +538,6 @@ namespace StudentManagement.Data.Migrations
                     b.HasIndex("CollegeId");
 
                     b.HasIndex("CourseId");
-
-                    b.HasIndex("SessionId");
 
                     b.HasIndex("YearSemesterId");
 
@@ -1917,12 +1914,6 @@ namespace StudentManagement.Data.Migrations
                     b.Property<string>("LactureName")
                         .HasColumnType("nvarchar(50)");
 
-                    b.Property<TimeSpan>("LectureEndTime")
-                        .HasColumnType("time");
-
-                    b.Property<TimeSpan>("LectureStartTime")
-                        .HasColumnType("time");
-
                     b.Property<long?>("ModifiedBy")
                         .HasColumnType("bigint");
 
@@ -2849,12 +2840,6 @@ namespace StudentManagement.Data.Migrations
                     b.HasOne("StudentManagement.Data.Models.CourseMaster", "CourseMaster")
                         .WithMany()
                         .HasForeignKey("CourseId");
-
-                    b.HasOne("StudentManagement.Data.Models.SessionMaster", "SessionMaster")
-                        .WithMany()
-                        .HasForeignKey("SessionId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
 
                     b.HasOne("StudentManagement.Data.Models.YearSemesterMaster", "YearSemesterMaster")
                         .WithMany()

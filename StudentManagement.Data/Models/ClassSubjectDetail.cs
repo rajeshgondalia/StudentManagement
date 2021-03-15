@@ -1,4 +1,5 @@
-﻿using StudentManagementAdmin.Data.DbModel.BaseModel;
+﻿using StudentManagement.Data.DBContexts;
+using StudentManagementAdmin.Data.DbModel.BaseModel;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -21,6 +22,21 @@ namespace StudentManagement.Data.Models
         [ForeignKey("SubjectId")]
         public virtual SubjectMaster SubjectMaster { get; set; }
 
-        
+        public long L { get; set; }
+        public long T { get; set; }
+        public long P { get; set; }
+        public long ESE { get; set; }
+        public long CT { get; set; }
+        public long TA { get; set; }
+        public long Credit { get; set; }
+        public long ActaulL { get; set; }
+
+        public long SubjectDepartmentId { get; set; }
+        [ForeignKey("SubjectDepartmentId")]
+        public virtual SubjectDepartmentMaster SubjectDepartmentMaster { get; set; }
+
+        public long StudentId { get; set; }
+        [ForeignKey("StudentId")]
+        public virtual ApplicationUser ApplicationUser { get; set; }
     }
 }
