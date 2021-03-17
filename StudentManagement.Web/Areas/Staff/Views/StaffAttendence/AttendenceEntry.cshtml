@@ -61,10 +61,10 @@
                                 </div>
                                 <div class="col-lg-4 col-md-4 col-12">
                                     <input type="radio" id="Mark" name="Mark" value="0">
-                                    <label for="Mark">Mark Present</label><br>
+                                    <label for="Mark">Mark Absent</label><br>
 
 
-                                    <input type="radio"  id="Mark" name="Mark" value="1">
+                                    <input type="radio" id="Mark1" name="Mark" value="1">
                                     <label for="Mark">Mark Present</label><br>
                                 </div>
                             </div>
@@ -79,27 +79,27 @@
                                             </tr>
                                         </thead>
                                         @*<tbody>
-                                            <tr>
-                                                <td>1</td>
-                                                <td>Keyur Patel</td>
-                                                <td>
-                                                    <div class="custom-control custom-checkbox ml-4">
-                                                        <input type="checkbox" class="custom-control-input" id="tblchk1" name="example2">
-                                                        <label class="custom-control-label form-label d-block" for="tblchk1"></label>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>2</td>
-                                                <td>Dixesh Patel</td>
-                                                <td>
-                                                    <div class="custom-control custom-checkbox ml-4">
-                                                        <input type="checkbox" class="custom-control-input" id="tblchk2" name="example2">
-                                                        <label class="custom-control-label form-label d-block" for="tblchk2"></label>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                        </tbody>*@
+                                                <tr>
+                                                    <td>1</td>
+                                                    <td>Keyur Patel</td>
+                                                    <td>
+                                                        <div class="custom-control custom-checkbox ml-4">
+                                                            <input type="checkbox" class="custom-control-input" id="tblchk1" name="example2">
+                                                            <label class="custom-control-label form-label d-block" for="tblchk1"></label>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>2</td>
+                                                    <td>Dixesh Patel</td>
+                                                    <td>
+                                                        <div class="custom-control custom-checkbox ml-4">
+                                                            <input type="checkbox" class="custom-control-input" id="tblchk2" name="example2">
+                                                            <label class="custom-control-label form-label d-block" for="tblchk2"></label>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            </tbody>*@
                                     </table>
                                 </div>
                             </div>
@@ -108,7 +108,7 @@
                     </div>
                     <div class="modal-footer">
                         <button class="btn btn-secondary">Cancel</button>
-                        <button class="btn btn-primary">Save</button>
+                        <button class="btn btn-primary" id="btnSave">Save</button>
                     </div>
                 </div>
             </div>
@@ -118,9 +118,9 @@
 </div>
 @section Scripts{
     <script type="text/javascript">
-
+        var StudentIdList = new Array();    
     $(document).ready(function () {
-
+        
         $("#ClassId").change(function () {
             $("#SubjectId").empty();
             $.ajax({
@@ -129,7 +129,7 @@
                 dataType: 'json',
                 data: { ClassId: $("#ClassId").val() },
                 success: function (city) {
-                    
+
                     $.each(city, function (i, city) {
                         $("#SubjectId").append('<option value="'
                                                    + city.value + '" selected>'
@@ -173,7 +173,7 @@
                         "autoWidth": true,
                         "searchable": true,
                         "orderable": true
-                        
+
                     },
                     {
                         "data": "id",
@@ -181,10 +181,7 @@
                         "searchable": true,
                         "orderable": true,
                         "render": function (data, type, row) {
-                            return `  <div class="custom-control custom-checkbox ml-4">
-                                                        <input type="checkbox" class="custom-control-input" id="tblchk2" name="example2">
-                                                        <label class="custom-control-label form-label d-block" for="tblchk2"></label>
-                                                    </div>`;
+                            return `  <input type="checkbox" class="studentCheckBox" data-id="${data}"/>`;
                         }
 
                     }
@@ -194,23 +191,51 @@
         }
     });
 
+        $(document).on("click", ".studentCheckBox", function () {
+
+            if (!StudentIdList.includes($(this).attr("data-id"))) {
+                StudentIdList.push($(this).attr("data-id"));
+            }
+
+
+
+
+        });
+
+
+        $(document).off("click", "#btnSave");
+        $(document).on("click", "#btnSave", function () {
+
+            SetAttendence();
+        });
         function SetAttendence() {
-            var model = new {
-                ClassId:"",
-                SubjectId:"",
-                LectureId:"",
-                StudentList:new Array()
-            }
-            var stList = new {
-                StudentId: "",
-                RollNo: "",
-                Name: "",
-                IsPresent:""
-            }
-            model.ClassId = $("#ClassId").val();
-            model.SubjectId = $("#SubjectId").val();
-            model.LectureId = $("#LectureId").val();
-   
+
+
+            debugger;
+
+            var stud = {
+                ClassId : $("#ClassId").val(),
+                SubjectId : $("#SubjectId").val(),
+            LectureId : $("#ClassId").val(),
+                Mark: $(document).find("input[type='radio'][name='Mark']:checked").val(),
+                StudentIdList: StudentIdList
+        }
+            $.ajax({
+                url: "/Staff/StaffAttendence/StudentAttendenceEntry",
+                type: "POST",
+                data: { model: stud},
+                success: function (response) {
+                    if (response.status == 1) {
+                        swal({
+                            title: "updated",
+                            text: "Records updated successfully ",
+                            icon: "success",
+                        });
+                    }
+                },
+                error: function (response){}
+            });
+
         }
     </script>
 

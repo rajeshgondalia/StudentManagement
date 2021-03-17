@@ -15,6 +15,9 @@ using Microsoft.AspNetCore.Identity;
 using StudentManagement.Data.DBContexts;
 using EasyLearnerAdmin.Utility.Common;
 using StudentManagement.Utility.Common;
+using StudentManagement.Service.Dto;
+using StudentManagement.Service.Exception;
+using StudentManagement.Data.Models;
 
 namespace StudentManagement.Web.Areas.Staff.Controllers
 {
@@ -29,19 +32,24 @@ namespace StudentManagement.Web.Areas.Staff.Controllers
         private readonly ISubjectService _subjectService;
         private readonly IClassSubjectDetailService _classDetailService;
         private readonly IUserService _userService;
-
+        private readonly IAttendenceDetailService  _adService;
+        private readonly IStudentAttendanceService _saService;
         #endregion
 
 
         #region Ctor
-        public StaffAttendenceController(ILectureService lectureService, ISubjectService subjectService, IClassService classService, IClassSubjectDetailService classDetailService, IUserService userService)
+        public StaffAttendenceController(ILectureService lectureService,
+            IAttendenceDetailService adService,
+            IStudentAttendanceService saService,
+            ISubjectService subjectService, IClassService classService, IClassSubjectDetailService classDetailService, IUserService userService)
         {
             _lectureService = lectureService;
             _classService = classService;
             _subjectService = subjectService;
             _classDetailService = classDetailService;
             _userService = userService;
-
+            _adService = adService;
+            _saService = saService;
 
 
         }
@@ -118,12 +126,42 @@ namespace StudentManagement.Web.Areas.Staff.Controllers
 
 
         [HttpPost]
-        public async Task<IActionResult> StudentAttendenceEntry()
+        public async Task<IActionResult> StudentAttendenceEntry(StaffAttendenceDto model)
         {
             using (var txscope = new TransactionScope(TransactionScopeAsyncFlowOption.Enabled))
             {
                 try
                 {
+                    var isExist = _saService.GetSingle(x => x.AttendanceBy == User.GetUserId() && x.AttendanceDate == DateTime.Now);
+                    if (isExist == null)
+                    {
+                        StudentAttendance obj = new StudentAttendance();
+                        obj.AttendanceDate = DateTime.Now.Date;
+                        obj.AttendanceBy = User.GetUserId();
+                        obj.ClassId = model.ClassId;
+                        obj.LectureId = model.LectureId;
+                        obj.SubjectId = model.SubjectId;
+
+                        var insertResult = await _saService.InsertAsync(obj, Accessor, User.GetUserId());
+                        if (insertResult != null)
+                        {
+                            foreach (var item in model.StudentIdList)
+                            {
+                                StudentAttendanceDetail stobj = new StudentAttendanceDetail();
+                                stobj.StudentId = item;
+                                stobj.IsPresent = model.Mark;
+                                stobj.AttendanceId = insertResult.AttendanceId;
+                                var stinsertResult = await _saService.InsertAsync(obj, Accessor, User.GetUserId());
+                                if (stinsertResult != null)
+                                {
+                                    txscope.Complete();
+                                    return JsonResponse.GenerateJsonResult(1, ResponseConstants.SomethingWrong);
+                                }
+                            }
+                            
+                        }
+                    }   
+
                     return JsonResponse.GenerateJsonResult(0, ResponseConstants.SomethingWrong);
                 }
                 catch (Exception ex)

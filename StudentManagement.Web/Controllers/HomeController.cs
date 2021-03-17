@@ -43,7 +43,7 @@ namespace StudentManagement.Web.Controllers
 
             await _signInManager.SignOutAsync();
             return LocalRedirect("/identity/account/login");
-            //return RedirectToPage("/identity/account/login");
+         
         }
     }
 }
