@@ -31,12 +31,5 @@ namespace StudentManagement.Data.Models
         public long Credit { get; set; }
         public long ActaulL { get; set; }
 
-        public long SubjectDepartmentId { get; set; }
-        [ForeignKey("SubjectDepartmentId")]
-        public virtual SubjectDepartmentMaster SubjectDepartmentMaster { get; set; }
-
-        public long StudentId { get; set; }
-        [ForeignKey("StudentId")]
-        public virtual ApplicationUser ApplicationUser { get; set; }
     }
 }

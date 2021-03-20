@@ -243,7 +243,7 @@ namespace StudentManagement.Service.Implementation.BaseService
                 if (entity.GetType().GetProperty("CreatedDate") != null)
                 {
                     //entity.GetType().GetProperty("CreatedDate")?.SetValue(entity, DateTime.UtcNow);
-                    entity.GetType().GetProperty("CreatedDate")?.SetValue(entity, entity.GetType().GetProperty("CreatedDate").GetValue(entity) ?? DateTime.UtcNow);
+                    entity.GetType().GetProperty("CreatedDate")?.SetValue(entity,  DateTime.UtcNow);
                 }
 
             }

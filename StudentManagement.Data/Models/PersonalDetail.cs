@@ -47,9 +47,7 @@ namespace StudentManagement.Data.Models
         public long ReligionId { get; set; }
         [ForeignKey("ReligionId")]
         public virtual ReligionMaster ReligionMaster { get; set; }
-        public long CityId { get; set; }
-        [ForeignKey("CityId")]
-        public virtual CityMaster CityMaster { get; set; }
+      
         public long CountryId { get; set; }
         [ForeignKey("CountryId")]
         public virtual CountryMaster CountryMaster { get; set; }

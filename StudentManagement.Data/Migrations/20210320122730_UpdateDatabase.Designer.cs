@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using StudentManagement.Data.DBContexts;
 
 namespace StudentManagement.Data.Migrations
 {
     [DbContext(typeof(StudentDbContext))]
-    partial class StudentDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210320122730_UpdateDatabase")]
+    partial class UpdateDatabase
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -286,7 +288,7 @@ namespace StudentManagement.Data.Migrations
                         .HasColumnType("bigint");
 
                     b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("datetime");
 
                     b.Property<bool>("IsActive")
                         .HasColumnType("bit");
@@ -295,7 +297,7 @@ namespace StudentManagement.Data.Migrations
                         .HasColumnType("bigint");
 
                     b.Property<DateTime?>("ModifiedDate")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("datetime");
 
                     b.HasKey("AdmissiontypeId");
 
@@ -313,7 +315,7 @@ namespace StudentManagement.Data.Migrations
                         .HasColumnType("bigint");
 
                     b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("datetime");
 
                     b.Property<bool>("IsActive")
                         .HasColumnType("bit");
@@ -322,7 +324,7 @@ namespace StudentManagement.Data.Migrations
                         .HasColumnType("bigint");
 
                     b.Property<DateTime?>("ModifiedDate")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("datetime");
 
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
@@ -346,7 +348,7 @@ namespace StudentManagement.Data.Migrations
                         .HasColumnType("bigint");
 
                     b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("datetime");
 
                     b.Property<bool>("IsActive")
                         .HasColumnType("bit");
@@ -355,7 +357,7 @@ namespace StudentManagement.Data.Migrations
                         .HasColumnType("bigint");
 
                     b.Property<DateTime?>("ModifiedDate")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("datetime");
 
                     b.HasKey("BloodgroupId");
 
@@ -376,7 +378,7 @@ namespace StudentManagement.Data.Migrations
                         .HasColumnType("bigint");
 
                     b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("datetime");
 
                     b.Property<bool>("IsActive")
                         .HasColumnType("bit");
@@ -385,7 +387,7 @@ namespace StudentManagement.Data.Migrations
                         .HasColumnType("bigint");
 
                     b.Property<DateTime?>("ModifiedDate")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("datetime");
 
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(100)");
@@ -408,7 +410,7 @@ namespace StudentManagement.Data.Migrations
                         .HasColumnType("bigint");
 
                     b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("datetime");
 
                     b.Property<bool>("IsActive")
                         .HasColumnType("bit");
@@ -417,7 +419,7 @@ namespace StudentManagement.Data.Migrations
                         .HasColumnType("bigint");
 
                     b.Property<DateTime?>("ModifiedDate")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("datetime");
 
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(100)");
@@ -438,7 +440,7 @@ namespace StudentManagement.Data.Migrations
                         .HasColumnType("bigint");
 
                     b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("datetime");
 
                     b.Property<bool>("IsActive")
                         .HasColumnType("bit");
@@ -447,7 +449,7 @@ namespace StudentManagement.Data.Migrations
                         .HasColumnType("bigint");
 
                     b.Property<DateTime?>("ModifiedDate")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("datetime");
 
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
@@ -471,7 +473,7 @@ namespace StudentManagement.Data.Migrations
                         .HasColumnType("bigint");
 
                     b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("datetime");
 
                     b.Property<bool>("IsActive")
                         .HasColumnType("bit");
@@ -480,7 +482,7 @@ namespace StudentManagement.Data.Migrations
                         .HasColumnType("bigint");
 
                     b.Property<DateTime?>("ModifiedDate")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("datetime");
 
                     b.Property<long?>("StateId")
                         .HasColumnType("bigint");
@@ -518,7 +520,7 @@ namespace StudentManagement.Data.Migrations
                         .HasColumnType("bigint");
 
                     b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("datetime");
 
                     b.Property<bool>("IsActive")
                         .HasColumnType("bit");
@@ -527,7 +529,7 @@ namespace StudentManagement.Data.Migrations
                         .HasColumnType("bigint");
 
                     b.Property<DateTime?>("ModifiedDate")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("datetime");
 
                     b.Property<long>("SessionId")
                         .HasColumnType("bigint");
@@ -566,7 +568,7 @@ namespace StudentManagement.Data.Migrations
                         .HasColumnType("bigint");
 
                     b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("datetime");
 
                     b.Property<bool>("IsActive")
                         .HasColumnType("bit");
@@ -575,7 +577,7 @@ namespace StudentManagement.Data.Migrations
                         .HasColumnType("bigint");
 
                     b.Property<DateTime?>("ModifiedDate")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("datetime");
 
                     b.Property<long>("StudentId")
                         .HasColumnType("bigint");
@@ -609,7 +611,7 @@ namespace StudentManagement.Data.Migrations
                         .HasColumnType("bigint");
 
                     b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("datetime");
 
                     b.Property<long>("Credit")
                         .HasColumnType("bigint");
@@ -627,7 +629,7 @@ namespace StudentManagement.Data.Migrations
                         .HasColumnType("bigint");
 
                     b.Property<DateTime?>("ModifiedDate")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("datetime");
 
                     b.Property<long>("P")
                         .HasColumnType("bigint");
@@ -664,7 +666,7 @@ namespace StudentManagement.Data.Migrations
                         .HasColumnType("bigint");
 
                     b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("datetime");
 
                     b.Property<bool>("IsActive")
                         .HasColumnType("bit");
@@ -673,7 +675,7 @@ namespace StudentManagement.Data.Migrations
                         .HasColumnType("bigint");
 
                     b.Property<DateTime?>("ModifiedDate")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("datetime");
 
                     b.Property<long>("TeacherId")
                         .HasColumnType("bigint");
@@ -720,7 +722,7 @@ namespace StudentManagement.Data.Migrations
                         .HasColumnType("bigint");
 
                     b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("datetime");
 
                     b.Property<bool>("IsActive")
                         .HasColumnType("bit");
@@ -729,7 +731,7 @@ namespace StudentManagement.Data.Migrations
                         .HasColumnType("bigint");
 
                     b.Property<DateTime?>("ModifiedDate")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("datetime");
 
                     b.Property<string>("PassportNumber")
                         .HasColumnType("nvarchar(100)");
@@ -784,7 +786,7 @@ namespace StudentManagement.Data.Migrations
                         .HasColumnType("bigint");
 
                     b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("datetime");
 
                     b.Property<bool>("IsActive")
                         .HasColumnType("bit");
@@ -793,7 +795,7 @@ namespace StudentManagement.Data.Migrations
                         .HasColumnType("bigint");
 
                     b.Property<DateTime?>("ModifiedDate")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("datetime");
 
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
@@ -819,7 +821,7 @@ namespace StudentManagement.Data.Migrations
                         .HasColumnType("bigint");
 
                     b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("datetime");
 
                     b.Property<bool>("IsActive")
                         .HasColumnType("bit");
@@ -828,7 +830,7 @@ namespace StudentManagement.Data.Migrations
                         .HasColumnType("bigint");
 
                     b.Property<DateTime?>("ModifiedDate")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("datetime");
 
                     b.HasKey("CountryId");
 
@@ -849,7 +851,7 @@ namespace StudentManagement.Data.Migrations
                         .HasColumnType("bigint");
 
                     b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("datetime");
 
                     b.Property<bool>("IsActive")
                         .HasColumnType("bit");
@@ -858,7 +860,7 @@ namespace StudentManagement.Data.Migrations
                         .HasColumnType("bigint");
 
                     b.Property<DateTime?>("ModifiedDate")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("datetime");
 
                     b.HasKey("CourseId");
 
@@ -876,7 +878,7 @@ namespace StudentManagement.Data.Migrations
                         .HasColumnType("bigint");
 
                     b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("datetime");
 
                     b.Property<bool>("IsActive")
                         .HasColumnType("bit");
@@ -885,7 +887,7 @@ namespace StudentManagement.Data.Migrations
                         .HasColumnType("bigint");
 
                     b.Property<DateTime?>("ModifiedDate")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("datetime");
 
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
@@ -906,7 +908,7 @@ namespace StudentManagement.Data.Migrations
                         .HasColumnType("bigint");
 
                     b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("datetime");
 
                     b.Property<bool>("IsActive")
                         .HasColumnType("bit");
@@ -915,7 +917,7 @@ namespace StudentManagement.Data.Migrations
                         .HasColumnType("bigint");
 
                     b.Property<DateTime?>("ModifiedDate")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("datetime");
 
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
@@ -948,7 +950,7 @@ namespace StudentManagement.Data.Migrations
                         .HasColumnType("bigint");
 
                     b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("datetime");
 
                     b.Property<string>("DegreeMarksheetPath")
                         .HasColumnType("nvarchar(200)");
@@ -969,7 +971,7 @@ namespace StudentManagement.Data.Migrations
                         .HasColumnType("bigint");
 
                     b.Property<DateTime?>("ModifiedDate")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("datetime");
 
                     b.Property<string>("PGMarksheetPath")
                         .HasColumnType("nvarchar(200)");
@@ -1004,7 +1006,7 @@ namespace StudentManagement.Data.Migrations
                         .HasColumnType("bigint");
 
                     b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("datetime");
 
                     b.Property<string>("EntranceExamName")
                         .HasColumnType("nvarchar(200)");
@@ -1016,7 +1018,7 @@ namespace StudentManagement.Data.Migrations
                         .HasColumnType("bigint");
 
                     b.Property<DateTime?>("ModifiedDate")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("datetime");
 
                     b.HasKey("EntranceExamId");
 
@@ -1067,7 +1069,7 @@ namespace StudentManagement.Data.Migrations
                         .HasColumnType("bigint");
 
                     b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("datetime");
 
                     b.Property<bool>("IsActive")
                         .HasColumnType("bit");
@@ -1076,7 +1078,7 @@ namespace StudentManagement.Data.Migrations
                         .HasColumnType("bigint");
 
                     b.Property<DateTime?>("ModifiedDate")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("datetime");
 
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(200)");
@@ -1115,7 +1117,7 @@ namespace StudentManagement.Data.Migrations
                         .HasColumnType("bigint");
 
                     b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("datetime");
 
                     b.Property<bool>("IsActive")
                         .HasColumnType("bit");
@@ -1124,7 +1126,7 @@ namespace StudentManagement.Data.Migrations
                         .HasColumnType("bigint");
 
                     b.Property<DateTime?>("ModifiedDate")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("datetime");
 
                     b.Property<long>("SessionId")
                         .HasColumnType("bigint");
@@ -1693,7 +1695,7 @@ namespace StudentManagement.Data.Migrations
                         .HasColumnType("bigint");
 
                     b.Property<DateTime?>("ModifiedDate")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("datetime");
 
                     b.Property<long>("SubjectId")
                         .HasColumnType("bigint");
@@ -1904,7 +1906,7 @@ namespace StudentManagement.Data.Migrations
                         .HasColumnType("bigint");
 
                     b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("datetime");
 
                     b.Property<bool>("IsActive")
                         .HasColumnType("bit");
@@ -1922,7 +1924,7 @@ namespace StudentManagement.Data.Migrations
                         .HasColumnType("bigint");
 
                     b.Property<DateTime?>("ModifiedDate")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("datetime");
 
                     b.HasKey("LectureId");
 
@@ -1940,7 +1942,7 @@ namespace StudentManagement.Data.Migrations
                         .HasColumnType("bigint");
 
                     b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("datetime");
 
                     b.Property<bool>("IsActive")
                         .HasColumnType("bit");
@@ -1952,7 +1954,7 @@ namespace StudentManagement.Data.Migrations
                         .HasColumnType("bigint");
 
                     b.Property<DateTime?>("ModifiedDate")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("datetime");
 
                     b.HasKey("MarkingShchemId");
 
@@ -1970,7 +1972,7 @@ namespace StudentManagement.Data.Migrations
                         .HasColumnType("bigint");
 
                     b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("datetime");
 
                     b.Property<bool>("IsActive")
                         .HasColumnType("bit");
@@ -1979,7 +1981,7 @@ namespace StudentManagement.Data.Migrations
                         .HasColumnType("bigint");
 
                     b.Property<DateTime?>("ModifiedDate")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("datetime");
 
                     b.Property<string>("PGDegreeName")
                         .HasColumnType("nvarchar(500)");
@@ -2000,7 +2002,7 @@ namespace StudentManagement.Data.Migrations
                         .HasColumnType("bigint");
 
                     b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("datetime");
 
                     b.Property<string>("FatherAddress")
                         .HasColumnType("nvarchar(max)");
@@ -2063,7 +2065,7 @@ namespace StudentManagement.Data.Migrations
                         .HasColumnType("bigint");
 
                     b.Property<DateTime?>("ModifiedDate")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("datetime");
 
                     b.Property<string>("MotherAddress")
                         .HasColumnType("nvarchar(max)");
@@ -2145,7 +2147,7 @@ namespace StudentManagement.Data.Migrations
                         .HasColumnType("bigint");
 
                     b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("datetime");
 
                     b.Property<DateTime>("Dob")
                         .HasColumnType("datetime2(7)");
@@ -2166,7 +2168,7 @@ namespace StudentManagement.Data.Migrations
                         .HasColumnType("bigint");
 
                     b.Property<DateTime?>("ModifiedDate")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("datetime");
 
                     b.Property<string>("PersonalEmail1")
                         .HasColumnType("nvarchar(100)");
@@ -2244,7 +2246,7 @@ namespace StudentManagement.Data.Migrations
                         .HasColumnType("bigint");
 
                     b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("datetime");
 
                     b.Property<bool>("IsActive")
                         .HasColumnType("bit");
@@ -2253,7 +2255,7 @@ namespace StudentManagement.Data.Migrations
                         .HasColumnType("bigint");
 
                     b.Property<DateTime?>("ModifiedDate")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("datetime");
 
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(200)");
@@ -2274,7 +2276,7 @@ namespace StudentManagement.Data.Migrations
                         .HasColumnType("bigint");
 
                     b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("datetime");
 
                     b.Property<bool>("IsActive")
                         .HasColumnType("bit");
@@ -2283,7 +2285,7 @@ namespace StudentManagement.Data.Migrations
                         .HasColumnType("bigint");
 
                     b.Property<DateTime?>("ModifiedDate")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("datetime");
 
                     b.Property<string>("Religion")
                         .HasColumnType("nvarchar(200)");
@@ -2304,7 +2306,7 @@ namespace StudentManagement.Data.Migrations
                         .HasColumnType("bigint");
 
                     b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("datetime");
 
                     b.Property<bool>("IsActive")
                         .HasColumnType("bit");
@@ -2313,7 +2315,7 @@ namespace StudentManagement.Data.Migrations
                         .HasColumnType("bigint");
 
                     b.Property<DateTime?>("ModifiedDate")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("datetime");
 
                     b.Property<string>("SessionName")
                         .HasColumnType("nvarchar(200)");
@@ -2337,7 +2339,7 @@ namespace StudentManagement.Data.Migrations
                         .HasColumnType("bigint");
 
                     b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("datetime");
 
                     b.Property<bool>("IsActive")
                         .HasColumnType("bit");
@@ -2346,7 +2348,7 @@ namespace StudentManagement.Data.Migrations
                         .HasColumnType("bigint");
 
                     b.Property<DateTime?>("ModifiedDate")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("datetime");
 
                     b.Property<string>("StateName")
                         .HasColumnType("nvarchar(100)");
@@ -2369,7 +2371,7 @@ namespace StudentManagement.Data.Migrations
                         .HasColumnType("bigint");
 
                     b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("datetime");
 
                     b.Property<bool>("IsActive")
                         .HasColumnType("bit");
@@ -2378,7 +2380,7 @@ namespace StudentManagement.Data.Migrations
                         .HasColumnType("bigint");
 
                     b.Property<DateTime?>("ModifiedDate")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("datetime");
 
                     b.Property<string>("Staytype")
                         .HasColumnType("nvarchar(200)");
@@ -2408,7 +2410,7 @@ namespace StudentManagement.Data.Migrations
                         .HasColumnType("bigint");
 
                     b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("datetime");
 
                     b.Property<bool>("IsActive")
                         .HasColumnType("bit");
@@ -2420,7 +2422,7 @@ namespace StudentManagement.Data.Migrations
                         .HasColumnType("bigint");
 
                     b.Property<DateTime?>("ModifiedDate")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("datetime");
 
                     b.Property<long>("SubjectId")
                         .HasColumnType("bigint");
@@ -2452,7 +2454,7 @@ namespace StudentManagement.Data.Migrations
                         .HasColumnType("bigint");
 
                     b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("datetime");
 
                     b.Property<bool>("IsActive")
                         .HasColumnType("bit");
@@ -2464,7 +2466,7 @@ namespace StudentManagement.Data.Migrations
                         .HasColumnType("bigint");
 
                     b.Property<DateTime?>("ModifiedDate")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("datetime");
 
                     b.Property<long>("StudentId")
                         .HasColumnType("bigint");
@@ -2485,7 +2487,7 @@ namespace StudentManagement.Data.Migrations
                         .HasColumnType("bigint");
 
                     b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("datetime");
 
                     b.Property<string>("DegreeBoardName")
                         .HasColumnType("nvarchar(200)");
@@ -2551,7 +2553,7 @@ namespace StudentManagement.Data.Migrations
                         .HasColumnType("bigint");
 
                     b.Property<DateTime?>("ModifiedDate")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("datetime");
 
                     b.Property<string>("PGDegreeBoardName")
                         .HasColumnType("nvarchar(200)");
@@ -2643,7 +2645,7 @@ namespace StudentManagement.Data.Migrations
                         .HasColumnType("bigint");
 
                     b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("datetime");
 
                     b.Property<bool>("IsActive")
                         .HasColumnType("bit");
@@ -2652,7 +2654,7 @@ namespace StudentManagement.Data.Migrations
                         .HasColumnType("bigint");
 
                     b.Property<DateTime?>("ModifiedDate")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("datetime");
 
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(200)");
@@ -2673,7 +2675,7 @@ namespace StudentManagement.Data.Migrations
                         .HasColumnType("bigint");
 
                     b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("datetime");
 
                     b.Property<bool>("IsActive")
                         .HasColumnType("bit");
@@ -2682,7 +2684,7 @@ namespace StudentManagement.Data.Migrations
                         .HasColumnType("bigint");
 
                     b.Property<DateTime?>("ModifiedDate")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("datetime");
 
                     b.Property<string>("SubjectCode")
                         .HasColumnType("nvarchar(50)");
@@ -2716,7 +2718,7 @@ namespace StudentManagement.Data.Migrations
                         .HasColumnType("bigint");
 
                     b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("datetime");
 
                     b.Property<bool>("IsActive")
                         .HasColumnType("bit");
@@ -2725,7 +2727,7 @@ namespace StudentManagement.Data.Migrations
                         .HasColumnType("bigint");
 
                     b.Property<DateTime?>("ModifiedDate")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("datetime");
 
                     b.Property<string>("SubjectType")
                         .HasColumnType("nvarchar(100)");
@@ -2746,7 +2748,7 @@ namespace StudentManagement.Data.Migrations
                         .HasColumnType("bigint");
 
                     b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("datetime");
 
                     b.Property<bool>("IsActive")
                         .HasColumnType("bit");
@@ -2755,7 +2757,7 @@ namespace StudentManagement.Data.Migrations
                         .HasColumnType("bigint");
 
                     b.Property<DateTime?>("ModifiedDate")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("datetime");
 
                     b.Property<string>("YearSemester")
                         .HasColumnType("nvarchar(50)");

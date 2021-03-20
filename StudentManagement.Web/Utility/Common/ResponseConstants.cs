@@ -10,6 +10,7 @@ namespace StudentManagement.Utility.Common
         //Common
         public const string SomethingWrong = "Something went wrong !";
         public const string UpdatedRecord = "Record Updated";
+        public const string InsertRecord = "Record Inserted";
 
        
 

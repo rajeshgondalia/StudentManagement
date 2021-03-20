@@ -28,8 +28,6 @@ namespace StudentManagement.Data.Models
         [Column(TypeName = "datetime")]
         public DateTime AttendanceDate { get; set; }
 
-
-
         public long? AttendanceBy { get; set; }
         [ForeignKey("AttendanceBy")]
         public virtual ApplicationUser ApplicationUser1 { get; set; }

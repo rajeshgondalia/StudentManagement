@@ -17,5 +17,10 @@ namespace StudentManagement.Data.Models
         public string CityName { get; set; }
 
 
+
+        public long? StateId { get; set; }
+        [ForeignKey("StateId")]
+        public virtual StateMaster StateMaster { get; set; }
+
     }
 }

@@ -12,12 +12,12 @@ namespace StudentManagementAdmin.Data.DbModel.BaseModel
 
         public long? CreatedBy { get; set; }
 
-        [Column(TypeName = "datetime")]
+
         public DateTime CreatedDate { get; set; }
 
         public long? ModifiedBy { get; set; }
 
-        [Column(TypeName = "datetime")]
+
         public DateTime? ModifiedDate { get; set; }
 
         [DefaultValue(true)]

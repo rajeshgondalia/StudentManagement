@@ -10,6 +10,7 @@ namespace StudentManagement.Service.Dto
         public long ClassId { get; set; }
         public long SubjectId { get; set; }
         public long LectureId { get; set; }
-        public bool Mark { get; set; }
+        public int Mark { get; set; }
+        public string AttendenceDate { get; set; }
     }
 }

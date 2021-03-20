@@ -18,6 +18,8 @@ using StudentManagement.Utility.Common;
 using StudentManagement.Service.Dto;
 using StudentManagement.Service.Exception;
 using StudentManagement.Data.Models;
+using System.Data.SqlTypes;
+using System.Globalization;
 
 namespace StudentManagement.Web.Areas.Staff.Controllers
 {
@@ -132,15 +134,16 @@ namespace StudentManagement.Web.Areas.Staff.Controllers
             {
                 try
                 {
-                    var isExist = _saService.GetSingle(x => x.AttendanceBy == User.GetUserId() && x.AttendanceDate == DateTime.Now);
-                    if (isExist == null)
+                    var isExist = _saService.GetAll().Where(x=>x.AttendanceDate.ToShortDateString().Equals(DateTime.Now.ToShortDateString()));
+                    if (isExist.Count() == 0)
                     {
                         StudentAttendance obj = new StudentAttendance();
-                        obj.AttendanceDate = DateTime.Now.Date;
+                        obj.AttendanceDate = DateTime.Now;
                         obj.AttendanceBy = User.GetUserId();
                         obj.ClassId = model.ClassId;
                         obj.LectureId = model.LectureId;
                         obj.SubjectId = model.SubjectId;
+                        obj.IsActive = true;
 
                         var insertResult = await _saService.InsertAsync(obj, Accessor, User.GetUserId());
                         if (insertResult != null)
@@ -149,19 +152,53 @@ namespace StudentManagement.Web.Areas.Staff.Controllers
                             {
                                 StudentAttendanceDetail stobj = new StudentAttendanceDetail();
                                 stobj.StudentId = item;
-                                stobj.IsPresent = model.Mark;
+                                stobj.IsPresent = model.Mark==1?true:false;
                                 stobj.AttendanceId = insertResult.AttendanceId;
-                                var stinsertResult = await _saService.InsertAsync(obj, Accessor, User.GetUserId());
-                                if (stinsertResult != null)
+                                stobj.IsActive = true;
+                                var stinsertResult = await _adService.InsertAsync(stobj, Accessor, User.GetUserId());
+                                if (stinsertResult == null)
                                 {
-                                    txscope.Complete();
-                                    return JsonResponse.GenerateJsonResult(1, ResponseConstants.SomethingWrong);
+                                    txscope.Dispose();
+                                    ErrorLog.AddErrorLog(null, "post/StudentAttendenceEntry");
+                                    return JsonResponse.GenerateJsonResult(0, ResponseConstants.SomethingWrong);
                                 }
                             }
-                            
-                        }
-                    }   
+                            txscope.Complete();
+                            return JsonResponse.GenerateJsonResult(1, ResponseConstants.InsertRecord);
 
+                        }
+                    }
+                    else {
+                        var eObj = _saService.GetAll().Where(x => x.AttendanceBy == User.GetUserId() && x.AttendanceDate.ToShortDateString().Equals(DateTime.Now.ToShortDateString())).FirstOrDefault();
+                        eObj.AttendanceDate = DateTime.Now;
+                        eObj.AttendanceBy = User.GetUserId();
+                        eObj.ClassId = model.ClassId;
+                        eObj.LectureId = model.LectureId;
+                        eObj.SubjectId = model.SubjectId;
+                        eObj.IsActive = true;
+                        var updateResult = await _saService.UpdateAsync(eObj,Accessor,User.GetUserId());
+                        if (updateResult != null)
+                        {
+                            var studentList = _adService.GetAll().Where(x => x.AttendanceId == updateResult.AttendanceId && model.StudentIdList.Contains(x.StudentId));
+                            foreach (var studentId in model.StudentIdList)
+                            {
+                                var studObj = studentList.FirstOrDefault(x => x.StudentId == studentId);
+                                studObj.IsPresent = model.Mark==1?true:false;
+                                var stinsertResult = await _adService.UpdateAsync(studObj, Accessor, User.GetUserId());
+                                if (stinsertResult == null)
+                                {
+                                    txscope.Dispose();
+                                    ErrorLog.AddErrorLog(null, "post/StudentAttendenceEntry");
+                                    return JsonResponse.GenerateJsonResult(0, ResponseConstants.SomethingWrong);
+                                }
+                            }
+                            txscope.Complete();
+                            return JsonResponse.GenerateJsonResult(1, ResponseConstants.InsertRecord);
+                        }
+
+                    }
+                    txscope.Dispose();
+                    ErrorLog.AddErrorLog(null, "post/StudentAttendenceEntry");
                     return JsonResponse.GenerateJsonResult(0, ResponseConstants.SomethingWrong);
                 }
                 catch (Exception ex)
@@ -195,12 +232,10 @@ namespace StudentManagement.Web.Areas.Staff.Controllers
 
             #endregion
 
-            #region Common
+        #region Common
 
 
             #endregion
-
-
 
 
 

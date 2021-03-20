@@ -118,9 +118,9 @@
 </div>
 @section Scripts{
     <script type="text/javascript">
-        var StudentIdList = new Array();    
+        var StudentIdList = new Array();
     $(document).ready(function () {
-        
+
         $("#ClassId").change(function () {
             $("#SubjectId").empty();
             $.ajax({
@@ -130,10 +130,10 @@
                 data: { ClassId: $("#ClassId").val() },
                 success: function (city) {
 
-                    $.each(city, function (i, city) {
+                    $.each(city, function (i, sub) {
                         $("#SubjectId").append('<option value="'
-                                                   + city.value + '" selected>'
-                                             + city.text + '</option>');
+                            + sub.value + '" selected>'
+                            + sub.text + '</option>');
                     });
                 },
                 error: function (ex) {
@@ -197,9 +197,6 @@
                 StudentIdList.push($(this).attr("data-id"));
             }
 
-
-
-
         });
 
 
@@ -209,17 +206,16 @@
             SetAttendence();
         });
         function SetAttendence() {
-
-
-            debugger;
+           
 
             var stud = {
                 ClassId : $("#ClassId").val(),
                 SubjectId : $("#SubjectId").val(),
-            LectureId : $("#ClassId").val(),
-                Mark: $(document).find("input[type='radio'][name='Mark']:checked").val(),
+                LectureId: $("#ClassId").val(),
+                Mark: parseInt($(document).find("input[type='radio'][name='Mark']:checked").val()),
                 StudentIdList: StudentIdList
-        }
+              
+            }
             $.ajax({
                 url: "/Staff/StaffAttendence/StudentAttendenceEntry",
                 type: "POST",

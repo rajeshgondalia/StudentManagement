@@ -23,5 +23,9 @@ namespace StudentManagement.Data.Models
         public virtual SubjectTypeMaster  SubjectTypeMaster {get;set;}
 
 
+        public long? SubjectDepartmentId { get; set; }
+        [ForeignKey("SubjectDepartmentId")]
+        public virtual SubjectDepartmentMaster SubjectDepartmentMaster { get; set; }
+
     }
 }
