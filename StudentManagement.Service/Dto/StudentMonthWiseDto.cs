@@ -16,6 +16,8 @@ namespace StudentManagement.Service.Dto
         public int StudentAttendence { get; set; }
 
         public decimal Percent { get; set; }
+        public long AttendenceId { get; set; }
+
     }
 
     

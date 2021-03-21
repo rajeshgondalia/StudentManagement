@@ -71,18 +71,14 @@
                                                 {
                                                     <tr>
                                                         <td>@m.subjectName</td>
-                                                        <td>@item.Select(x => x.subjectHeld).Sum()</td>
-                                                        <td>@item.Select(x => x.StudentAttendence).Sum()</td>
-                                                       @{ 
-                                                           var first = item.Select(x => x.StudentAttendence).Sum();
-                                                           var sec = item.Select(x => x.subjectHeld).Sum();
-                                                           var total = (decimal)first / sec * 100;
-                                                       }
-                                                        <td>@total % </td>
+                                                        <td>@m.subjectHeld</td>
+                                                        <td>@m.StudentAttendence</td>
+                                                     
+                                                    <td>@((decimal)m.StudentAttendence / m.subjectHeld * 100) % </td>
 
-                                                        <td>@Model.Where(x=>x.MonthId==m.MonthId).Select(x=>x.subjectHeld).Sum()</td>
-                                                        <td>@Model.Where(x=>x.MonthId==m.MonthId).Select(x=>x.StudentAttendence).Sum()</td>
-                                                        <td>@((decimal)Model.Where(x => x.MonthId == m.MonthId).Select(x => x.StudentAttendence).Sum() / Model.Where(x => x.MonthId == m.MonthId).Select(x => x.subjectHeld).Sum() * 100)</td>
+                                                        <td>@Model.Where(x=>x.MonthId==m.MonthId && x.AttendenceId==m.AttendenceId).Select(x=>x.subjectHeld).Sum()</td>
+                                                        <td>@Model.Where(x=>x.MonthId==m.MonthId && x.AttendenceId == m.AttendenceId).Select(x=>x.StudentAttendence).Sum()</td>
+                                                        <td>@((decimal)Model.Where(x => x.MonthId == m.MonthId && x.AttendenceId == m.AttendenceId).Select(x => x.StudentAttendence).Sum() / Model.Where(x => x.MonthId == m.MonthId && x.AttendenceId == m.AttendenceId).Select(x => x.subjectHeld).Sum() * 100)</td>
 
                                                   </tr>
     }

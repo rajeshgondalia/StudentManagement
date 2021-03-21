@@ -107,12 +107,38 @@ namespace StudentManagement.Web.Areas.Student.Controllers
                 model.subjectHeld += 1;
                 model.StudentAttendence += item.IsPresent ? 1 : 0;
                 model.Percent = 0;
+                model.AttendenceId=attendenceObj.AttendanceId;
                 studentReportList.Add(model);
 
             }
 
             return View(studentReportList);
         }
+
+        [HttpGet]
+        public IActionResult DayWiseStudentReport()
+        {
+            var attendencelist = _saService.GetAll();
+            var currentStudentAttendenceList = _adService.GetAll().Where(x => x.StudentId == User.GetUserId()).ToList();
+            var studentReportList = new List<StudentMonthWiseDto>();
+            foreach (var item in currentStudentAttendenceList)
+            {
+
+                var attendenceObj = attendencelist.FirstOrDefault(x => x.AttendanceId == item.AttendanceId);
+                var model = new StudentMonthWiseDto();
+                model.MonthId = attendenceObj.AttendanceDate.Month;
+                model.MonthName = attendenceObj.AttendanceDate.ToString("MMMM");
+                model.subjectName = _SubService.GetSingle(x => x.SubjectId == attendenceObj.SubjectId).SubjectName;
+                model.subjectHeld += 1;
+                model.StudentAttendence += item.IsPresent ? 1 : 0;
+                model.Percent = 0;
+                studentReportList.Add(model);
+
+            }
+
+            return View(studentReportList);
+        }
+
 
         #region Common
 
