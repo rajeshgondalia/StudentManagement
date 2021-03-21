@@ -10,6 +10,7 @@
     <link rel="stylesheet" type="text/css" href="~/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="~/css/style.css">
     <link rel="stylesheet" type="text/css" href="~/css/responsive.css">
+    <link href="~/css/jquery.dataTables.min.css" rel="stylesheet" />
 </head>
 <body>
     <!-- Dashboard section start here -->
@@ -74,13 +75,13 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="/Student/StudentAttendence/Index" class="nav-link text-center">
+                        <a href="/Student/StudentAttendence/MothWiseStudentReport" class="nav-link text-center">
                             <span class="sidebar-list-icon">  <i class="far fa-calendar-check"></i> </span>
                             <span class="sidebar-list-label">View Student Attendance</span>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="/Student/StudentAttendence/AttendenceEntry" class="nav-link text-center">
+                        <a href="/Student/StudentAttendence/Classdetails" class="nav-link text-center">
                             <span class="sidebar-list-icon">  <i class="fal fa-users-class"></i> </span>
                             <span class="sidebar-list-label">Class details for Student</span>
                         </a>
@@ -121,8 +122,7 @@
     <script src="~/js/main.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.2/jquery.validate.min.js" integrity="sha512-UdIMMlVx0HEynClOIFSyOrPggomfhBKJE28LKl8yR3ghkgugPnG6iLfRfHwushZl1MOPSY6TsuBDGPK2X4zYKg==" crossorigin="anonymous"></script>
-
-
+    <script src="~/js/jquery.dataTables.min.js"></script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     @RenderSection("Scripts", required: false)
 </body>

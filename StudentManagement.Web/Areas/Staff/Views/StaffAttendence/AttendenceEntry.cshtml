@@ -1,4 +1,4 @@
-﻿@model StudentManagement.Service.Dto.StudentAttendenceDto
+﻿@model StudentManagement.Service.Dto.StaffAttendenceDto
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 @{
     ViewData["Title"] = "AttendenceEntry";
@@ -120,7 +120,7 @@
     <script type="text/javascript">
         var StudentIdList = new Array();
     $(document).ready(function () {
-
+        $('input:radio[id=Mark]').prop('checked', true);
         $("#ClassId").change(function () {
             $("#SubjectId").empty();
             $.ajax({
@@ -206,31 +206,35 @@
             SetAttendence();
         });
         function SetAttendence() {
-           
+            if (StudentIdList.length == 0) {
+                swal("Please select  student !");
+            } else {
+                var stud = {
+                    ClassId: $("#ClassId").val(),
+                    SubjectId: $("#SubjectId").val(),
+                    LectureId: $("#ClassId").val(),
+                    Mark: parseInt($(document).find("input[type='radio'][name='Mark']:checked").val()),
+                    StudentIdList: StudentIdList
 
-            var stud = {
-                ClassId : $("#ClassId").val(),
-                SubjectId : $("#SubjectId").val(),
-                LectureId: $("#ClassId").val(),
-                Mark: parseInt($(document).find("input[type='radio'][name='Mark']:checked").val()),
-                StudentIdList: StudentIdList
-              
+                }
+                $.ajax({
+                    url: "/Staff/StaffAttendence/StudentAttendenceEntry",
+                    type: "POST",
+                    data: { model: stud },
+                    success: function (response) {
+                        if (response.status == 1) {
+                            swal({
+                                title: "updated",
+                                text: "Records updated successfully ",
+                                icon: "success",
+                            });
+                        }
+                    },
+                    error: function (response) { }
+                });
             }
-            $.ajax({
-                url: "/Staff/StaffAttendence/StudentAttendenceEntry",
-                type: "POST",
-                data: { model: stud},
-                success: function (response) {
-                    if (response.status == 1) {
-                        swal({
-                            title: "updated",
-                            text: "Records updated successfully ",
-                            icon: "success",
-                        });
-                    }
-                },
-                error: function (response){}
-            });
+
+      
 
         }
     </script>

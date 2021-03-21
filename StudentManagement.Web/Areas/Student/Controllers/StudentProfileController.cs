@@ -130,7 +130,7 @@ namespace StudentManagement.Web.Areas.Student.Controllers
             var userDetail = await _userManager.FindByIdAsync(userId.ToString());
             StudentProfileDto model = new StudentProfileDto();
             model.UserName = userDetail.UserName;
-            model.Name = userDetail.Email;
+            model.Name = userDetail.FirstName+" "+userDetail.LastName;
             model.OfficialEmail = userDetail.OfficialEmail;
 
             var pd = _personalDetailService.GetSingle(x => x.UserId == userId);

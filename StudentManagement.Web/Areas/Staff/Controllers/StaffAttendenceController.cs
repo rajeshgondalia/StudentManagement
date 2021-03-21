@@ -67,7 +67,13 @@ namespace StudentManagement.Web.Areas.Staff.Controllers
 
         public IActionResult AttendenceEntry()
         {
-
+            var eObj = _saService.GetAll().Where(x => x.AttendanceBy == User.GetUserId() && x.AttendanceDate.ToShortDateString().Equals(DateTime.Now.ToShortDateString())).FirstOrDefault();
+                var model = new StaffAttendenceDto();
+            if (eObj != null) {
+                model.LectureId = eObj.LectureId;   
+                model.ClassId = eObj.ClassId;   
+                model.SubjectId = eObj.SubjectId;   
+            }
             ViewBag.lecturelist = _lectureService.GetAll(x => x.IsActive == true).Select(x => new SelectListItem
             {
                 Text = x.LactureName,
@@ -87,7 +93,7 @@ namespace StudentManagement.Web.Areas.Staff.Controllers
                 Value = x.SubjectId.ToString()
             }).OrderBy(x => x.Text).ToList();
 
-            return View();
+            return View(model);
         }
 
 

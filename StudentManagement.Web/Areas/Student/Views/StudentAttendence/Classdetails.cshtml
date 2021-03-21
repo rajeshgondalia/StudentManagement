@@ -1,0 +1,112 @@
+﻿
+@{
+    ViewData["Title"] = "Classdetails";
+    Layout = "~/Areas/Student/Views/Shared/_Layout.cshtml";
+}
+<div class="app-container">
+    <div class="inner-tab-panel">
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs topnav" role="tablist">
+            <li class="nav-item">
+                <a class="nav-link" data-toggle="tab" href="#">ClassDetails</a>
+            </li>
+        </ul>
+
+        <!-- Tab panes -->
+        <div class="tab-content page-container">
+            <div id="home" class="tab-pane active">
+                <div class="card">
+                    <div class="modal-header">
+                        <h6 class="modal-title">
+                            Class details for student
+                        </h6>
+                    </div>
+                    <div class="card-body modal-body">
+                        <!-- form start here -->
+                        <div class="default-form">
+                          
+                            <div class="row">
+                                <div class="col-12 table-responsive">
+                                    <table class="default-table " id="classDetailForStudent">
+                                        <thead>
+                                            <tr>
+                                                <th width="30%" class="td-roll">Name of Subject</th>
+                                                <th width="30%" class="td-name">Teacher Name</th>
+                                                <th width="15%" class="td-present-absent">Mobile</th>
+                                                <th width="15%" class="td-present-absent">Email</th>
+                                            </tr>
+                                        </thead>
+                                       
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- form end here -->
+                    </div>
+              
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+@section Scripts{
+        <script type="text/javascript">
+
+            $(document).ready(function () {
+                bindStudentList("#classDetailForStudent");
+            });
+
+            function bindStudentList(tableId) {
+                if ($.fn.DataTable.isDataTable(tableId)) {
+                    $(tableId).dataTable().fnDestroy();
+                }
+                dynamic = $(tableId).DataTable({
+                    "bProcessing": true,
+                    "bServerSide": true,
+                    "sAjaxSource": "/Student/StudentAttendence/GetClassDetailList",
+                    "initComplete": function (settings, json) { },
+                    "rowCallback": function (row, data, index) { },
+                    "order": [[1, ""]],
+                    "language": {
+                        "info": "Showing _START_ to _END_ of _TOTAL_ Classes",
+                        "sInfoEmpty": "Showing 0 to 0 of 0 Classes"
+                    },
+                    "columns": [
+                        {
+                            "data": "nameOfSubject",
+                            "autoWidth": true,
+                            "searchable": true,
+                            "orderable": true
+                        },
+                        {
+                            "data": "teacherName",
+                            "autoWidth": true,
+                            "searchable": true,
+                            "orderable": true
+
+                        },
+                        {
+                            "data": "phoneNumber",
+                            "autoWidth": true,
+                            "searchable": true,
+                            "orderable": true
+
+                        }
+                        ,
+                        {
+                            "data": "email",
+                            "autoWidth": true,
+                            "searchable": true,
+                            "orderable": true
+
+                        }
+                    ]
+                });
+
+            }
+
+        </script>
+
+    }
+
