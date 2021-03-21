@@ -1,0 +1,60 @@
+﻿@model List<StudentManagement.Service.Dto.ClassDetailForTeacherDto>
+@{
+    ViewData["Title"] = "ClassDetailForTeacher";
+    Layout = "~/Areas/Staff/Views/Shared/_Layout.cshtml";
+}
+
+<div class="app-container">
+    <div class="inner-tab-panel">
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs topnav" role="tablist">
+            <li class="nav-item">
+                <a class="nav-link" data-toggle="tab" href="#">ClassDetails For Teacher</a>
+            </li>
+        </ul>
+
+        <!-- Tab panes -->
+        <div class="tab-content page-container">
+            <div id="home" class="tab-pane active">
+                <div class="card">
+                    <div class="modal-header">
+                        <h6 class="modal-title">
+                            Roll list
+                        </h6>
+                    </div>
+                    <div class="card-body modal-body">
+                        <!-- form start here -->
+                        <div class="default-form">
+
+                            <div class="row">
+                                <div class="col-12 table-responsive">
+                                    <table class="default-table " id="classDetailForStudent">
+                                        <thead>
+                                            <tr>
+                                                <th width="30%" class="td-roll">Roll No</th>
+                                                <th width="30%" class="td-name">Student Name</th>
+                                            </tr>
+                                        </thead><tbody>
+                                        @foreach (var item in Model)
+                                        { 
+                                            <tr>
+                                                <td>@item.RollNo</td>
+                                                <td>@item.StudentName</td>
+                                            </tr>
+                                        }
+                                        </tbody>
+
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- form end here -->
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+

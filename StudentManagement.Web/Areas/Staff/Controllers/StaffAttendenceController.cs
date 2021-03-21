@@ -36,6 +36,9 @@ namespace StudentManagement.Web.Areas.Staff.Controllers
         private readonly IUserService _userService;
         private readonly IAttendenceDetailService  _adService;
         private readonly IStudentAttendanceService _saService;
+        private readonly ICollegeDetailService _cdService;
+        
+
         #endregion
 
 
@@ -43,7 +46,10 @@ namespace StudentManagement.Web.Areas.Staff.Controllers
         public StaffAttendenceController(ILectureService lectureService,
             IAttendenceDetailService adService,
             IStudentAttendanceService saService,
-            ISubjectService subjectService, IClassService classService, IClassSubjectDetailService classDetailService, IUserService userService)
+            ISubjectService subjectService, IClassService classService, IClassSubjectDetailService classDetailService, 
+            IUserService userService,
+            ICollegeDetailService cdService
+            )
         {
             _lectureService = lectureService;
             _classService = classService;
@@ -52,6 +58,7 @@ namespace StudentManagement.Web.Areas.Staff.Controllers
             _userService = userService;
             _adService = adService;
             _saService = saService;
+            _cdService = cdService;
 
 
         }
@@ -235,6 +242,20 @@ namespace StudentManagement.Web.Areas.Staff.Controllers
             }
 
 
+
+
+        public IActionResult ClassDetailForTeacher()
+        {
+            List<ClassDetailForTeacherDto> model = new List<ClassDetailForTeacherDto>();
+            var cdList = _cdService.GetAll().ToList();
+            var userList = _userService.GetAll().ToList();
+            model = (from x in cdList
+                     join y in userList on x.UserId equals y.Id
+                     select new ClassDetailForTeacherDto() {RollNo=x.CollegeRollNumber,StudentName =y.FirstName +" "+y.LastName}
+                   ).ToList();
+
+            return View(model);
+        }
 
             #endregion
 
