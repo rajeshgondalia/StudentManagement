@@ -18,6 +18,8 @@ namespace StudentManagement.Service.Dto
         public decimal Percent { get; set; }
         public long AttendenceId { get; set; }
 
+        public string StudentName { get; set; }
+
     }
 
     

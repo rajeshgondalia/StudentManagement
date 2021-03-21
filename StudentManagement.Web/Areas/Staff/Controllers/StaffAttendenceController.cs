@@ -38,7 +38,6 @@ namespace StudentManagement.Web.Areas.Staff.Controllers
         private readonly IStudentAttendanceService _saService;
         private readonly ICollegeDetailService _cdService;
         
-
         #endregion
 
 
@@ -112,9 +111,7 @@ namespace StudentManagement.Web.Areas.Staff.Controllers
                 try
                 {
                     var parameters = CommonMethod.GetJQueryDatatableParamList(param, GetSortingColumnName(param.iSortCol_0));
-
                     var allList = await _userService.GetStudentList(parameters.Parameters.ToArray());
-
                     var total = allList.FirstOrDefault()?.TotalRecords ?? 0;
                     return Json(new
                     {
@@ -257,14 +254,39 @@ namespace StudentManagement.Web.Areas.Staff.Controllers
             return View(model);
         }
 
-            #endregion
+
+        [HttpGet]
+        public IActionResult MothWiseClassReport()
+        {
+            var attendencelist = _saService.GetAll().Where(x=>x.AttendanceBy==User.GetUserId()).ToList();
+            var currentStudentAttendenceList = _adService.GetAll().Where(x=>attendencelist.Select(y=>y.AttendanceId).Contains(x.AttendanceId)).ToList();
+            var studentReportList = new List<StudentMonthWiseDto>();
+            foreach (var item in currentStudentAttendenceList)
+            {
+                var attendenceObj = attendencelist.FirstOrDefault(x => x.AttendanceId == item.AttendanceId);
+                var model = new StudentMonthWiseDto();
+                model.MonthId = attendenceObj.AttendanceDate.Month;
+                model.MonthName = attendenceObj.AttendanceDate.ToString("MMMM");
+                model.subjectName = _subjectService.GetSingle(x => x.SubjectId == attendenceObj.SubjectId).SubjectName;
+                model.subjectHeld += 1;
+                model.StudentAttendence += item.IsPresent ? 1 : 0;
+                model.Percent = 0;
+                model.AttendenceId = attendenceObj.AttendanceId;
+                model.StudentName =_userService.GetById(item.StudentId).FirstName;
+                studentReportList.Add(model);
+
+            }
+
+            return View(studentReportList);
+        }
+        #endregion
 
         #region Common
 
 
-            #endregion
+        #endregion
 
 
 
-        }
+    }
     }

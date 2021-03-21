@@ -1,15 +1,14 @@
 ﻿@model List<StudentManagement.Service.Dto.StudentMonthWiseDto>
 @{
-    ViewData["Title"] = "MothWiseStudentReport";
-    Layout = "~/Areas/Student/Views/Shared/_Layout.cshtml";
+    ViewData["Title"] = "MothWiseClassReport";
+    Layout = "~/Areas/Staff/Views/Shared/_Layout.cshtml";
 }
-
 <div class="app-container">
     <div class="inner-tab-panel">
         <!-- Nav tabs -->
         <ul class="nav nav-tabs topnav" role="tablist">
             <li class="nav-item">
-                <a class="nav-link" data-toggle="tab" href="#">Student report</a>
+                <a class="nav-link" data-toggle="tab" href="#">Class report</a>
             </li>
         </ul>
 
@@ -19,14 +18,14 @@
                 <div class="card">
                     <div class="modal-header">
                         <h6 class="modal-title">
-                           Month wise student report
+                            Month wise class report
                         </h6>
                     </div>
                     <div class="card-body modal-body">
                         <!-- form start here -->
                         <div class="default-form">
-                            @{ 
-                                var monthlist = Model.GroupBy(x =>x.MonthId).ToList();
+                            @{
+                                var monthlist = Model.GroupBy(x => x.StudentName).ToList();
                             }
                             <div class="row">
                                 <div class="col-12 table-responsive">
@@ -36,12 +35,12 @@
                                                 <th></th>
                                                 @foreach (var item in monthlist)
                                                 {
-                                                    
-                                                        <th colspan="3"> @Model.Where(x=>x.MonthId==item.Key).Select(x=>x.MonthName).FirstOrDefault()</th>
-                                                    
+
+                                                    <th colspan="3"> @Model.Where(x => x.StudentName == item.Key).Select(x => x.MonthName).FirstOrDefault()</th>
+
 
                                                 }
-                                                
+
                                                 <th colspan="3"> Overall</th>
                                             </tr>
                                             <tr>
@@ -53,41 +52,40 @@
                                                     <th width="15%" class="td-present-absent">Attendence</th>
                                                     <th width="5%" class="td-present-absent">%</th>
 
-
                                                 }
                                                 <th width="10%" class="td-name">Held</th>
                                                 <th width="15%" class="td-present-absent">Attendence</th>
                                                 <th width="5%" class="td-present-absent">%</th>
 
                                                 @*<th width="30%" class="td-name">Held</th>
-        <th width="15%" class="td-present-absent">Attendence</th>
-        <th width="15%" class="td-present-absent">%</th>*@
+                                                    <th width="15%" class="td-present-absent">Attendence</th>
+                                                    <th width="15%" class="td-present-absent">%</th>*@
                                             </tr>
                                         </thead>
                                         <tbody>
                                             @foreach (var item in monthlist)
                                             {
-                                                @foreach (var m in item)
-                                                {
                                                     <tr>
-                                                        <td>@m.subjectName</td>
-                                                        <td>@m.subjectHeld</td>
-                                                        <td>@m.StudentAttendence</td>
-                                                     
-                                                    <td>@((decimal)m.StudentAttendence / m.subjectHeld * 100) % </td>
+                                                        <td>@item.Key</td>
+                                                        <td>@item.Select(x=>x.subjectHeld).Sum()</td>
+                                                        <td>@item.Select(x=>x.StudentAttendence).Sum()</td>
 
-                                                        <td>@Model.Where(x=>x.MonthId==m.MonthId && x.AttendenceId==m.AttendenceId).Select(x=>x.subjectHeld).Sum()</td>
-                                                        <td>@Model.Where(x=>x.MonthId==m.MonthId && x.AttendenceId == m.AttendenceId).Select(x=>x.StudentAttendence).Sum()</td>
-                                                        <td>@((decimal)Model.Where(x => x.MonthId == m.MonthId && x.AttendenceId == m.AttendenceId).Select(x => x.StudentAttendence).Sum() / Model.Where(x => x.MonthId == m.MonthId && x.AttendenceId == m.AttendenceId).Select(x => x.subjectHeld).Sum() * 100) %</td>
+                                                        <td>@((decimal)item.Select(x => x.StudentAttendence).Sum() / item.Select(x => x.subjectHeld).Sum() * 100) % </td>
 
-                                                  </tr>
-    }
+                                                        <td>@Model.Where(x => x.MonthId == item.Where(x=>x.StudentName== item.Key).Select(x=>x.MonthId).FirstOrDefault()).Select(x => x.subjectHeld).Sum()</td>
+                                                        <td>@Model.Where(x => x.MonthId == item.Where(x => x.StudentName == item.Key).Select(x => x.MonthId).FirstOrDefault()).Select(x => x.StudentAttendence).Sum()</td>
+                                                        <td>@((decimal)Model.Where(x => x.MonthId == item.Where(x => x.StudentName == item.Key).Select(x => x.MonthId).FirstOrDefault()).Select(x => x.StudentAttendence).Sum() / Model.Where(x => x.MonthId == item.Where(x => x.StudentName == item.Key).Select(x => x.MonthId).FirstOrDefault()).Select(x => x.subjectHeld).Sum() * 100) %</td>
+
+                                                    </tr>
+                                                    
+                                                
 
                                             }
+                                           
 
                                         </tbody>
 
-                                        </table>
+                                    </table>
                                 </div>
                             </div>
                         </div>
@@ -100,4 +98,3 @@
         </div>
     </div>
 </div>
-
