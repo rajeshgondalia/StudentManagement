@@ -81,6 +81,7 @@
                                                         <td>@total % </td>
 
                                                         <td>@Model.Where(x=>x.MonthId==m.MonthId).Select(x=>x.subjectHeld).Sum()</td>
+                                                        <td>@Model.Where(x=>x.MonthId==m.MonthId).Select(x=>x.StudentAttendence).Sum()</td>
                                                         <td>@((decimal)Model.Where(x => x.MonthId == m.MonthId).Select(x => x.StudentAttendence).Sum() / Model.Where(x => x.MonthId == m.MonthId).Select(x => x.subjectHeld).Sum() * 100)</td>
 
                                                   </tr>
