@@ -1,4 +1,5 @@
 ﻿@model List<StudentManagement.Service.Dto.StudentMonthWiseDto>
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 @{
     ViewData["Title"] = "MothWiseClassReport";
     Layout = "~/Areas/Staff/Views/Shared/_Layout.cshtml";
@@ -63,25 +64,30 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            @foreach (var item in monthlist)
-                                            {
-                                                    <tr>
-                                                        <td>@item.Key</td>
-                                                        <td>@item.Select(x=>x.subjectHeld).Sum()</td>
-                                                        <td>@item.Select(x=>x.StudentAttendence).Sum()</td>
+                                            @{
 
-                                                        <td>@((decimal)item.Select(x => x.StudentAttendence).Sum() / item.Select(x => x.subjectHeld).Sum() * 100) % </td>
-
-                                                        <td>@Model.Where(x => x.MonthId == item.Where(x=>x.StudentName== item.Key).Select(x=>x.MonthId).FirstOrDefault()).Select(x => x.subjectHeld).Sum()</td>
-                                                        <td>@Model.Where(x => x.MonthId == item.Where(x => x.StudentName == item.Key).Select(x => x.MonthId).FirstOrDefault()).Select(x => x.StudentAttendence).Sum()</td>
-                                                        <td>@((decimal)Model.Where(x => x.MonthId == item.Where(x => x.StudentName == item.Key).Select(x => x.MonthId).FirstOrDefault()).Select(x => x.StudentAttendence).Sum() / Model.Where(x => x.MonthId == item.Where(x => x.StudentName == item.Key).Select(x => x.MonthId).FirstOrDefault()).Select(x => x.subjectHeld).Sum() * 100) %</td>
-
-                                                    </tr>
-                                                    
-                                                
 
                                             }
-                                           
+                                            @foreach (var item in monthlist)
+                                            {
+                                                <tr>
+                                                    <td>@item.Key</td>
+                                                    <td>@item.Select(x => x.subjectHeld).Sum()</td>
+                                                    <td>@item.Select(x => x.StudentAttendence).Sum()</td>
+
+                                                    <td>@(((decimal)item.Select(x => x.StudentAttendence).Sum() / item.Select(x => x.subjectHeld).Sum() * 100).ToString("F2")) % </td>
+
+                                                    <td>@Model.Where(x => x.MonthId == item.Where(x => x.StudentName == item.Key).Select(x => x.MonthId).FirstOrDefault()).Select(x => x.subjectHeld).Sum()</td>
+                                                    <td>@Model.Where(x => x.MonthId == item.Where(x => x.StudentName == item.Key).Select(x => x.MonthId).FirstOrDefault()).Select(x => x.StudentAttendence).Sum()</td>
+                                                    <td>@(((decimal)Model.Where(x => x.MonthId == item.Where(x => x.StudentName == item.Key).Select(x => x.MonthId).FirstOrDefault()).Select(x => x.StudentAttendence).Sum() / Model.Where(x => x.MonthId == item.Where(x => x.StudentName == item.Key).Select(x => x.MonthId).FirstOrDefault()).Select(x => x.subjectHeld).Sum() * 100).ToString("F2")) %</td>
+
+                                                </tr>
+
+
+
+                                            }
+
+
 
                                         </tbody>
 

@@ -31,15 +31,18 @@
                                     <table class="default-table " id="classDetailForStudent">
                                         <thead>
                                             <tr>
-                                                <th width="30%" class="td-roll">Roll No</th>
-                                                <th width="30%" class="td-name">Student Name</th>
+                                                <th width="30%" class="td-roll">Class</th>
+                                                <th width="30%" class="td-name">Subject</th>
+                                                <th width="30%" class="td-name">Roll List</th>
                                             </tr>
-                                        </thead><tbody>
-                                        @foreach (var item in Model)
-                                        { 
+                                        </thead>
+                                        <tbody>
+                                            @foreach (var item in Model)
+                                        {
                                             <tr>
-                                                <td>@item.RollNo</td>
-                                                <td>@item.StudentName</td>
+                                                <td>@item.ClassName</td>
+                                                <td>@item.SubjectName</td>
+                                                <td><a href="javascript:;"  class="RollList" data-id="@item.RollNoList">Roll List</a></td>
                                             </tr>
                                         }
                                         </tbody>
@@ -56,5 +59,36 @@
 
         </div>
     </div>
+    <div id="RollList" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title" style="text-align-last: center">Roll List</h4>
+                </div>
+                <div class="modal-body">
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
+@section Scripts{
+<script type="text/javascript">
+    $(document).on("click", ".RollList", function () {
+        
+        var stud = $(this).attr("data-id");
+        if (stud != "") {
+            swal("Student Roll List", "RollNumber :"+ stud)
+            
+        } else {
+            swal("No student Found!"," :(")
+        }
+    });
+</script>
+}
 

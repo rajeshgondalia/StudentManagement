@@ -1,0 +1,87 @@
+﻿@model List<StudentManagement.Service.Dto.DaywiseAttendenceDto>
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@{
+    ViewData["Title"] = "DayWiseReport";
+    Layout = "~/Areas/Staff/Views/Shared/_Layout.cshtml";
+}
+
+<div class="app-container">
+    <div class="inner-tab-panel">
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs topnav" role="tablist">
+            <li class="nav-item">
+                <a class="nav-link" data-toggle="tab" href="#">Class report</a>
+            </li>
+        </ul>
+
+        <!-- Tab panes -->
+        <div class="tab-content page-container">
+            <div id="home" class="tab-pane active">
+                <div class="card">
+                    <div class="modal-header">
+                        <h6 class="modal-title">
+                            Day wise class report
+                        </h6>
+                    </div>
+                    <div class="card-body modal-body">
+                        <!-- form start here -->
+                        <div class="default-form">
+                            @{
+                                var lecList = Model.GroupBy(x => x.LectureId).ToList();
+                            }
+                            <div class="row">
+                                <div class="col-12 table-responsive">
+                                    <table class="default-table " id="classDetailForStudent">
+                                        <thead>
+                                            <tr>
+                                                <th></th>
+                                                @foreach (var item in lecList)
+                                                {
+
+                                                    <th colspan="2"> @Model.Where(x => x.LectureId == item.Key).Select(x => x.LactureName).FirstOrDefault()</th>
+
+
+                                                }
+
+                                            </tr>
+                                         
+                                        </thead>
+                                        <tbody>
+                                           
+                                            @foreach (var item in lecList)
+                                            {
+                                                <tr>
+                                                    <td width="30%"> @Model.FirstOrDefault(x=>x.LectureId== item.Key).AttendenceDate</td>
+                                                @foreach (var s in item)
+                                                { 
+                                                  
+                                                    <td width="30%">@s.SubjectName</td>
+                                                    <td width="30%">@(s.IsPresent?"Present":"Absent")</td>
+                                                    
+                                                    
+
+                                                }
+                                                </tr>
+
+
+
+                                            }
+
+
+
+                                        </tbody>
+
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- form end here -->
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+

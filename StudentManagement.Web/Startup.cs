@@ -142,6 +142,7 @@ namespace StudentManagement.Web
             services.AddScoped<IUserService, UserRepository>();
             services.AddScoped<IAttendenceDetailService, AttendenceDetailRepository>();
             services.AddScoped<IStudentAttendanceService, StudentAttendanceRepository>();
+            services.AddScoped<IClassStudentDetailService, ClassStudentDetailRepository>();
             
 
             #endregion

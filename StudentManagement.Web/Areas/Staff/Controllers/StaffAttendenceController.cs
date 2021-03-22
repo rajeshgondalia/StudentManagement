@@ -37,6 +37,7 @@ namespace StudentManagement.Web.Areas.Staff.Controllers
         private readonly IAttendenceDetailService  _adService;
         private readonly IStudentAttendanceService _saService;
         private readonly ICollegeDetailService _cdService;
+        private readonly IClassStudentDetailService _classStudentDetailService;
         
         #endregion
 
@@ -47,7 +48,8 @@ namespace StudentManagement.Web.Areas.Staff.Controllers
             IStudentAttendanceService saService,
             ISubjectService subjectService, IClassService classService, IClassSubjectDetailService classDetailService, 
             IUserService userService,
-            ICollegeDetailService cdService
+            ICollegeDetailService cdService,
+            IClassStudentDetailService classStudentDetailService
             )
         {
             _lectureService = lectureService;
@@ -58,6 +60,7 @@ namespace StudentManagement.Web.Areas.Staff.Controllers
             _adService = adService;
             _saService = saService;
             _cdService = cdService;
+            _classStudentDetailService = classStudentDetailService;
 
 
         }
@@ -220,7 +223,7 @@ namespace StudentManagement.Web.Areas.Staff.Controllers
             }
         }
 
-            public JsonResult getSubjectList(long ClassId)
+        public JsonResult getSubjectList(long ClassId)
             {
                 var classSubjectDetailList = _classDetailService.GetAll(x => x.ClassId == ClassId).Select(x => x.SubjectId).ToList();
 
@@ -245,11 +248,18 @@ namespace StudentManagement.Web.Areas.Staff.Controllers
         {
             List<ClassDetailForTeacherDto> model = new List<ClassDetailForTeacherDto>();
             var cdList = _cdService.GetAll().ToList();
-            var userList = _userService.GetAll().ToList();
-            model = (from x in cdList
-                     join y in userList on x.UserId equals y.Id
-                     select new ClassDetailForTeacherDto() {RollNo=x.CollegeRollNumber,StudentName =y.FirstName +" "+y.LastName}
-                   ).ToList();
+            var ClassSubjectList = _classDetailService.GetAll().ToList();
+            foreach (var cs in ClassSubjectList)
+            {
+                ClassDetailForTeacherDto m = new ClassDetailForTeacherDto();
+                m.ClassName = _classService.GetById(cs.ClassId).ClassName;
+                m.SubjectName = _subjectService.GetById(cs.SubjectId).SubjectName;
+
+                var studList=_classStudentDetailService.GetAll(x => x.ClassId == cs.ClassId).Select(x => x.StudentId).ToList();
+                m.RollNoList=String.Join(",", cdList.FindAll(x => studList.Contains(x.UserId)).Select(x => x.CollegeRollNumber).ToList());
+                model.Add(m);
+            }
+
 
             return View(model);
         }
@@ -279,6 +289,29 @@ namespace StudentManagement.Web.Areas.Staff.Controllers
 
             return View(studentReportList);
         }
+
+
+        [HttpGet]
+        public IActionResult DayWiseReport()
+        {
+            List<DaywiseAttendenceDto> model = new List<DaywiseAttendenceDto>();
+
+            var attendenceList = _saService.GetAll(x => x.AttendanceBy == User.GetUserId()).ToList();
+            foreach (var item in attendenceList)
+            {
+                DaywiseAttendenceDto m = new DaywiseAttendenceDto();
+                m.AttendenceDate = item.AttendanceDate;
+                m.LactureName = _lectureService.GetById(item.LectureId).LactureName;
+                m.SubjectName = _subjectService.GetById(item.SubjectId).SubjectName;
+                m.IsPresent = _adService.GetSingle(x => x.AttendanceId == item.AttendanceId).IsPresent;
+                m.LectureId = item.LectureId;
+                model.Add(m);
+
+            }
+
+            return View(model);
+        }
+
         #endregion
 
         #region Common
