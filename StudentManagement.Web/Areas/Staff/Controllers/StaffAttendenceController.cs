@@ -20,6 +20,8 @@ using StudentManagement.Service.Exception;
 using StudentManagement.Data.Models;
 using System.Data.SqlTypes;
 using System.Globalization;
+using System.Data;
+using Microsoft.Data.SqlClient;
 
 namespace StudentManagement.Web.Areas.Staff.Controllers
 {
@@ -107,13 +109,14 @@ namespace StudentManagement.Web.Areas.Staff.Controllers
 
 
         [HttpGet]
-        public async Task<IActionResult> GetStudentList(JQueryDataTableParamModel param)
+        public async Task<IActionResult> GetStudentList(JQueryDataTableParamModel param,long ClassId)
         {
             using (var txscope = new TransactionScope(TransactionScopeAsyncFlowOption.Enabled))
             {
                 try
                 {
                     var parameters = CommonMethod.GetJQueryDatatableParamList(param, GetSortingColumnName(param.iSortCol_0));
+                    parameters.Parameters.Insert(0, new SqlParameter("@ClassId", SqlDbType.BigInt) { Value = ClassId });
                     var allList = await _userService.GetStudentList(parameters.Parameters.ToArray());
                     var total = allList.FirstOrDefault()?.TotalRecords ?? 0;
                     return Json(new
@@ -247,16 +250,15 @@ namespace StudentManagement.Web.Areas.Staff.Controllers
         public IActionResult ClassDetailForTeacher()
         {
             List<ClassDetailForTeacherDto> model = new List<ClassDetailForTeacherDto>();
-            var cdList = _cdService.GetAll().ToList();
+          
             var ClassSubjectList = _classDetailService.GetAll().ToList();
             foreach (var cs in ClassSubjectList)
             {
                 ClassDetailForTeacherDto m = new ClassDetailForTeacherDto();
                 m.ClassName = _classService.GetById(cs.ClassId).ClassName;
                 m.SubjectName = _subjectService.GetById(cs.SubjectId).SubjectName;
-
-                var studList=_classStudentDetailService.GetAll(x => x.ClassId == cs.ClassId).Select(x => x.StudentId).ToList();
-                m.RollNoList=String.Join(",", cdList.FindAll(x => studList.Contains(x.UserId)).Select(x => x.CollegeRollNumber).ToList());
+                m.ClassId = cs.ClassId;
+              
                 model.Add(m);
             }
 
@@ -312,6 +314,23 @@ namespace StudentManagement.Web.Areas.Staff.Controllers
             return View(model);
         }
 
+        public IActionResult RollListReport(long Cid)
+        {
+            List<StudentRollListDto> model = new List<StudentRollListDto>();
+            var studList = _classStudentDetailService.GetAll(x => x.ClassId == Cid).Select(x => x.StudentId).ToList();
+            foreach (var item in studList)
+            {
+                StudentRollListDto m = new StudentRollListDto();
+                var user = _userService.GetById(item);
+                m.RollNumber = _cdService.GetSingle(x => x.UserId == item).CollegeRollNumber;
+                m.StudentName = user.FirstName + " " + user.LastName;
+                m.StudentId = user.Id;
+                model.Add(m);
+            }
+            
+
+            return View(model);
+        }
         #endregion
 
         #region Common

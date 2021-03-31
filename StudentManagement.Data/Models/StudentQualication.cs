@@ -119,7 +119,7 @@ namespace StudentManagement.Data.Models
         [Column(TypeName = "nvarchar(200)")]
         public string PGDegreeBoardName { get; set; }
 
-        public long EntranceExamId { get; set; }
+        public long? EntranceExamId { get; set; }
         [ForeignKey("EntranceExamId")]
         public virtual EntranceExamMaster EntranceExamMaster { get; set; }
 

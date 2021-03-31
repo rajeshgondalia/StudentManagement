@@ -54,7 +54,7 @@ namespace StudentManagement.Web.Areas.Student.Controllers
         private readonly IDiplomaService _diplomaService;
         private readonly IDegreeService _degreeService;
         private readonly IPGDegreeService _pgdegreeService;
-         
+
 
         #endregion
 
@@ -126,129 +126,144 @@ namespace StudentManagement.Web.Areas.Student.Controllers
         {
             BindDropdown();
 
+            StudentProfileDto model = new StudentProfileDto();
             var userId = Convert.ToInt64(User.GetUserId());
             var userDetail = await _userManager.FindByIdAsync(userId.ToString());
-            StudentProfileDto model = new StudentProfileDto();
             model.UserName = userDetail.UserName;
-            model.Name = userDetail.FirstName+" "+userDetail.LastName;
+            model.Name = userDetail.FirstName + " " + userDetail.LastName;
             model.OfficialEmail = userDetail.OfficialEmail;
 
-            var pd = _personalDetailService.GetSingle(x => x.UserId == userId);
-            model.Mobile1 = pd.Mobile1;
-            model.Mobile2 = pd.Mobile2;
-            model.PersonalEmail1 = pd.PersonalEmail1;
-            model.PersonalEmail2 = pd.PersonalEmail2;
-            model.GenderId = pd.GenderId;
-            model.CategoryId = pd.CategoryId;
-            model.BloodGroupId = pd.BloodGroupdId??0;
-            model.ReligionId = pd.ReligionId;
-            model.CountryId = pd.CountryId;
-            model.StateId = pd.StateId;
-            model.Dob = pd.Dob;
-
-            //current address details
-            model.StayTypeId = pd.StayTypeId??0;
-            model.StayAddress = pd.StayAddress;
-            model.StayRelationId = pd.StayRelationId ?? 0;
-            model.StayCityId = pd.StayCityId ?? 0;
-            model.StayCountryId = pd.StayCountryId ?? 0;
-            model.StayStateId = pd.StayStateId??0;
-            model.StayPinCode = pd.StayPinCode;
+            var pd = _personalDetailService.GetSingle(x => x.UserId == userId);    //PersonalDetails
+            var cgDetail = _collegeDetailService.GetSingle(x => x.UserId == User.GetUserId()); //CollegeDetails
+            var parent = _parentService.GetSingle(x => x.UserId == User.GetUserId()); //ParentDetails
+            var ee = _sqService.GetSingle(x => x.UserId == User.GetUserId()); //EntranceExam Details 
 
 
-            var cgDetail = _collegeDetailService.GetSingle(x => x.UserId == User.GetUserId());
+            if (pd != null)
+            {
+                model.Mobile1 = pd.Mobile1;
+                model.Mobile2 = pd.Mobile2;
+                model.PersonalEmail1 = pd.PersonalEmail1;
+                model.PersonalEmail2 = pd.PersonalEmail2;
+                model.GenderId = pd.GenderId;
+                model.CategoryId = pd.CategoryId;
+                model.BloodGroupId = pd.BloodGroupdId ?? 0;
+                model.ReligionId = pd.ReligionId;
+                model.CountryId = pd.CountryId;
+                model.StateId = pd.StateId;
+                model.Dob = pd.Dob;
+                //current address details
+                model.StayTypeId = pd.StayTypeId ?? 0;
+                model.StayAddress = pd.StayAddress;
+                model.StayRelationId = pd.StayRelationId ?? 0;
+                model.StayCityId = pd.StayCityId ?? 0;
+                model.StayCountryId = pd.StayCountryId ?? 0;
+                model.StayStateId = pd.StayStateId ?? 0;
+                model.StayPinCode = pd.StayPinCode;
+            }
+            else if (cgDetail != null)
+            {
+                model.CampusId = cgDetail.CampusId;
+                model.CollegeId = cgDetail.CollegeId;
+                model.BranchId = cgDetail.branchId ?? 0;
+                model.CourseId = cgDetail.CourseId;
+                model.YearSemId = cgDetail.YearSemesterId;
+                model.BatchId = cgDetail.BatchId;
+                model.AdmissionBatchTypeId = cgDetail.AdmissionBatchTypeId ?? 0;
+                model.AdmissionTypeId = cgDetail.AdmissionTypeId;
+                model.CollegeRollNo = cgDetail.CollegeRollNumber;
+                model.UniversityEnrollmentNumber = cgDetail.Universityenrollmentnumber;
+                model.UniversityExamRoleNo = cgDetail.UniversityExamRoleNo;
+                model.MainCollegeRollNo = cgDetail.CollegeRollNumber;
+                model.MainUniversityEnrollmentNumber = cgDetail.Universityenrollmentnumber;
+                model.MainUniversityExamRoleNo = cgDetail.UniversityExamRoleNo;
+                model.PassportNumber = cgDetail.PassportNumber;
+                model.AdharNumber = cgDetail.AdharNumber;
+            }
+            else if (parent != null)
+            {
+                //ParentDetail
+                model.FatherName = parent.FatherName;
+                model.FatherMobile1 = parent.FatherMobile1;
+                model.FatherMobile2 = parent.FatherMobile2;
+                model.FatherEmail = parent.FatherEmail;
+                model.FatherAddress = parent.FatherAddress;
+                model.FatherCityId = parent.FatherCityId ?? 0;
+                model.FatherStateId = parent.FatherStateId ?? 0;
+                model.FatherCountryId = parent.FatherCountryId ?? 0;
+                model.FatherPinCode = parent.FatherPincode;
 
-            model.CampusId = cgDetail.CampusId;
-            model.CollegeId = cgDetail.CollegeId;
-            model.BranchId = cgDetail.branchId ?? 0;
-            model.CourseId = cgDetail.CourseId;
-            model.YearSemId = cgDetail.YearSemesterId;
-            model.BatchId = cgDetail.BatchId;
-            model.AdmissionBatchTypeId = cgDetail.AdmissionBatchTypeId ?? 0;
-            model.AdmissionTypeId = cgDetail.AdmissionTypeId;
-            model.CollegeRollNo = cgDetail.CollegeRollNumber;
-            model.UniversityEnrollmentNumber = cgDetail.Universityenrollmentnumber;
-            model.UniversityExamRoleNo = cgDetail.UniversityExamRoleNo;
-            model.PassportNumber = cgDetail.PassportNumber;
-            model.AdharNumber = cgDetail.AdharNumber;
+                model.MotherName = parent.MotherName;
+                model.MotherMobile1 = parent.MotherMobile1;
+                model.MotherMobile2 = parent.MotherMobile2;
+                model.MotherEmail = parent.MotherEmail;
+                model.MotherAddress = parent.MotherAddress;
+                model.MotherCityId = parent.MotherCityId ?? 0;
+                model.MotherStateId = parent.MotherStateId ?? 0;
+                model.MotherCountryId = parent.MotherCountryId ?? 0;
+                model.MotherPinCode = parent.MotherPincode;
 
+                model.LGName = parent.LGName;
+                model.LGMobile1 = parent.LGMobile1;
+                model.LGMobile2 = parent.LGMobile2;
+                model.LGEmail = parent.LGEmail;
+                model.LGAddress = parent.LGAddress;
+                model.LGCityId = parent.LGCityId ?? 0;
+                model.LGStateId = parent.LGStateId ?? 0;
+                model.LGCountryId = parent.LGCountryId ?? 0;
+                model.LGPinCode = parent.LGPincode;
+                model.LGRelationId = parent.RelationId ?? 0;
+            }
 
-            //ParentDetail
-            var parent = _parentService.GetSingle(x => x.UserId == User.GetUserId());
-            model.FatherName = parent.FatherName;
-            model.FatherMobile1 = parent.FatherMobile1;
-            model.FatherMobile2 = parent.FatherMobile2;
-            model.FatherEmail = parent.FatherEmail;
-            model.FatherAddress = parent.FatherAddress;
-            model.FatherCityId = parent.FatherCityId??0;
-            model.FatherStateId = parent.FatherStateId ?? 0;
-            model.FatherCountryId = parent.FatherCountryId ?? 0;
-            model.FatherPinCode = parent.FatherPincode;
+            if (ee != null)
+            {
+                //entrance exam details
 
-            model.MotherName = parent.MotherName;
-            model.MotherMobile1 = parent.MotherMobile1;
-            model.MotherMobile2 = parent.MotherMobile2;
-            model.MotherEmail = parent.MotherEmail;
-            model.MotherAddress = parent.MotherAddress;
-            model.MotherCityId = parent.MotherCityId??0;
-            model.MotherStateId = parent.MotherStateId??0;
-            model.MotherCountryId = parent.MotherCountryId??0;
-            model.MotherPinCode = parent.MotherPincode;
+                model.IsEntrance = ee.IsEntrance;
+                model.EntranceExamAir = ee.EntranceExamAir;
+                model.EntranceExamRollno = ee.EntranceExamRollno;
+                model.EntranceExamYear = ee.EntranceExamYear ?? 0;
+                model.EntranceExamId = ee.EntranceExamId ?? 0;
+                model.IsEntrance = (ee.EntranceExamId ?? 0) == 0 ? false : true;
+                model.EntranceExamMarkObt = ee.EntranceExamMarkObt;
+                model.EntranceExamCatefgoryRank = ee.EntranceExamCatefgoryRank;
 
-            model.LGName = parent.LGName;
-            model.LGMobile1 = parent.LGMobile1;
-            model.LGMobile2 = parent.LGMobile2;
-            model.LGEmail = parent.LGEmail;
-            model.LGAddress = parent.LGAddress;
-            model.LGCityId = parent.LGCityId??0;
-            model.LGStateId = parent.LGStateId??0;
-            model.LGCountryId = parent.LGCountryId??0;
-            model.LGPinCode = parent.LGPincode;
-            model.LGRelationId = parent.RelationId??0 ;
-
-            //entrance exam details
-            var ee= _sqService.GetSingle(x => x.UserId == User.GetUserId());
-
-            model.IsEntrance = ee.IsEntrance;
-            model.EntranceExamAir = ee.EntranceExamAir;
-            model.EntranceExamRollno = ee.EntranceExamRollno;
-            model.EntranceExamYear = ee.EntranceExamYear??0;
-            model.EntranceExamId = ee.EntranceExamId;
-            model.EntranceExamMarkObt = ee.EntranceExamMarkObt;
-            model.EntranceExamCatefgoryRank = ee.EntranceExamCatefgoryRank;
-
-            model.DegreeId = ee.DegreeId??0;
-            model.DiplomaId = ee.DiplomaId??0;
-            model.TenMarkingScheameId = ee.TenMarkingScheameId??0;
-            model.TenBoardName = ee.TenBoardName;
-            model.TenYearOfPassing = ee.TenYearOfPassing??0;
-            model.TenCGPA = ee.TenCGPA??0;
-            model.TenSchoolName = ee.TenSchoolName;
-            model.TwelveMakingScheameId = ee.TwelveMakingScheameId??0;
-            model.TwelveBoardName = ee.TwelveBoardName;
-            model.TwelveYearOfPassing = ee.TwelveYearOfPassing??0;
-            model.TwelveCGPA = ee.TwelveCGPA??0;
-            model.TwelvePCM = ee.TwelvePCM??0;
-            model.TwelveSchoolName = ee.TwelveSchoolName;
-            model.DiplomaYear = ee.DiplomaYear??0;
-            model.DiplomaMarkingScheameId = ee.DiplomaMarkingScheameId ?? 0;
-            model.DiplomaCGPA = ee.DiplomaCGPA ?? 0;
-            model.DiplomaBoardName = ee.DiplomaBoardName;
-            model.DiplomaSchoolName = ee.DiplomaSchoolName;
-            model.DegreeYear = ee.DegreeYear ?? 0;
-            model.DegreeMarkingScheameId = ee.DegreeMarkingScheameId ?? 0;
-            model.DegreeCGPA = ee.DegreeCGPA ?? 0;
-            model.DegreeSchoolName = ee.DegreeSchoolName;
-            model.DegreeBoardName = ee.DegreeBoardName;
-            model.PGDegreeId = ee.PGDegreeId;
-            model.PGDegreeYear = ee.PGDegreeYear??0;
-            model.PGDegreeMarkingScheameId = ee.PGDegreeMarkingScheameId??0;
-            model.PGDegreeCGPA = ee.PGDegreeCGPA??0;
-            model.PGDegreeSchoolName = ee.PGDegreeSchoolName;
-            model.PGDegreeBoardName = ee.PGDegreeBoardName;
+                model.DegreeId = ee.DegreeId ?? 0;
+                model.DiplomaId = ee.DiplomaId ?? 0;
+                model.TenMarkingScheameId = ee.TenMarkingScheameId ?? 0;
+                model.TenBoardName = ee.TenBoardName;
+                model.TenYearOfPassing = ee.TenYearOfPassing ?? 0;
+                model.TenCGPA = ee.TenCGPA ?? 0;
+                model.TenSchoolName = ee.TenSchoolName;
+                model.TwelveMakingScheameId = ee.TwelveMakingScheameId ?? 0;
+                model.TwelveBoardName = ee.TwelveBoardName;
+                model.TwelveYearOfPassing = ee.TwelveYearOfPassing ?? 0;
+                model.TwelveCGPA = ee.TwelveCGPA ?? 0;
+                model.TwelvePCM = ee.TwelvePCM ?? 0;
+                model.TwelveSchoolName = ee.TwelveSchoolName;
+                model.DiplomaYear = ee.DiplomaYear ?? 0;
+                model.DiplomaMarkingScheameId = ee.DiplomaMarkingScheameId ?? 0;
+                model.DiplomaCGPA = ee.DiplomaCGPA ?? 0;
+                model.DiplomaBoardName = ee.DiplomaBoardName;
+                model.DiplomaSchoolName = ee.DiplomaSchoolName;
+                model.DegreeYear = ee.DegreeYear ?? 0;
+                model.DegreeMarkingScheameId = ee.DegreeMarkingScheameId ?? 0;
+                model.DegreeCGPA = ee.DegreeCGPA ?? 0;
+                model.DegreeSchoolName = ee.DegreeSchoolName;
+                model.DegreeBoardName = ee.DegreeBoardName;
+                model.PGDegreeId = ee.PGDegreeId;
+                model.PGDegreeYear = ee.PGDegreeYear ?? 0;
+                model.PGDegreeMarkingScheameId = ee.PGDegreeMarkingScheameId ?? 0;
+                model.PGDegreeCGPA = ee.PGDegreeCGPA ?? 0;
+                model.PGDegreeSchoolName = ee.PGDegreeSchoolName;
+                model.PGDegreeBoardName = ee.PGDegreeBoardName;
+            }
 
 
             return View(model);
+
+
+
         }
 
 
@@ -276,6 +291,25 @@ namespace StudentManagement.Web.Areas.Student.Controllers
 
 
                 }
+                else
+                {
+                    var studPersonalObj = new PersonalDetail();
+                    studPersonalObj.Mobile1 = model.Mobile1;
+                    studPersonalObj.Mobile2 = model.Mobile2;
+                    studPersonalObj.PersonalEmail1 = model.PersonalEmail1;
+                    studPersonalObj.PersonalEmail2 = model.PersonalEmail2;
+                    studPersonalObj.GenderId = model.GenderId;
+                    studPersonalObj.CategoryId = model.CategoryId;
+                    studPersonalObj.BloodGroupdId = model.BloodGroupId;
+                    studPersonalObj.ReligionId = model.ReligionId;
+                    studPersonalObj.CountryId = model.CountryId;
+                    studPersonalObj.StateId = model.StateId;
+                    studPersonalObj.Dob = model.Dob;
+                    studPersonalObj.IsActive = true;
+                    studPersonalObj.UserId = User.GetUserId();
+
+                    var updateResult = await _personalDetailService.InsertAsync(studPersonalObj, Accessor, User.GetUserId());
+                }
             }
             return RedirectToAction("Index");
         }
@@ -290,11 +324,11 @@ namespace StudentManagement.Web.Areas.Student.Controllers
                     var cd = _collegeDetailService.GetSingle(x => x.UserId == User.GetUserId());
                     if (cd != null)
                     {
-                       // cd.CampusId = model.CampusId;
-                       // cd.CollegeId = model.CollegeId;
-                       // cd.YearSemesterId = model.YearSemId;
-                       // cd.AdmissionTypeId = model.AdmissionTypeId;
-                       // cd.AdmissionBatchTypeId = model.AdmissionBatchTypeId;
+                        // cd.CampusId = model.CampusId;
+                        // cd.CollegeId = model.CollegeId;
+                        // cd.YearSemesterId = model.YearSemId;
+                        // cd.AdmissionTypeId = model.AdmissionTypeId;
+                        // cd.AdmissionBatchTypeId = model.AdmissionBatchTypeId;
                         cd.CollegeRollNumber = model.CollegeRollNo;
                         cd.Universityenrollmentnumber = model.UniversityEnrollmentNumber;
                         cd.UniversityExamRoleNo = model.UniversityExamRoleNo;
@@ -303,7 +337,26 @@ namespace StudentManagement.Web.Areas.Student.Controllers
 
                         var updateResult = await _collegeDetailService.UpdateAsync(cd, Accessor, User.GetUserId());
 
-                    
+                    }
+                    else
+                    {
+                        var collgeObj = new CollegeDetail();
+                        collgeObj.CampusId = model.CampusId;
+                        collgeObj.CollegeId = model.CollegeId;
+                        collgeObj.YearSemesterId = model.YearSemId;
+                        collgeObj.AdmissionTypeId = model.AdmissionTypeId;
+                        collgeObj.AdmissionBatchTypeId = model.AdmissionBatchTypeId;
+                        collgeObj.CollegeRollNumber = model.CollegeRollNo;
+                        collgeObj.Universityenrollmentnumber = model.UniversityEnrollmentNumber;
+                        collgeObj.UniversityExamRoleNo = model.UniversityExamRoleNo;
+                        collgeObj.PassportNumber = model.PassportNumber;
+                        collgeObj.AdharNumber = model.AdharNumber;
+                        collgeObj.IsActive = true;
+                        collgeObj.UserId = User.GetUserId();
+
+                        var updateResult = await _collegeDetailService.UpdateAsync(collgeObj, Accessor, User.GetUserId());
+
+
                     }
                 }
                 catch (Exception e)
@@ -312,7 +365,7 @@ namespace StudentManagement.Web.Areas.Student.Controllers
                     return RedirectToAction("Index");
                 }
 
-               
+
             }
             return RedirectToAction("Index");
         }
@@ -322,25 +375,25 @@ namespace StudentManagement.Web.Areas.Student.Controllers
         {
             if (model != null)
             {
-               
-                    var pd = _personalDetailService.GetSingle(x => x.UserId == User.GetUserId());
-                    if (pd != null)
-                    {
-                        pd.StayTypeId = model.StayTypeId;
-                        pd.StayAddress = model.StayAddress;
-                        pd.StayRelationId = model.StayRelationId;
-                        pd.StayCityId = model.StayCityId;
-                        pd.StayCountryId = model.StayCountryId;
-                        pd.StayStateId = model.StayStateId;
-                        pd.StayPinCode = model.StayPinCode;
+
+                var pd = _personalDetailService.GetSingle(x => x.UserId == User.GetUserId());
+                if (pd != null)
+                {
+                    pd.StayTypeId = model.StayTypeId;
+                    pd.StayAddress = model.StayAddress;
+                    pd.StayRelationId = model.StayRelationId;
+                    pd.StayCityId = model.StayCityId;
+                    pd.StayCountryId = model.StayCountryId;
+                    pd.StayStateId = model.StayStateId;
+                    pd.StayPinCode = model.StayPinCode;
 
 
-                        var updateResult = await _personalDetailService.UpdateAsync(pd, Accessor, User.GetUserId());
+                    var updateResult = await _personalDetailService.UpdateAsync(pd, Accessor, User.GetUserId());
 
-                    }
-               
+                }
+
                 return RedirectToAction("Index");
-            
+
             }
             return RedirectToAction("Index");
         }
@@ -390,6 +443,45 @@ namespace StudentManagement.Web.Areas.Student.Controllers
                     var updateResult = await _parentService.UpdateAsync(pd, Accessor, User.GetUserId());
 
                 }
+                else
+                {
+                    var parentObj = new ParentDetail();
+                    parentObj.FatherName = model.FatherName;
+                    parentObj.FatherMobile1 = model.FatherMobile1;
+                    parentObj.FatherMobile2 = model.FatherMobile2;
+                    parentObj.FatherEmail = model.FatherEmail;
+                    parentObj.FatherAddress = model.FatherAddress;
+                    parentObj.FatherCityId = model.FatherCityId;
+                    parentObj.FatherStateId = model.FatherStateId;
+                    parentObj.FatherCountryId = model.FatherCountryId;
+                    parentObj.FatherPincode = model.FatherPinCode;
+
+                    parentObj.MotherName = model.MotherName;
+                    parentObj.MotherMobile1 = model.MotherMobile1;
+                    parentObj.MotherMobile2 = model.MotherMobile2;
+                    parentObj.MotherEmail = model.MotherEmail;
+                    parentObj.MotherAddress = model.MotherAddress;
+                    parentObj.MotherCityId = model.MotherCityId;
+                    parentObj.MotherStateId = model.MotherStateId;
+                    parentObj.MotherCountryId = model.MotherCountryId;
+                    parentObj.MotherPincode = model.MotherPinCode;
+
+                    parentObj.LGName = model.LGName;
+                    parentObj.LGMobile1 = model.LGMobile1;
+                    parentObj.LGMobile2 = model.LGMobile2;
+                    parentObj.LGEmail = model.LGEmail;
+                    parentObj.LGAddress = model.LGAddress;
+                    parentObj.LGCityId = model.LGCityId;
+                    parentObj.LGStateId = model.LGStateId;
+                    parentObj.LGCountryId = model.LGCountryId;
+                    parentObj.LGPincode = model.LGPinCode;
+                    parentObj.RelationId = model.LGRelationId;
+                    parentObj.IsActive = true;
+                    parentObj.UserId = User.GetUserId();
+
+                    var InsertResult = await _parentService.InsertAsync(parentObj, Accessor, User.GetUserId());
+
+                }
 
                 return RedirectToAction("Index");
 
@@ -403,20 +495,27 @@ namespace StudentManagement.Web.Areas.Student.Controllers
             if (model != null)
             {
 
-                var pd = _sqService.GetSingle(x => x.UserId == User.GetUserId());
-                if (pd != null)
+                try
                 {
-                    pd.IsEntrance = model.IsEntrance;
-                    pd.EntranceExamAir = model.EntranceExamAir;
-                    pd.EntranceExamRollno = model.EntranceExamRollno;
-                    pd.EntranceExamYear = model.EntranceExamYear;
-                    pd.EntranceExamId = model.EntranceExamId;
-                    pd.EntranceExamMarkObt = model.EntranceExamMarkObt;
-                    pd.EntranceExamCatefgoryRank = model.EntranceExamCatefgoryRank;
+                    var pd = _sqService.GetSingle(x => x.UserId == User.GetUserId());
+                    if (pd != null)
+                    {
+                        pd.IsEntrance = (model.EntranceExamId != null || model.EntranceExamId != 0) ? true : false;
+                        pd.EntranceExamAir = model.EntranceExamAir;
+                        pd.EntranceExamRollno = model.EntranceExamRollno;
+                        pd.EntranceExamYear = model.EntranceExamYear;
+                        pd.EntranceExamId = model.EntranceExamId;
+                        pd.EntranceExamMarkObt = model.EntranceExamMarkObt;
+                        pd.EntranceExamCatefgoryRank = model.EntranceExamCatefgoryRank;
 
 
-                    var updateResult = await _sqService.UpdateAsync(pd, Accessor, User.GetUserId());
+                        var updateResult = await _sqService.UpdateAsync(pd, Accessor, User.GetUserId());
 
+                    }
+                }
+                catch (Exception e)
+                {
+                    return RedirectToAction("Index");
                 }
 
                 return RedirectToAction("Index");
@@ -470,6 +569,43 @@ namespace StudentManagement.Web.Areas.Student.Controllers
                         var updateResult = await _sqService.UpdateAsync(pd, Accessor, User.GetUserId());
 
                     }
+                    else
+                    {
+                        var sqObj = new StudentQualication();
+                        sqObj.DegreeId = model.DegreeId;
+                        sqObj.DiplomaId = model.DiplomaId;
+                        sqObj.TenMarkingScheameId = model.TenMarkingScheameId;
+                        sqObj.TenBoardName = model.TenBoardName;
+                        sqObj.TenYearOfPassing = model.TenYearOfPassing;
+                        sqObj.TenCGPA = model.TenCGPA;
+                        sqObj.TenSchoolName = model.TenSchoolName;
+                        sqObj.TwelveMakingScheameId = model.TwelveMakingScheameId;
+                        sqObj.TwelveBoardName = model.TwelveBoardName;
+                        sqObj.TwelveYearOfPassing = model.TwelveYearOfPassing;
+                        sqObj.TwelveCGPA = model.TwelveCGPA;
+                        sqObj.TwelvePCM = model.TwelvePCM;
+                        sqObj.TwelveSchoolName = model.TwelveSchoolName;
+                        sqObj.DiplomaYear = model.DiplomaYear;
+                        sqObj.DiplomaMarkingScheameId = model.DiplomaMarkingScheameId;
+                        sqObj.DiplomaCGPA = model.DiplomaCGPA;
+                        sqObj.DiplomaBoardName = model.DiplomaBoardName;
+                        sqObj.DiplomaSchoolName = model.DiplomaSchoolName;
+                        sqObj.DegreeYear = model.DegreeYear;
+                        sqObj.DegreeMarkingScheameId = model.DegreeMarkingScheameId;
+                        sqObj.DegreeCGPA = model.DegreeCGPA;
+                        sqObj.DegreeSchoolName = model.DegreeSchoolName;
+                        sqObj.DegreeBoardName = model.DegreeBoardName;
+                        sqObj.PGDegreeId = model.PGDegreeId;
+                        sqObj.PGDegreeYear = model.PGDegreeYear;
+                        sqObj.PGDegreeMarkingScheameId = model.PGDegreeMarkingScheameId;
+                        sqObj.PGDegreeCGPA = model.PGDegreeCGPA;
+                        sqObj.PGDegreeSchoolName = model.PGDegreeSchoolName;
+                        sqObj.PGDegreeBoardName = model.PGDegreeBoardName;
+                        sqObj.IsActive = true;
+                        sqObj.UserId = User.GetUserId();
+
+                        var InsertResult = await _sqService.InsertAsync(sqObj, Accessor, User.GetUserId());
+                    }
                 }
                 catch (Exception e)
                 {
@@ -484,7 +620,7 @@ namespace StudentManagement.Web.Areas.Student.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> UpdateDocuments([FromForm]StudentProfileDto model)
+        public async Task<IActionResult> UpdateDocuments([FromForm] StudentProfileDto model)
         {
             using (var txscope = new TransactionScope(TransactionScopeAsyncFlowOption.Enabled))
             {
@@ -659,23 +795,23 @@ namespace StudentManagement.Web.Areas.Student.Controllers
                     }
                     txscope.Complete();
                     return JsonResponse.GenerateJsonResult(1, ResponseConstants.UpdatedRecord);
-                
+
 
                 }
                 catch (Exception ex)
-            {
-                txscope.Dispose();
-                ErrorLog.AddErrorLog(ex, "UpdateDocuments");
-                return JsonResponse.GenerateJsonResult(0, ResponseConstants.SomethingWrong);
+                {
+                    txscope.Dispose();
+                    ErrorLog.AddErrorLog(ex, "UpdateDocuments");
+                    return JsonResponse.GenerateJsonResult(0, ResponseConstants.SomethingWrong);
+                }
             }
+
+
         }
 
-        
-        }
 
 
 
-       
         #endregion
         #region Common
 
@@ -802,6 +938,12 @@ namespace StudentManagement.Web.Areas.Student.Controllers
             {
                 Text = x.PGDegreeName,
                 Value = x.PGDegreeId.ToString()
+            }).OrderBy(x => x.Text).ToList();
+
+            ViewBag.EntranceExanList = _entranceExamService.GetAll(x => x.IsActive == true).Select(x => new SelectListItem
+            {
+                Text = x.EntranceExamName,
+                Value = x.EntranceExamId.ToString()
             }).OrderBy(x => x.Text).ToList();
 
         }

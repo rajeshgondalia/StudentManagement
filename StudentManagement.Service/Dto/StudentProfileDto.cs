@@ -37,6 +37,10 @@ namespace StudentManagement.Service.Dto
         public string CollegeRollNo { get; set; }
         public string UniversityEnrollmentNumber { get; set; }
         public string UniversityExamRoleNo { get; set; }
+
+        public string MainCollegeRollNo { get; set; }
+        public string MainUniversityEnrollmentNumber { get; set; }
+        public string MainUniversityExamRoleNo { get; set; }
         public string PassportNumber { get; set; }
         public string AdharNumber { get; set; }
 

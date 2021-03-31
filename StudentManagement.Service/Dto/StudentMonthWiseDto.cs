@@ -22,5 +22,25 @@ namespace StudentManagement.Service.Dto
 
     }
 
+    public class DaywiseReportDto
+    {
+        public DateTime  AttendenceDate { get; set; }
+
+        public string subjectName { get; set; }
+
+        public bool  IsPresent { get; set; }
+
+        public long AttendenceId { get; set; }
+
+        public string StudentName { get; set; }
+
+        public long LectureId { get; set; }
+
+        public string LectureName { get; set; }
+
+        public long StudentId { get; set; }
+
+    }
+
     
 }

@@ -10,29 +10,40 @@
     <div class="student-major-details default-form col-12">
         <div class="row mb-4">
 
-            <div class="col-lg-4 col-md-4 col-12">
+            <div class="col-lg-3 col-md-4 col-12">
                 <div class="form-group mb-0">
                     <label class="form-label">Name</label>
-                    <input type="text" disabled asp-for="Name" class="form-control" placeholder="student name" >
+                    <input type="text" disabled asp-for="Name" class="form-control" placeholder="student name">
                 </div>
             </div>
-            <div class="col-lg-4 col-md-4 col-12">
+            <div class="col-lg-3 col-md-4 col-12">
                 <div class="form-group mb-0">
-                    <label class="form-label">Email</label>
-                    <input type="email" disabled asp-for="OfficialEmail" class="form-control" placeholder="student name" >
+                    <label class="form-label">Official Email</label>
+                    <input type="text" disabled asp-for="OfficialEmail" class="form-control" placeholder="student name">
                 </div>
             </div>
-            <div class="col-lg-4 col-md-4 col-12">
+            <div class="col-lg-3 col-md-4 col-12">
                 <div class="form-group mb-0">
                     <label class="form-label">Username</label>
-                    <input type="text" asp-for="UserName" disabled class="form-control" placeholder="user name" >
+                    <input type="text" asp-for="UserName" disabled class="form-control" placeholder="user name">
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-4 col-12">
+
+                <div class="form-group mb-0">
+                    <label class="form-label">Campus</label>
+                    <select name="CampusId" asp-for="CampusId" class="form-control" asp-items="@ViewBag.CampusList" disabled>
+                        <option value="">--Select Campus--</option>
+                    </select>
                 </div>
             </div>
 
         </div>
         <div class="row mb-4">
 
-            <div class="col-lg-4 col-md-4 col-12">
+
+            <div class="col-lg-3 col-md-4 col-12">
+
                 <div class="form-group mb-0">
                     <label class="form-label">College Name</label>
                     <select name="CollegeList" asp-for="CollegeId" disabled class="form-control" asp-items="@ViewBag.CollegeList">
@@ -40,7 +51,7 @@
                     </select>
                 </div>
             </div>
-            <div class="col-lg-4 col-md-4 col-12">
+            <div class="col-lg-3 col-md-4 col-12">
                 <div class="form-group mb-0">
                     <label class="form-label">Course Name</label>
                     <select name="CourseId" disabled asp-for="CourseId" class="form-control" asp-items="@ViewBag.CourseList">
@@ -48,7 +59,7 @@
                     </select>
                 </div>
             </div>
-            <div class="col-lg-4 col-md-4 col-12">
+            <div class="col-lg-3 col-md-4 col-12">
                 <div class="form-group mb-0">
                     <label class="form-label">Branch</label>
                     <select name="BranchId" disabled asp-for="BranchId" class="form-control" asp-items="@ViewBag.BranchList">
@@ -56,26 +67,45 @@
                     </select>
                 </div>
             </div>
+            <div class="col-lg-3 col-md-4 col-12">
+                <div class="form-group mb-0">
+                    <label class="form-label">Year</label>
+                    <select name="YearSemId" asp-for="YearSemId" class="form-control" asp-items="@ViewBag.YearSemList" disabled>
+                        <option value="">--Select Year--</option>
+                    </select>
+                </div>
+            </div>
 
         </div>
         <div class="row mb-3">
 
-            <div class="col-lg-4 col-md-4 col-12">
+           
+            <div class="col-lg-3 col-md-4 col-12">
                 <div class="form-group mb-0">
-                    <label class="form-label">Father Name</label>
-                    <input type="text" name="FatherName" asp-for="FatherName" class="form-control" placeholder="FatherName" disabled />
+                    <label class="form-label">Batch</label>
+                    <select name="BatchId" asp-for="BatchId" class="form-control" asp-items="@ViewBag.BatchList" disabled>
+                        <option value="">--Select Batch--</option>
+                    </select>
                 </div>
             </div>
-            <div class="col-lg-4 col-md-4 col-12">
+            <div class="col-lg-3 col-md-4 col-12">
                 <div class="form-group mb-0">
-                    <label class="form-label">Father Mobile 1</label>
-                    <input type="text" name="FatherMobile1" asp-for="FatherMobile1" class="form-control" placeholder="father mobile 1 " disabled />
+                    <label class="form-label">College Roll No.</label>
+                    <input type="text" name="MainCollegeRollNo" asp-for="MainCollegeRollNo" class="form-control" placeholder="College roll no." readonly />
                 </div>
             </div>
-            <div class="col-lg-4 col-md-4 col-12">
+
+            <div class="col-lg-3 col-md-4 col-12">
                 <div class="form-group mb-0">
-                    <label class="form-label">Father Email</label>
-                    <input type="text" name="FatherEmail" asp-for="FatherEmail" class="form-control" placeholder="Father email" disabled />
+                    <label class="form-label">University Enrollment No.</label>
+                    <input type="text" name="MainUniversityEnrollmentNumber" asp-for="MainUniversityEnrollmentNumber" class="form-control" placeholder="University Enrollment No." readonly />
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-md-4 col-12">
+                <div class="form-group mb-0">
+                    <label class="form-label">University Exam Role No.</label>
+                    <input type="text" name="MainUniversityExamRoleNo" asp-for="MainUniversityExamRoleNo" class="form-control" placeholder="University Exam RoleNo." readonly />
                 </div>
             </div>
 
@@ -431,6 +461,13 @@
                                             </select>
                                         </div>
                                     </div>
+
+                                    <div class="col-lg-4 col-md-4 col-12">
+                                        <div class="form-group mb-4">
+                                            <label class="form-label">Father pincode</label>
+                                            <input type="text" name="FatherPinCode" asp-for="FatherPinCode" class="form-control" placeholder="Father pincode" />
+                                        </div>
+                                    </div>
                                 </div>
 
 
@@ -489,6 +526,12 @@
                                             <select name="MotherCountryId" asp-for="MotherCountryId" class="form-control" asp-items="@ViewBag.CountryList">
                                                 <option value="">--Select Stay Country--</option>
                                             </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-12">
+                                        <div class="form-group mb-4">
+                                            <label class="form-label">Mother pincode</label>
+                                            <input type="text" name="MotherPinCode" asp-for="MotherPinCode" class="form-control" placeholder="Mother pincode" />
                                         </div>
                                     </div>
                                 </div>
@@ -559,6 +602,12 @@
                                             <select name="LGCountryId" asp-for="LGCountryId" class="form-control" asp-items="@ViewBag.CountryList">
                                                 <option value="">--Select Stay Country--</option>
                                             </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-12">
+                                        <div class="form-group mb-4">
+                                            <label class="form-label">LG pincode</label>
+                                            <input type="text" name="LGPinCode" asp-for="LGPinCode" class="form-control" placeholder="LG pincode" />
                                         </div>
                                     </div>
                                 </div>
@@ -968,7 +1017,7 @@
                                     <div class="col-lg-4 col-md-4 col-12">
                                         <div class="form-group mb-4">
                                             <label class="form-label">Exam Name</label>
-                                            <select name="EntranceExamId" asp-for="EntranceExamId" class="form-control" asp-items="@ViewBag.RelationList">
+                                            <select name="EntranceExamId" asp-for="EntranceExamId" class="form-control" asp-items="@ViewBag.EntranceExanList">
                                                 <option value="">--Select Exam Name--</option>
                                             </select>
                                         </div>
@@ -1264,13 +1313,14 @@
                 submitHandler: function (form) {
                     let post_url = form.action;
                     let form_data = $(form).serialize();
-
+                    debugger;
                     $.post(post_url, form_data, function (response) {
                         swal({
                             title: "updated",
                             text: "Records updated successfully ",
                             icon: "success",
                         });
+                        window.location.href =`/Student/StudentProfile/Index`;
                     });
                 }
 

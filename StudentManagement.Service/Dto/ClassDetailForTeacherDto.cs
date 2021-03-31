@@ -12,6 +12,6 @@ namespace StudentManagement.Service.Dto
         public string SubjectName { get; set; }
 
 
-        public string RollNoList { get; set; }
+        public long  ClassId { get; set; }
     }
 }

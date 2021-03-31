@@ -87,7 +87,7 @@ namespace StudentManagement.Web.Areas.Identity.Pages.Account
                     if(await _userManager.IsInRoleAsync(user,"Admin"))
                         return LocalRedirect("/Admin/AdminDashboard");
                     else if (await _userManager.IsInRoleAsync(user, "Student"))
-                        return LocalRedirect("/Student/StudentDashboard");
+                        return LocalRedirect("/Student/StudentDashboard/Index");
                     else if (await _userManager.IsInRoleAsync(user, "Staff"))
                         return LocalRedirect("/Staff/StaffDashboard");
 

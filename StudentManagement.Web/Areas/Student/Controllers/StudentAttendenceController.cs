@@ -120,18 +120,18 @@ namespace StudentManagement.Web.Areas.Student.Controllers
         {
             var attendencelist = _saService.GetAll();
             var currentStudentAttendenceList = _adService.GetAll().Where(x => x.StudentId == User.GetUserId()).ToList();
-            var studentReportList = new List<StudentMonthWiseDto>();
+            var studentReportList = new List<DaywiseReportDto>();
             foreach (var item in currentStudentAttendenceList)
             {
-
                 var attendenceObj = attendencelist.FirstOrDefault(x => x.AttendanceId == item.AttendanceId);
-                var model = new StudentMonthWiseDto();
-                model.MonthId = attendenceObj.AttendanceDate.Month;
-                model.MonthName = attendenceObj.AttendanceDate.ToString("MMMM");
+                var model = new DaywiseReportDto();
+                model.AttendenceDate = attendenceObj.AttendanceDate;
+                model.LectureId = attendenceObj.LectureId;
                 model.subjectName = _SubService.GetSingle(x => x.SubjectId == attendenceObj.SubjectId).SubjectName;
-                model.subjectHeld += 1;
-                model.StudentAttendence += item.IsPresent ? 1 : 0;
-                model.Percent = 0;
+                model.IsPresent = item.IsPresent;
+                model.LectureName = _lectureService.GetById(attendenceObj.LectureId).LactureName;
+                model.AttendenceId = item.AttendanceId;
+                model.StudentId = item.StudentId;
                 studentReportList.Add(model);
 
             }

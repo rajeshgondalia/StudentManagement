@@ -135,6 +135,7 @@
                             + sub.value + '" selected>'
                             + sub.text + '</option>');
                     });
+                    bindStudentList("#StudentTable");
                 },
                 error: function (ex) {
                     alert('Failed.' + ex);
@@ -153,7 +154,7 @@
             dynamic = $(tableId).DataTable({
                 "bProcessing": true,
                 "bServerSide": true,
-                "sAjaxSource": "/Staff/StaffAttendence/GetStudentList",
+                "sAjaxSource": `/Staff/StaffAttendence/GetStudentList?ClassId=${$("#ClassId").val()}`,
                 "initComplete": function (settings, json) { },
                 "rowCallback": function (row, data, index) { },
                 "order": [[1, ""]],

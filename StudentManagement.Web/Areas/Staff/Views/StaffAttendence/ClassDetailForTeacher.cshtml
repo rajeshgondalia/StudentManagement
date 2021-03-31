@@ -19,7 +19,7 @@
                 <div class="card">
                     <div class="modal-header">
                         <h6 class="modal-title">
-                            Roll list
+                            ClassDetails For Teacher
                         </h6>
                     </div>
                     <div class="card-body modal-body">
@@ -42,7 +42,7 @@
                                             <tr>
                                                 <td>@item.ClassName</td>
                                                 <td>@item.SubjectName</td>
-                                                <td><a href="javascript:;"  class="RollList" data-id="@item.RollNoList">Roll List</a></td>
+                                                <td><a href="javascript:;"  class="RollList" data-id="@item.ClassId">Roll List</a></td>
                                             </tr>
                                         }
                                         </tbody>
@@ -81,9 +81,12 @@
 <script type="text/javascript">
     $(document).on("click", ".RollList", function () {
         
-        var stud = $(this).attr("data-id");
-        if (stud != "") {
-            swal("Student Roll List", "RollNumber :"+ stud)
+        var cId = $(this).attr("data-id");
+
+
+        
+        if (cId != "") {
+            window.location.href = `/Staff/StaffAttendence/RollListReport?Cid=${cId}`;
             
         } else {
             swal("No student Found!"," :(")

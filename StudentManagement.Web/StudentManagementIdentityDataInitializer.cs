@@ -69,6 +69,31 @@ namespace StudentManagement
             }
 
 
+            var user2 = new ApplicationUser
+            {
+                FirstName = "vrushal",
+                LastName = "s",
+                MiddleName = "",
+                UserName = "vrushal@gmail.com",
+                OfficialEmail = "vrushal@gmail.com",
+                NormalizedUserName = "vrushal@gmail.com",
+                Email = "vrushal@gmail.com",
+                NormalizedEmail = "vrushal@gmail.com",
+                EmailConfirmed = true,
+                IsActive = true,
+
+            };
+            if (userManager.FindByEmailAsync(user2.UserName).Result != null) return;
+
+            var vresult = userManager.CreateAsync(user2, "Password123#").Result;
+
+            if (vresult.Succeeded)
+            {
+                userManager.AddToRoleAsync(user2, "Student").Wait();
+            }
+
+
+
             var TeacherUser = new ApplicationUser
             {
                 FirstName = "Staff",
