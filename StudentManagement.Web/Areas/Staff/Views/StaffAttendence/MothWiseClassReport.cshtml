@@ -34,10 +34,10 @@
                                         <thead>
                                             <tr>
                                                 <th></th>
-                                                @foreach (var item in monthlist)
+                                                @foreach (var item in Model.GroupBy(x => x.MonthName))
                                                 {
 
-                                                    <th colspan="3"> @Model.Where(x => x.StudentName == item.Key).Select(x => x.MonthName).FirstOrDefault()</th>
+                                                    <th colspan="3"> @item.Key  @*@Model.Where(x => x.StudentName == item.Key).Select(x => x.MonthName).FirstOrDefault()*@</th>
 
 
                                                 }
@@ -45,7 +45,7 @@
                                                 <th colspan="3"> Overall</th>
                                             </tr>
                                             <tr>
-                                                @foreach (var item in monthlist)
+                                                @foreach (var item in Model.GroupBy(x => x.MonthName))
                                                 {
 
                                                     <th width="5%" class="td-roll"></th>
@@ -55,8 +55,8 @@
 
                                                 }
                                                 <th width="10%" class="td-name">Held</th>
-                                                <th width="15%" class="td-present-absent">Attendence</th>
-                                                <th width="5%" class="td-present-absent">%</th>
+                                                    <th width="15%" class="td-present-absent">Attendence</th>
+                                                    <th width="5%" class="td-present-absent">%</th>
 
                                                 @*<th width="30%" class="td-name">Held</th>
                                                     <th width="15%" class="td-present-absent">Attendence</th>

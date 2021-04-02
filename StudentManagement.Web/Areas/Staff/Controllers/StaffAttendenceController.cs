@@ -40,6 +40,7 @@ namespace StudentManagement.Web.Areas.Staff.Controllers
         private readonly IStudentAttendanceService _saService;
         private readonly ICollegeDetailService _cdService;
         private readonly IClassStudentDetailService _classStudentDetailService;
+        private readonly IClassSubjectTeacherService _classSubTeacherService;
         
         #endregion
 
@@ -51,6 +52,7 @@ namespace StudentManagement.Web.Areas.Staff.Controllers
             ISubjectService subjectService, IClassService classService, IClassSubjectDetailService classDetailService, 
             IUserService userService,
             ICollegeDetailService cdService,
+            IClassSubjectTeacherService classSubTeacherService,
             IClassStudentDetailService classStudentDetailService
             )
         {
@@ -78,6 +80,9 @@ namespace StudentManagement.Web.Areas.Staff.Controllers
 
         public IActionResult AttendenceEntry()
         {
+            //
+
+
             var eObj = _saService.GetAll().Where(x => x.AttendanceBy == User.GetUserId() && x.AttendanceDate.ToShortDateString().Equals(DateTime.Now.ToShortDateString())).FirstOrDefault();
                 var model = new StaffAttendenceDto();
             if (eObj != null) {
@@ -150,7 +155,9 @@ namespace StudentManagement.Web.Areas.Staff.Controllers
             {
                 try
                 {
-                    var isExist = _saService.GetAll().Where(x=>x.AttendanceDate.ToShortDateString().Equals(DateTime.Now.ToShortDateString()));
+                    var isExist = _saService.GetAll().Where(x=>x.AttendanceDate.ToShortDateString().Equals(DateTime.Now.ToShortDateString()) &&
+                     x.AttendanceBy == User.GetUserId()
+                    );
                     if (isExist.Count() == 0)
                     {
                         StudentAttendance obj = new StudentAttendance();
@@ -186,6 +193,10 @@ namespace StudentManagement.Web.Areas.Staff.Controllers
                     }
                     else {
                         var eObj = _saService.GetAll().Where(x => x.AttendanceBy == User.GetUserId() && x.AttendanceDate.ToShortDateString().Equals(DateTime.Now.ToShortDateString())).FirstOrDefault();
+
+                        if (eObj != null)
+                        { 
+                        
                         eObj.AttendanceDate = DateTime.Now;
                         eObj.AttendanceBy = User.GetUserId();
                         eObj.ClassId = model.ClassId;
@@ -210,6 +221,8 @@ namespace StudentManagement.Web.Areas.Staff.Controllers
                             }
                             txscope.Complete();
                             return JsonResponse.GenerateJsonResult(1, ResponseConstants.InsertRecord);
+                        }
+
                         }
 
                     }
@@ -301,13 +314,18 @@ namespace StudentManagement.Web.Areas.Staff.Controllers
             var attendenceList = _saService.GetAll(x => x.AttendanceBy == User.GetUserId()).ToList();
             foreach (var item in attendenceList)
             {
+                var attendenceDetail = _adService.GetAll(x => x.AttendanceId == item.AttendanceId).ToList();
+
+                foreach (var ads in attendenceDetail) { 
+                
                 DaywiseAttendenceDto m = new DaywiseAttendenceDto();
                 m.AttendenceDate = item.AttendanceDate;
                 m.LactureName = _lectureService.GetById(item.LectureId).LactureName;
                 m.SubjectName = _subjectService.GetById(item.SubjectId).SubjectName;
-                m.IsPresent = _adService.GetSingle(x => x.AttendanceId == item.AttendanceId).IsPresent;
+                m.IsPresent = ads.IsPresent;
                 m.LectureId = item.LectureId;
                 model.Add(m);
+                }
 
             }
 
