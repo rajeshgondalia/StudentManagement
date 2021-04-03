@@ -65,7 +65,7 @@ namespace StudentManagement.Web.Areas.Staff.Controllers
             _saService = saService;
             _cdService = cdService;
             _classStudentDetailService = classStudentDetailService;
-
+            _classSubTeacherService = classSubTeacherService;
 
         }
         #endregion
@@ -81,6 +81,14 @@ namespace StudentManagement.Web.Areas.Staff.Controllers
         public IActionResult AttendenceEntry()
         {
             //
+            var ClassTeacherList = _classSubTeacherService.GetAll(x => x.TeacherId == User.GetUserId()).ToList();
+            var ClasssubjectList = _classDetailService.GetAll(x => ClassTeacherList.Select(x => x.ClassSubjectDetailId).ToList().Contains(x.ClassSubjectDetailId)).ToList();
+            
+            ViewBag.ClassList = _classService.GetAll(x => ClasssubjectList.Select(x => x.ClassId).ToList().Contains(x.ClassId)).Select(x => new SelectListItem
+            {
+                Text = x.ClassName,
+                Value = x.ClassId.ToString()
+            }).OrderBy(x => x.Text).ToList();
 
 
             var eObj = _saService.GetAll().Where(x => x.AttendanceBy == User.GetUserId() && x.AttendanceDate.ToShortDateString().Equals(DateTime.Now.ToShortDateString())).FirstOrDefault();
@@ -97,11 +105,7 @@ namespace StudentManagement.Web.Areas.Staff.Controllers
             }).OrderBy(x => x.Text).ToList();
 
 
-            ViewBag.ClassList = _classService.GetAll(x => x.IsActive == true).Select(x => new SelectListItem
-            {
-                Text = x.ClassName,
-                Value = x.ClassId.ToString()
-            }).OrderBy(x => x.Text).ToList();
+           
 
             ViewBag.SubjectList = _subjectService.GetAll(x => x.IsActive == true).Select(x => new SelectListItem
             {
@@ -114,14 +118,16 @@ namespace StudentManagement.Web.Areas.Staff.Controllers
 
 
         [HttpGet]
-        public async Task<IActionResult> GetStudentList(JQueryDataTableParamModel param,long ClassId)
+        public async Task<IActionResult> GetStudentList(JQueryDataTableParamModel param,long ClassId,long LecId)
         {
             using (var txscope = new TransactionScope(TransactionScopeAsyncFlowOption.Enabled))
             {
                 try
                 {
                     var parameters = CommonMethod.GetJQueryDatatableParamList(param, GetSortingColumnName(param.iSortCol_0));
-                    parameters.Parameters.Insert(0, new SqlParameter("@ClassId", SqlDbType.BigInt) { Value = ClassId });
+                    parameters.Parameters.Insert(0, new SqlParameter("@LectureId", SqlDbType.BigInt) { Value = LecId });
+                    parameters.Parameters.Insert(1, new SqlParameter("@TeacherId", SqlDbType.BigInt) { Value = User.GetUserId() });
+                    parameters.Parameters.Insert(2, new SqlParameter("@ClassId", SqlDbType.BigInt) { Value = ClassId });
                     var allList = await _userService.GetStudentList(parameters.Parameters.ToArray());
                     var total = allList.FirstOrDefault()?.TotalRecords ?? 0;
                     return Json(new
@@ -147,6 +153,22 @@ namespace StudentManagement.Web.Areas.Staff.Controllers
         }
 
 
+        [HttpGet]
+        public IActionResult checkAttendence(long lectureId)
+        {
+           var checkResult= _saService.GetAll().Where(x => x.AttendanceDate.ToShortDateString().Equals(DateTime.Now.ToShortDateString()) &&
+                     x.AttendanceBy == User.GetUserId() && x.LectureId == lectureId
+                    );
+            if (checkResult.Count() == 0)
+            {
+                return JsonResponse.GenerateJsonResult(0, "");
+            }
+            else
+            {
+                return JsonResponse.GenerateJsonResult(1, "");
+            }
+        }
+
 
         [HttpPost]
         public async Task<IActionResult> StudentAttendenceEntry(StaffAttendenceDto model)
@@ -156,7 +178,7 @@ namespace StudentManagement.Web.Areas.Staff.Controllers
                 try
                 {
                     var isExist = _saService.GetAll().Where(x=>x.AttendanceDate.ToShortDateString().Equals(DateTime.Now.ToShortDateString()) &&
-                     x.AttendanceBy == User.GetUserId()
+                     x.AttendanceBy == User.GetUserId() && x.LectureId !=model.LectureId
                     );
                     if (isExist.Count() == 0)
                     {
@@ -191,41 +213,7 @@ namespace StudentManagement.Web.Areas.Staff.Controllers
 
                         }
                     }
-                    else {
-                        var eObj = _saService.GetAll().Where(x => x.AttendanceBy == User.GetUserId() && x.AttendanceDate.ToShortDateString().Equals(DateTime.Now.ToShortDateString())).FirstOrDefault();
-
-                        if (eObj != null)
-                        { 
-                        
-                        eObj.AttendanceDate = DateTime.Now;
-                        eObj.AttendanceBy = User.GetUserId();
-                        eObj.ClassId = model.ClassId;
-                        eObj.LectureId = model.LectureId;
-                        eObj.SubjectId = model.SubjectId;
-                        eObj.IsActive = true;
-                        var updateResult = await _saService.UpdateAsync(eObj,Accessor,User.GetUserId());
-                        if (updateResult != null)
-                        {
-                            var studentList = _adService.GetAll().Where(x => x.AttendanceId == updateResult.AttendanceId && model.StudentIdList.Contains(x.StudentId));
-                            foreach (var studentId in model.StudentIdList)
-                            {
-                                var studObj = studentList.FirstOrDefault(x => x.StudentId == studentId);
-                                studObj.IsPresent = model.Mark==1?true:false;
-                                var stinsertResult = await _adService.UpdateAsync(studObj, Accessor, User.GetUserId());
-                                if (stinsertResult == null)
-                                {
-                                    txscope.Dispose();
-                                    ErrorLog.AddErrorLog(null, "post/StudentAttendenceEntry");
-                                    return JsonResponse.GenerateJsonResult(0, ResponseConstants.SomethingWrong);
-                                }
-                            }
-                            txscope.Complete();
-                            return JsonResponse.GenerateJsonResult(1, ResponseConstants.InsertRecord);
-                        }
-
-                        }
-
-                    }
+                   
                     txscope.Dispose();
                     ErrorLog.AddErrorLog(null, "post/StudentAttendenceEntry");
                     return JsonResponse.GenerateJsonResult(0, ResponseConstants.SomethingWrong);

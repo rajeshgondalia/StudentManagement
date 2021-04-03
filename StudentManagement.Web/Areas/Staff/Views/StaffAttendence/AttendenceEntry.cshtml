@@ -119,6 +119,42 @@
 @section Scripts{
     <script type="text/javascript">
         var StudentIdList = new Array();
+
+
+        function checkLecture() {
+            $.ajax({
+                url: `/Staff/StaffAttendence/checkAttendence`,
+                type: "GET",
+                data: { lectureId: $("#LectureId").val() },
+                success: function (response) {
+                    debugger;
+                    if (response.status == 1) {
+
+                        swal({
+                            title: "Oops !",
+                            text: "Already taken attendence for this lecture",
+                            icon: "success",
+                        });
+                        return response.status;
+                    } else {
+                        return 0;
+                    }
+
+                }
+
+            })
+        }
+
+
+
+        $(document).on("change", "#LectureId", function () {
+            debugger;
+            checkLecture();
+                bindStudentList("#StudentTable");
+            
+                
+        })
+
     $(document).ready(function () {
         $('input:radio[id=Mark]').prop('checked', true);
         $("#ClassId").change(function () {
@@ -143,6 +179,9 @@
             });
             return false;
         })
+     
+    });
+
         $(document).ready(function () {
             bindStudentList("#StudentTable");
         });
@@ -154,7 +193,7 @@
             dynamic = $(tableId).DataTable({
                 "bProcessing": true,
                 "bServerSide": true,
-                "sAjaxSource": `/Staff/StaffAttendence/GetStudentList?ClassId=${$("#ClassId").val()}`,
+                "sAjaxSource": `/Staff/StaffAttendence/GetStudentList?ClassId=${$("#ClassId").val()}&LecId=${$("#LectureId").val()}`,
                 "initComplete": function (settings, json) { },
                 "rowCallback": function (row, data, index) { },
                 "order": [[1, ""]],
@@ -177,12 +216,14 @@
 
                     },
                     {
-                        "data": "id",
+                        "data": "isPresent",
                         "autoWidth": true,
                         "searchable": true,
                         "orderable": true,
                         "render": function (data, type, row) {
-                            return `  <input type="checkbox" class="studentCheckBox" data-id="${data}"/>`;
+                            debugger;
+                            var ispresent = data == true ? "checked" : "";
+                            return `  <input type="checkbox" class="studentCheckBox" ${ispresent} data-id="${data}"/>`;
                         }
 
                     }
@@ -190,7 +231,6 @@
             });
 
         }
-    });
 
         $(document).on("click", ".studentCheckBox", function () {
 
@@ -207,6 +247,7 @@
             SetAttendence();
         });
         function SetAttendence() {
+            if (checkLecture() == 0) {
             if (StudentIdList.length == 0) {
                 swal("Please select  student !");
             } else {
@@ -218,6 +259,8 @@
                     StudentIdList: StudentIdList
 
                 }
+                
+               
                 $.ajax({
                     url: "/Staff/StaffAttendence/StudentAttendenceEntry",
                     type: "POST",
@@ -233,6 +276,7 @@
                     },
                     error: function (response) { }
                 });
+                }
             }
 
       
